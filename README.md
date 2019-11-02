@@ -10,7 +10,7 @@ Have created custome datasets of MNIST and CIFAR10 in different distrubutions an
 ## Descriptions of Important Files
 
 ### CustomDataset.py
-Contain classes and methods to load custume datasets in given distributions (index files).
+Contain classes and methods to load custom datasets in given distributions (index files).
 
 ### Indexes_generator.ipynb
 Randomly select indexes of the original dataset based on the given distribution and save the selected indexes as ".npy" file.
