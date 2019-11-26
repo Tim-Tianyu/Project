@@ -2,7 +2,7 @@ from torchvision import datasets, transforms
 import numpy as np
 
 
-CIFAR10_transform = transforms.Compose([transforms.ToTensor(),transforms.Normalize((0.4914, 0.4822, 0.4465), (0.247, 0.243, 0.261))])
+CIFAR10_transform = transforms.Compose([transforms.ToTensor(),transforms.Normalize()])
 MNIST_transform = transforms.Compose([transforms.ToTensor(),transforms.Normalize((0.1307,), (0.3081,))])
 Distribution_names = ["linear_unbalanced_1", "linear_unbalanced_2", "balanced", "expo_unbalance"]
 Datasets_name = ["MNIST", "CIFAR10"]
