@@ -27,7 +27,6 @@ transform_test = transforms.Compose([
 
 transform_train_MNIST = transforms.Compose([
         transforms.Pad(2, fill=0, padding_mode='constant'),
-        transforms.RandomHorizontalFlip(),
         transforms.ToTensor(),
         transforms.Normalize((0.1307,), (0.3081,))
     ])
@@ -38,10 +37,14 @@ transform_test_MNIST = transforms.Compose([
     transforms.Normalize((0.1307,), (0.3081,))
 ])
 
-if args.dataset_name == 'CIFAR10_balanced':
-    train_data = CustomDataset.load_dataset(dataset_name = "CIFAR10", distribution_name = "balanced", transform = transform_train)
+if args.dataset_name == 'CIFAR10':
+    train_data = CustomDataset.load_dataset(dataset_name = "CIFAR10", distribution_name = args.distribution_name, transform = transform_train)
     val_data = CustomDataset.load_testset(dataset_name = "CIFAR10", transform= transform_test)
     test_data = CustomDataset.load_testset(dataset_name = "CIFAR10", transform= transform_test)
+elif args.dataset_name == 'MNIST':
+    train_data = CustomDataset.load_dataset(dataset_name = "MNIST", distribution_name = args.distribution_name, transform = transform_train_MNIST)
+    val_data = CustomDataset.load_testset(dataset_name = "MNIST", transform= transform_test_MNIST)
+    test_data = CustomDataset.load_testset(dataset_name = "MNIST", transform= transform_test_MNIST)
 else:
     raise CustomDataset.DataSetNotFound
 
@@ -49,7 +52,7 @@ train_data_loader = DataLoader(train_data, batch_size=args.batch_size, shuffle=T
 val_data_loader = DataLoader(val_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
 test_data_loader = DataLoader(test_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
 
-custom_conv_net = CustomModels.load_model(model_name=args.model_name, num_classes=args.num_classes)
+custom_conv_net = CustomModels.load_model(model_name=args.model_name, num_of_channels=args.image_num_channels, num_classes=args.num_classes)
 
 conv_experiment = ExperimentBuilder(network_model=custom_conv_net,
                                     experiment_name=args.experiment_name,

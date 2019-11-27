@@ -45,11 +45,12 @@ def get_args():
                         help='A flag indicating whether we will use GPU acceleration or not')
     parser.add_argument('--weight_decay_coefficient', nargs="?", type=float, default=0,
                         help='Weight decay to use for Adam')
-    parser.add_argument('--model_name', type=str, default='VGG11',
+    parser.add_argument('--model_name', type=str, default='Custom_07',
                         help='Type of model used')
-    parser.add_argument('--dataset_name', type=str, default='CIFAR10_balanced',
+    parser.add_argument('--dataset_name', type=str, default='MNIST',
                         help='Type of dataset used')                    
-    
+    parser.add_argument('--distribution_name', type=str, default='balanced',
+                        help='Type of distribution used')
     args = parser.parse_args()
     print(args)
     return args
