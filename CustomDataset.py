@@ -15,7 +15,13 @@ Distribution_names = ["linear_unbalanced_1",
          "balanced_100", 
          "balanced_50", 
          "balanced_25", 
-         "expo_unbalance"]
+         "balanced_10", 
+         "balanced_5", 
+         "expo_unbalance", 
+         "expo_unbalance_2560to5", 
+         "expo_unbalance_5000to1",
+         "cut_unbalance_4890or25", 
+         "linear_unbalance_1020to3"]
 Datasets_name = ["MNIST", "CIFAR10"]
 
 class CustomCIFAR10(datasets.CIFAR10):

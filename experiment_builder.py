@@ -8,6 +8,7 @@ import numpy as np
 import time
 
 from pytorch_mlp_framework.storage_utils import save_statistics
+from sklearn.metrics import confusion_matrix
 
 
 class ExperimentBuilder(nn.Module):
@@ -157,6 +158,22 @@ class ExperimentBuilder(nn.Module):
         _, predicted = torch.max(out.data, 1)  # get argmax of predictions
         accuracy = np.mean(list(predicted.eq(y.data).cpu()))  # compute accuracy
         return loss.cpu().data.numpy(), accuracy
+    
+    def get_confusion_matrix(self, x, y, labels):
+        """
+        Receives the inputs and targets for the model and runs an evaluation iterations. Returns confusion matrix.
+        :param x: The inputs to the model. A numpy array of shape batch_size, channels, height, width
+        :param y: The targets for the model. A numpy array of shape batch_size, num_classes
+        :return: the confusion matrix for this batch
+        """
+        self.eval()  # sets the system to validation mode
+        x, y = x.float().to(device=self.device), y.long().to(
+            device=self.device)  # convert data to pytorch tensors and send to the computation device
+        
+        out = self.model.forward(x)  # forward the data in the model
+        _, predicted = torch.max(out.data, 1)  # get argmax of predictions
+        
+        return confusion_matrix(y.cpu().data.numpy(), predicted.cpu().data.numpy())
 
     def save_model(self, model_save_dir, model_save_name, model_idx, best_validation_model_idx,
                    best_validation_model_acc):
@@ -218,17 +235,17 @@ class ExperimentBuilder(nn.Module):
             if val_mean_accuracy > self.best_val_model_acc:  # if current epoch's mean val acc is greater than the saved best val acc then
                 self.best_val_model_acc = val_mean_accuracy  # set the best val model acc to be current epoch's val accuracy
                 self.best_val_model_idx = epoch_idx  # set the experiment-wise best val idx to be the current epoch's idx
-
+            
             for key, value in current_epoch_losses.items():
                 total_losses[key].append(np.mean(
                     value))  # get mean of all metrics of current epoch metrics dict, to get them ready for storage and output on the terminal.
-
+            
             save_statistics(experiment_log_dir=self.experiment_logs, filename='summary.csv',
                             stats_dict=total_losses, current_epoch=i,
                             continue_from_mode=True if (self.starting_epoch != 0 or i > 0) else False)  # save statistics to stats file.
-
+            
             # load_statistics(experiment_log_dir=self.experiment_logs, filename='summary.csv') # How to load a csv file if you need to
-
+            
             out_string = "_".join(
                 ["{}_{:.4f}".format(key, np.mean(value)) for key, value in current_epoch_losses.items()])
             # create a string to use to report our epoch metrics
@@ -252,20 +269,22 @@ class ExperimentBuilder(nn.Module):
                         # load best validation model
                         model_save_name="train_model")
         current_epoch_losses = {"test_acc": [], "test_loss": []}  # initialize a statistics dict
+        
+        labels = np.sort(np.unique(np.array(self.test_data.dataset.targets))) # all classes
+        confusion_matrix = np.zeros((labels.size,labels.size))
         with tqdm.tqdm(total=len(self.test_data)) as pbar_test:  # ini a progress bar
             for x, y in self.test_data:  # sample batch
-                loss, accuracy = self.run_evaluation_iter(x=x,
-                                                          y=y)  # compute loss and accuracy by running an evaluation step
+                confusion_matrix = confusion_matrix + self.get_confusion_matrix(x=x, y=y, labels=labels)
+                loss, accuracy = self.run_evaluation_iter(x=x, y=y)  # compute loss and accuracy by running an evaluation step
                 current_epoch_losses["test_loss"].append(loss)  # save test loss
                 current_epoch_losses["test_acc"].append(accuracy)  # save test accuracy
                 pbar_test.update(1)  # update progress bar status
                 pbar_test.set_description(
                     "loss: {:.4f}, accuracy: {:.4f}".format(loss, accuracy))  # update progress bar string output
-
         test_losses = {key: [np.mean(value)] for key, value in
                        current_epoch_losses.items()}  # save test set metrics in dict format
         save_statistics(experiment_log_dir=self.experiment_logs, filename='test_summary.csv',
                         # save test set metrics on disk in .csv format
                         stats_dict=test_losses, current_epoch=0, continue_from_mode=False)
-
+        np.save(os.path.join(self.experiment_logs, 'confusion_matrix'), confusion_matrix)
         return total_losses, test_losses
