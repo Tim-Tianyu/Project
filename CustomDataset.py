@@ -22,7 +22,8 @@ Distribution_names = ["linear_unbalanced_1",
          "expo_unbalance_5000to1",
          "cut_unbalance_4890or25", 
          "linear_unbalance_1020to3",
-         "2560to5_rescaled"]
+         "2560to5_rescaled",
+         "balanced_2560"]
 Datasets_name = ["MNIST", "CIFAR10"]
 
 class CustomCIFAR10(datasets.CIFAR10):
@@ -50,6 +51,38 @@ class CustomMNIST(datasets.MNIST):
 #             self.data = self.data[rescaled_idxs,:,:]
 #             self.targets = list(np.array(self.targets)[rescaled_idxs])
 
+class binary_target_transformer():
+    def _init_(self, classes):
+        self.classes = classes
+    
+    def target_transform(self, target):
+        if target in self.clasees:
+            return 1
+        return 0
+
+class muliclass_target_transformer():
+    def _init_(self, classes_list):
+        # Check if partistion of classes is right
+        temp = []
+        for classes in classes_list:
+            temp += classes
+        if len(temp) != len(set(temp)):
+            raise InvalidPartition
+        
+        self.classes_list = classes_list
+    
+    def target_transform(self, target):
+        for i in range(0,len(self.classes_list)):
+            if target in self.classes_list[i]:
+                return i
+        raise InvalidTarget
+
+class InvalidPartition(Exception):        
+    pass
+    
+class InvalidTarget(Exception):
+    pass
+    
 class DataSetNotFound(Exception):
     pass
 
