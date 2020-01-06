@@ -26,6 +26,11 @@ Distribution_names = ["linear_unbalanced_1",
          "balanced_2560"]
 Datasets_name = ["MNIST", "CIFAR10"]
 
+partitions_names = [
+    "partition_object_test",
+    "???"
+]
+
 class CustomCIFAR10(datasets.CIFAR10):
     def __init__(self, root, train=True, transform=CIFAR10_transform, target_transform=None, download=False, indexs_name = "index_test2.npy"):
         super().__init__(root, train, transform, target_transform, download)
@@ -42,6 +47,20 @@ class CustomMNIST(datasets.MNIST):
         if (train):
             self.data = self.data[result_idxs,:,:]
             self.targets = self.targets[result_idxs]
+            
+class CustomMNIST_partition(datasets.MNIST):
+    def __init__(self, root, indexs, classes, train=True, transform=MNIST_transform, target_transform=None, download=False):
+        super().__init__(root, train, transform, target_transform, download, indexs_name)
+        if (train):
+            self.data = self.data[indexs,:,:]
+            
+            # transform class number (merge classes)
+            self.targets = classes[self.targets][indexs]
+            
+            # filter out unused classes (samples that belongs to -1 class)
+            samples_used = (self.targets != -1)
+            self.data = self.data[samples_used, :, :]
+            self.targets = self.targets[samples_used]
             
 # class CustomMNIST_rescale(CustomMNIST):
 #     def __init__(self, root, train=True, transform=MNIST_transform, target_transform=None, download=False, indexs_name = "index_test.npy", rescaled_index_name = "XXX.npy"):
@@ -89,6 +108,9 @@ class DataSetNotFound(Exception):
 class DistributionNotFound(Exception):
     pass
 
+class PartitionNotFound(Exception):
+    pass
+
 # def load_all_datasets(data_folder="./data", distribution_names = Distribution_names):
 #     datasets_dic = {}
 #     for name in distribution_names:
@@ -105,6 +127,14 @@ def load_dataset(dataset_name, distribution_name, transform, data_folder="./data
         return CustomMNIST(data_folder, train=True, transform=transform, download=True, indexs_name = "MNIST_"+distribution_name+".npy")
     elif (dataset_name == "CIFAR10"):
         return CustomCIFAR10(data_folder, train=True, transform=transform, download=True, indexs_name="CIFAR10_"+distribution_name+".npy")
+    else:
+        raise DataSetNotFound
+
+def load_partition_dataset(dataset_name, partition, transform, data_folder="./data"):
+    if (dataset_name == "MNIST"):
+        return CustomMNIST_partition(data_folder, indexs=partition.idxs, classes=partition.classes, train=True, transform=transform, download=True)
+    elif (dataset_name == "CIFAR10"):
+        raise DataSetNotFound
     else:
         raise DataSetNotFound
 
