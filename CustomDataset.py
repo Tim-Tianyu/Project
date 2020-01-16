@@ -50,7 +50,7 @@ class CustomMNIST(datasets.MNIST):
             
 class CustomMNIST_partition(datasets.MNIST):
     def __init__(self, root, indexs, classes, train=True, transform=MNIST_transform, target_transform=None, download=False):
-        super().__init__(root, train, transform, target_transform, download, indexs_name)
+        super().__init__(root, train, transform, target_transform, download)
         if (train):
             self.data = self.data[indexs,:,:]
             
@@ -62,13 +62,22 @@ class CustomMNIST_partition(datasets.MNIST):
             self.data = self.data[samples_used, :, :]
             self.targets = self.targets[samples_used]
             
-# class CustomMNIST_rescale(CustomMNIST):
-#     def __init__(self, root, train=True, transform=MNIST_transform, target_transform=None, download=False, indexs_name = "index_test.npy", rescaled_index_name = "XXX.npy"):
-#         super().__init__(root, train, transform, target_transform, download, indexs_name)
-#         rescaled_idxs = np.load(root+'/'+rescaled_index_name)
-#         if (train):
-#             self.data = self.data[rescaled_idxs,:,:]
-#             self.targets = list(np.array(self.targets)[rescaled_idxs])
+class dataset_partition():
+    def __init__(self, **kwargs):
+        self.idxs = kwargs.get("idxs")
+        if self.idxs is None:
+            raise ValueError("wrong arguments")
+        
+        old_class_number = kwargs.get("old_class_number")
+        if old_class_number is not None:
+            self.old_class_number = old_class_number
+            self.has_children = False
+        else:
+            self.classes = kwargs.get("classes")
+            self.has_children = True
+            self.children = kwargs.get("children")
+            if (self.classes is None) or (self.children is None):
+                raise ValueError("wrong arguments")
 
 class binary_target_transformer():
     def _init_(self, classes):
@@ -130,8 +139,10 @@ def load_dataset(dataset_name, distribution_name, transform, data_folder="./data
     else:
         raise DataSetNotFound
 
-def load_partition_dataset(dataset_name, partition, transform, data_folder="./data"):
+def load_partition_dataset(dataset_name, partition, transform, train, data_folder="./data"):
     if (dataset_name == "MNIST"):
+        if not train:
+            return CustomMNIST_partition(data_folder, indexs=True, classes=partition.classes, train=True, transform=transform, download=True)
         return CustomMNIST_partition(data_folder, indexs=partition.idxs, classes=partition.classes, train=True, transform=transform, download=True)
     elif (dataset_name == "CIFAR10"):
         raise DataSetNotFound

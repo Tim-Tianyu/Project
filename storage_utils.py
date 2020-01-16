@@ -68,3 +68,8 @@ def load_statistics(experiment_log_dir, filename):
             stats[keys[idx]].append(value)
 
     return stats
+
+def save_list(experiment_name, filename, data):
+    outfile = os.path.abspath(os.path.join(experiment_name, filename))
+    with open(outfile, 'wb') as f:
+        f.write(bytes("\n".join(str(item) for item in data), encoding='utf-8'))

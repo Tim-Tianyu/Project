@@ -45,8 +45,6 @@ elif args.dataset_name == 'MNIST':
     train_data = CustomDataset.load_dataset(dataset_name = "MNIST", distribution_name = args.distribution_name, transform = transform_train_MNIST)
     val_data = CustomDataset.load_testset(dataset_name = "MNIST", transform= transform_test_MNIST)
     test_data = CustomDataset.load_testset(dataset_name = "MNIST", transform= transform_test_MNIST)
-else:
-    raise CustomDataset.DataSetNotFound
 
 train_data_loader = DataLoader(train_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
 val_data_loader = DataLoader(val_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
