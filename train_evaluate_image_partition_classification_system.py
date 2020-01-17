@@ -56,13 +56,16 @@ if not os.path.exists(experiment_folder):  # If experiment directory does not ex
     os.mkdir(experiment_folder)
 
 while len(frontier) != 0:
-    experiment_name = args.experiment_name+"/partition_"+str(count)
     partition = frontier.pop(0)
-    count = count + 1
-    current_size = len(partition.idxs)
     if (partition.has_children):
         frontier = frontier+partition.children[:]
-        
+    else:
+        continue
+    
+    experiment_name = args.experiment_name+"/partition_"+str(count)
+    count = count + 1
+    current_size = len(partition.idxs)
+    
     if args.dataset_name == 'CIFAR10':
         raise CustomDataset.DataSetNotFound
     elif args.dataset_name == 'MNIST':

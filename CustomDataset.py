@@ -61,6 +61,11 @@ class CustomMNIST_partition(datasets.MNIST):
             samples_used = (self.targets != -1)
             self.data = self.data[samples_used, :, :]
             self.targets = self.targets[samples_used]
+        else:
+            self.targets = classes[self.targets]
+            samples_used = (self.targets != -1)
+            self.targets = self.targets[samples_used]
+            self.data = self.data[samples_used, :, :]
             
 class dataset_partition():
     def __init__(self, **kwargs):
@@ -142,7 +147,7 @@ def load_dataset(dataset_name, distribution_name, transform, data_folder="./data
 def load_partition_dataset(dataset_name, partition, transform, train, data_folder="./data"):
     if (dataset_name == "MNIST"):
         if not train:
-            return CustomMNIST_partition(data_folder, indexs=True, classes=partition.classes, train=True, transform=transform, download=True)
+            return CustomMNIST_partition(data_folder, indexs=True, classes=partition.classes, train=False, transform=transform, download=True)
         return CustomMNIST_partition(data_folder, indexs=partition.idxs, classes=partition.classes, train=True, transform=transform, download=True)
     elif (dataset_name == "CIFAR10"):
         raise DataSetNotFound
