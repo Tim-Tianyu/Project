@@ -24,6 +24,7 @@ def get_args():
     parser.add_argument('--image_num_channels', nargs="?", type=int, default=3,
                         help='The channel dimensionality of our image-data')
     parser.add_argument('--num_epochs', nargs="?", type=int, default=100, help='The experiment\'s epoch budget, for the root classifer, child classifer will have more epochs to make sure total number of batch is same')
+    parser.add_argument('--num_classes', nargs="?", type=int, default=10, help='The number of classes')
     parser.add_argument('--experiment_name', nargs="?", type=str, default="exp_1",
                         help='Experiment name - to be used for building the experiment folder')
     parser.add_argument('--use_gpu', nargs="?", type=str2bool, default=True,

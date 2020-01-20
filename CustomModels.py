@@ -211,6 +211,25 @@ class Custom_10(nn.Module):
         x = self.linear(x)
         return F.log_softmax(x)
 
+class hierarchical_model(nn.Module):
+    def __init__(self, classes, models):
+        super(hierarchical_model, self).__init__()
+        self.classes = classes
+        self.num_class = len(classes[0])
+        self.models = models
+        
+    def forward(self, x):
+        batch_size = x.shape[0]
+        result = torch.tensor.new_zeros((batch_size, num_class))
+        
+        for i in range(0,len(models)):
+            c = classes[i]
+            temp = models[i](x).data
+            for j in range(temp.shape[1]):
+                result[:, c==j] += temp[:,j]
+            
+        return result
+
 class ModelNotFound(Exception):
     pass
 

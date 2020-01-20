@@ -5,6 +5,7 @@ import CustomDataset
 import CustomModels
 import numpy as np
 import pickle
+import hierarchical_method_whole_system_test
 from torchvision import datasets, transforms, models
 from torch.utils.data import DataLoader
 
@@ -72,7 +73,9 @@ while len(frontier) != 0:
         train_data = CustomDataset.load_partition_dataset(dataset_name="MNIST", partition=partition, transform=transform_train_MNIST, train=True)
         val_data = CustomDataset.load_partition_dataset(dataset_name="MNIST", partition=partition, transform=transform_test_MNIST, train=False)
         test_data = CustomDataset.load_partition_dataset(dataset_name="MNIST", partition=partition, transform=transform_test_MNIST, train=False)
-    # TODO continue from here
+    # TODO Debug partition!!
+    print(train_data.__len__())
+    continue
     train_data_loader = DataLoader(train_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
     val_data_loader = DataLoader(val_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
     test_data_loader = DataLoader(test_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
@@ -81,7 +84,7 @@ while len(frontier) != 0:
     
     conv_experiment = ExperimentBuilder(network_model=custom_conv_net,
                                         experiment_name=experiment_name,
-                                        num_epochs=int(args.num_epochs * total_size / current_size),
+                                        num_epochs=min(int(args.num_epochs * total_size / current_size), 200),
                                         use_gpu=args.use_gpu,
                                         continue_from_epoch=-1,
                                         train_data=train_data_loader, val_data=val_data_loader,
@@ -91,3 +94,6 @@ while len(frontier) != 0:
     
     save_list(experiment_name, "classes.txt", partition.classes)
     pass
+test_data = CustomDataset.load_testset(dataset_name = "MNIST", transform= transform_test_MNIST)
+test_loader = DataLoader(test_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
+hierarchical_method_whole_system_test.test(args.experiment_name, partitions, args.model_name, args.image_num_channels, args.num_classes, test_loader)
