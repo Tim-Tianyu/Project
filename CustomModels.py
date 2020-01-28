@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 import torchvision
 import torch.nn as nn
 import torch.nn.functional as F
@@ -214,21 +215,47 @@ class Custom_10(nn.Module):
 class hierarchical_model(nn.Module):
     def __init__(self, classes, models):
         super(hierarchical_model, self).__init__()
+        print(classes)
         self.classes = classes
         self.num_class = len(classes[0])
         self.models = models
+        parameters = []
+        for m in models:
+            parameters+=list(m.parameters())
+        self.myparameters = nn.ParameterList(parameters)
         
     def forward(self, x):
+        minor_porb= 0.01
         batch_size = x.shape[0]
-        result = torch.tensor.new_zeros((batch_size, num_class))
+        result = torch.zeros((batch_size, self.num_class))
+        result[:,:] = np.log(minor_porb)
+        determined = torch.zeros(batch_size)
         
-        for i in range(0,len(models)):
-            c = classes[i]
-            temp = models[i](x).data
+        x = x.float().to(torch.device('cpu'))
+        
+        for i in range(0,len(self.models)):
+            c = self.classes[i]
+            self.models[i].eval()
+            temp = self.models[i](x).data
+            max_index = torch.argmax(temp, axis=1)
             for j in range(temp.shape[1]):
-                result[:, c==j] += temp[:,j]
-            
+                if (np.sum(c==j) == 1):
+                    new_determined = (max_index==j) & (determined==0)
+                    result[new_determined, c==j] = np.log(1-minor_porb*(self.num_class-1))
+                    determined[new_determined] = 1
         return result
+    
+    # def forward(self, x):
+    #     batch_size = x.shape[0]
+    #     result = torch.zeros((batch_size, self.num_class))
+    #     
+    #     for i in range(0,len(self.models)):
+    #         c = self.classes[i]
+    #         self.models[i].eval()
+    #         temp = self.models[i](x).data
+    #         for j in range(temp.shape[1]):
+    #             result[:, c==j] += temp[:,j].view(batch_size, 1)
+    #     return result
 
 class ModelNotFound(Exception):
     pass

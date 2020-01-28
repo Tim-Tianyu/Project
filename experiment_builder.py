@@ -152,7 +152,7 @@ class ExperimentBuilder(nn.Module):
         x, y = x.float().to(device=self.device), y.long().to(
             device=self.device)  # convert data to pytorch tensors and send to the computation device
         out = self.model.forward(x)  # forward the data in the model
-
+        
         loss = F.cross_entropy(input=out, target=y)  # compute loss
 
         _, predicted = torch.max(out.data, 1)  # get argmax of predictions
