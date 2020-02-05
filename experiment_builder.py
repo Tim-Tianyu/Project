@@ -172,8 +172,10 @@ class ExperimentBuilder(nn.Module):
         
         out = self.model.forward(x)  # forward the data in the model
         _, predicted = torch.max(out.data, 1)  # get argmax of predictions
-        
-        return confusion_matrix(y.cpu().data.numpy(), predicted.cpu().data.numpy())
+        cm = confusion_matrix(y.cpu().data.numpy(), predicted.cpu().data.numpy(), labels)
+        sensitivitys = np.sum(np.eye(10)* cm,1) / np.sum(cm,1)
+        sensitivitys = sensitivitys[~np.isnan(sensitivitys)]
+        return cm, np.average(sensitivitys)
 
     def save_model(self, model_save_dir, model_save_name, model_idx, best_validation_model_idx,
                    best_validation_model_acc):
@@ -223,15 +225,20 @@ class ExperimentBuilder(nn.Module):
                     current_epoch_losses["train_acc"].append(accuracy)  # add current iter acc to the train acc list
                     pbar_train.update(1)
                     pbar_train.set_description("loss: {:.4f}, accuracy: {:.4f}".format(loss, accuracy))
-
+                    
+            labels = np.sort(np.unique(np.array(self.test_data.dataset.targets)))
+            confusion_matrix = np.zeros((labels.size,labels.size))
             with tqdm.tqdm(total=len(self.val_data)) as pbar_val:  # create a progress bar for validation
                 for x, y in self.val_data:  # get data batches
+                    confusion_matrix_part, sensitivity = self.get_confusion_matrix(x=x, y=y, labels=labels)
+                    confusion_matrix = confusion_matrix + confusion_matrix_part
                     loss, accuracy = self.run_evaluation_iter(x=x, y=y)  # run a validation iter
                     current_epoch_losses["val_loss"].append(loss)  # add current iter loss to val loss list.
-                    current_epoch_losses["val_acc"].append(accuracy)  # add current iter acc to val acc lst.
+                    current_epoch_losses["val_acc"].append(sensitivity)  # add current iter acc to val acc lst.
                     pbar_val.update(1)  # add 1 step to the progress bar
-                    pbar_val.set_description("loss: {:.4f}, accuracy: {:.4f}".format(loss, accuracy))
-            val_mean_accuracy = np.mean(current_epoch_losses['val_acc'])
+                    pbar_val.set_description("loss: {:.4f}, sensitivity: {:.4f}".format(loss, sensitivity))
+            sensitivity = np.average(np.sum(np.eye(10)* confusion_matrix,1) / np.sum(confusion_matrix,1))
+            val_mean_accuracy = np.mean(sensitivity)
             if val_mean_accuracy > self.best_val_model_acc:  # if current epoch's mean val acc is greater than the saved best val acc then
                 self.best_val_model_acc = val_mean_accuracy  # set the best val model acc to be current epoch's val accuracy
                 self.best_val_model_idx = epoch_idx  # set the experiment-wise best val idx to be the current epoch's idx
@@ -274,13 +281,14 @@ class ExperimentBuilder(nn.Module):
         confusion_matrix = np.zeros((labels.size,labels.size))
         with tqdm.tqdm(total=len(self.test_data)) as pbar_test:  # ini a progress bar
             for x, y in self.test_data:  # sample batch
-                confusion_matrix = confusion_matrix + self.get_confusion_matrix(x=x, y=y, labels=labels)
+                confusion_matrix_part, sensitivity = self.get_confusion_matrix(x=x, y=y, labels=labels)
+                confusion_matrix = confusion_matrix + confusion_matrix_part
                 loss, accuracy = self.run_evaluation_iter(x=x, y=y)  # compute loss and accuracy by running an evaluation step
                 current_epoch_losses["test_loss"].append(loss)  # save test loss
-                current_epoch_losses["test_acc"].append(accuracy)  # save test accuracy
+                current_epoch_losses["test_acc"].append(sensitivity)  # save test accuracy
                 pbar_test.update(1)  # update progress bar status
                 pbar_test.set_description(
-                    "loss: {:.4f}, accuracy: {:.4f}".format(loss, accuracy))  # update progress bar string output
+                    "loss: {:.4f}, sensitivity: {:.4f}".format(loss, sensitivity))  # update progress bar string output
         test_losses = {key: [np.mean(value)] for key, value in
                        current_epoch_losses.items()}  # save test set metrics in dict format
         save_statistics(experiment_log_dir=self.experiment_logs, filename='test_summary.csv',

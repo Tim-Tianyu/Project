@@ -14,37 +14,24 @@ rng = np.random.RandomState(seed=args.seed)  # set the seeds for the experiment
 torch.manual_seed(seed=args.seed)  # sets pytorch's seed
 
 # set up data augmentation transforms for training and testing
-transform_train = transforms.Compose([
-        transforms.RandomHorizontalFlip(),
+transform_CIFAR10 = transforms.Compose([
         transforms.ToTensor(),
         transforms.Normalize(mean=[0.4914, 0.4822, 0.4465],std=[0.247, 0.243, 0.261])
     ])
 
-transform_test = transforms.Compose([
-    transforms.ToTensor(),
-    transforms.Normalize(mean=[0.485, 0.456, 0.406],std=[0.229, 0.224, 0.225])
-])
 
-transform_train_MNIST = transforms.Compose([
+transform_MNIST = transforms.Compose([
         transforms.Pad(2, fill=0, padding_mode='constant'),
         transforms.ToTensor(),
         transforms.Normalize((0.1307,), (0.3081,))
     ])
 
-transform_test_MNIST = transforms.Compose([
-    transforms.Pad(2, fill=0, padding_mode='constant'),
-    transforms.ToTensor(),
-    transforms.Normalize((0.1307,), (0.3081,))
-])
-
 if args.dataset_name == 'CIFAR10':
-    train_data = CustomDataset.load_dataset(dataset_name = "CIFAR10", distribution_name = args.distribution_name, transform = transform_train)
-    val_data = CustomDataset.load_testset(dataset_name = "CIFAR10", transform= transform_test)
-    test_data = CustomDataset.load_testset(dataset_name = "CIFAR10", transform= transform_test)
+    train_data, val_data, test_data = CustomDataset.load_dataset(dataset_name = "CIFAR10", distribution_name = args.distribution_name, transform = transform_CIFAR10)
 elif args.dataset_name == 'MNIST':
-    train_data = CustomDataset.load_dataset(dataset_name = "MNIST", distribution_name = args.distribution_name, transform = transform_train_MNIST)
-    val_data = CustomDataset.load_testset(dataset_name = "MNIST", transform= transform_test_MNIST)
-    test_data = CustomDataset.load_testset(dataset_name = "MNIST", transform= transform_test_MNIST)
+    train_data, val_data, test_data = CustomDataset.load_dataset(dataset_name = "MNIST", distribution_name = args.distribution_name, transform = transform_MNIST)
+else:
+    raise CustomDataset.DataSetNotFound
 
 train_data_loader = DataLoader(train_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
 val_data_loader = DataLoader(val_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
