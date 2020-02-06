@@ -1,1 +1,1 @@
-python train_evaluate_image_partition_classification_system.py --num_classes 10 --num_epochs 20 --experiment_name MNIST_hierarchical_test --model_name Custom_05 --image_num_channels 1 --dataset_name MNIST --partition_name partition_object_test
+python train_evaluate_image_partition_classification_system.py --num_classes 10 --num_epochs 20 --experiment_name MNIST_hierarchical_test --model_name Custom_05 --image_num_channels 1 --dataset_name MNIST --partition_name partition_object_test --distribution_name expo_unbalance_2560to5

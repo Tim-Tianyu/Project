@@ -173,7 +173,7 @@ class ExperimentBuilder(nn.Module):
         out = self.model.forward(x)  # forward the data in the model
         _, predicted = torch.max(out.data, 1)  # get argmax of predictions
         cm = confusion_matrix(y.cpu().data.numpy(), predicted.cpu().data.numpy(), labels)
-        sensitivitys = np.sum(np.eye(10)* cm,1) / np.sum(cm,1)
+        sensitivitys = np.sum(np.eye(len(labels))* cm,1) / np.sum(cm,1)
         sensitivitys = sensitivitys[~np.isnan(sensitivitys)]
         return cm, np.average(sensitivitys)
 
@@ -237,7 +237,7 @@ class ExperimentBuilder(nn.Module):
                     current_epoch_losses["val_acc"].append(sensitivity)  # add current iter acc to val acc lst.
                     pbar_val.update(1)  # add 1 step to the progress bar
                     pbar_val.set_description("loss: {:.4f}, sensitivity: {:.4f}".format(loss, sensitivity))
-            sensitivity = np.average(np.sum(np.eye(10)* confusion_matrix,1) / np.sum(confusion_matrix,1))
+            sensitivity = np.average(np.sum(np.eye(len(labels))* confusion_matrix,1) / np.sum(confusion_matrix,1))
             val_mean_accuracy = np.mean(sensitivity)
             if val_mean_accuracy > self.best_val_model_acc:  # if current epoch's mean val acc is greater than the saved best val acc then
                 self.best_val_model_acc = val_mean_accuracy  # set the best val model acc to be current epoch's val accuracy

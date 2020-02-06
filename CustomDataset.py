@@ -47,30 +47,19 @@ class CustomMNIST(datasets.MNIST):
         self.targets = self.targets[result_idxs]
             
 class CustomMNIST_partition(datasets.MNIST):
-    def __init__(self, root, indexs, classes, train=True, transform=MNIST_transform, target_transform=None, download=False):
+    def __init__(self, root, indexs_name, classes, train=True, transform=MNIST_transform, target_transform=None, download=False):
         super().__init__(root, train, transform, target_transform, download)
-        if (train):
-            self.data = self.data[indexs,:,:]
-            
-            # transform class number (merge classes)
-            self.targets = classes[self.targets][indexs]
-            
-            # filter out unused classes (samples that belongs to -1 class)
-            samples_used = (self.targets != -1)
-            self.data = self.data[samples_used, :, :]
-            self.targets = self.targets[samples_used]
-        else:
-            self.targets = classes[self.targets]
-            samples_used = (self.targets != -1)
-            self.targets = self.targets[samples_used]
-            self.data = self.data[samples_used, :, :]
+        result_idxs = np.load(root+'/'+indexs_name)
+        self.data = self.data[result_idxs,:,:]
+        self.targets = classes[self.targets][result_idxs]
+        
+        # filter out unused classes (samples that belongs to -1 class)
+        samples_used = (self.targets != -1)
+        self.data = self.data[samples_used, :, :]
+        self.targets = self.targets[samples_used]
             
 class dataset_partition():
     def __init__(self, **kwargs):
-        self.idxs = kwargs.get("idxs")
-        if self.idxs is None:
-            raise ValueError("wrong arguments")
-        
         old_class_number = kwargs.get("old_class_number")
         if old_class_number is not None:
             self.old_class_number = old_class_number
@@ -148,15 +137,18 @@ def load_dataset(dataset_name, distribution_name, transform, data_folder="./data
         raise DataSetNotFound
     return train_set, eval_set, test_set
 
-def load_partition_dataset(dataset_name, partition, transform, train, data_folder="./data"):
+def load_partition_dataset(dataset_name, distribution_name, classes, transform, data_folder="./data"):
+    if not ((distribution_name in Distribution_names)):
+        raise DistributionNotFound
     if (dataset_name == "MNIST"):
-        if not train:
-            return CustomMNIST_partition(data_folder, indexs=True, classes=partition.classes, train=False, transform=transform, download=True)
-        return CustomMNIST_partition(data_folder, indexs=partition.idxs, classes=partition.classes, train=True, transform=transform, download=True)
+        train_set = CustomMNIST_partition(data_folder, indexs_name=dataset_name + "_" + distribution_name + ".npy", classes=classes, train=True, transform=transform, download=True)
+        eval_set = CustomMNIST_partition(data_folder, indexs_name=dataset_name + "_" + distribution_name + "_eval.npy", classes=classes, train=False, transform=transform, download=True)
+        test_set = CustomMNIST_partition(data_folder, indexs_name=dataset_name + "_" + distribution_name + "_test.npy", classes=classes, train=False, transform=transform, download=True)
     elif (dataset_name == "CIFAR10"):
         raise DataSetNotFound
     else:
         raise DataSetNotFound
+    return train_set, eval_set, test_set
 
 # def load_testset(dataset_name, transform, data_folder="./data"):
 #     if (dataset_name == "MNIST"):

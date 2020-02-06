@@ -35,6 +35,8 @@ def get_args():
                         help='Type of dataset used')                    
     parser.add_argument('--partition_name', type=str, default='partition_object_test',
                         help='Type of partition used')
+    parser.add_argument('--distribution_name', type=str, default='balanced',
+                        help='Type of distribution used')
     args = parser.parse_args()
     print(args)
     return args

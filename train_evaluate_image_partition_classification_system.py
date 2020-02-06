@@ -48,6 +48,13 @@ if not os.path.exists(experiment_folder):  # If experiment directory does not ex
 models = []
 classes = []
 
+if args.dataset_name == 'CIFAR10':
+    raise CustomDataset.DataSetNotFoundataset
+elif args.dataset_name == 'MNIST':
+    _, _, test_data_global = CustomDataset.load_dataset(dataset_name = "MNIST", distribution_name = args.distribution_name, transform = transform_MNIST)
+else:
+    raise CustomDataset.DataSetNotFound
+
 while len(frontier) != 0:
     partition = frontier.pop(0)
     if (not partition.has_children):
@@ -61,14 +68,9 @@ while len(frontier) != 0:
 
 
     if args.dataset_name == 'CIFAR10':
-        raise CustomDataset.DataSetNotFound
-        #train_data, val_data, test_data = CustomDataset.load_dataset(dataset_name = "CIFAR10", distribution_name = args.distribution_name, transform = transform_CIFAR10)
+        raise CustomDataset.DataSetNotFoundataset
     elif args.dataset_name == 'MNIST':
-        train_data = CustomDataset.load_partition_dataset(dataset_name="MNIST", partition=partition, transform=transform_train_MNIST, train=True)
-        val_data = CustomDataset.load_partition_dataset(dataset_name="MNIST", partition=partition, transform=transform_test_MNIST, train=False)
-        test_data = CustomDataset.load_partition_dataset(dataset_name="MNIST", partition=partition, transform=transform_test_MNIST, train=False)
-
-        #train_data, val_data, test_data = CustomDataset.load_dataset(dataset_name = "MNIST", distribution_name = args.distribution_name, transform = transform_MNIST)
+        train_data, val_data, test_data = CustomDataset.load_partition_dataset(dataset_name="MNIST", distribution_name = args.distribution_name, classes=partition.classes, transform=transform_MNIST)
     else:
         raise CustomDataset.DataSetNotFound
         
@@ -82,16 +84,16 @@ while len(frontier) != 0:
                                         experiment_name=experiment_name,
                                         num_epochs=min(int(args.num_epochs * total_size / current_size), 200),
                                         use_gpu=args.use_gpu,
-                                        continue_from_epoch=min(int(args.num_epochs * total_size / current_size), 200)-1,
+                                        continue_from_epoch= -1,
                                         train_data=train_data_loader, val_data=val_data_loader,
                                         test_data=test_data_loader)  # build an experiment object
     
     experiment_metrics, test_metrics = conv_experiment.run_experiment()  # run experiment and return experiment metrics
     conv_experiment.train()
-    models.append(conv_experiment.model)
+    # models.append(conv_experiment.model)
     save_list(experiment_name, "classes.txt", partition.classes)
     pass
-test_data = CustomDataset.load_testset(dataset_name = "MNIST", transform= transform_MNIST)
-test_loader = DataLoader(test_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
+
+test_loader = DataLoader(test_data_global, batch_size=args.batch_size, shuffle=True, num_workers=4)
 hierarchical_method_whole_system_test.test(args.experiment_name, partitions, args.model_name, args.image_num_channels, 2, test_loader)
 #hierarchical_method_whole_system_test.test2(args.experiment_name, models, classes, test_loader)
