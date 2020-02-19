@@ -52,8 +52,7 @@ class Custom_07(nn.Module):
         x = self.conv_3(x)
         x = self.conv_4(x)
         x = x.view(-1, 1024)
-        x = self.linear(x)
-        return F.log_softmax(x)
+        return self.linear(x)
     
 class Custom_05(nn.Module):
     def __init__(self, num_input_channels, num_classes):
@@ -84,16 +83,20 @@ class Custom_05(nn.Module):
             nn.Linear(512, 128),
             nn.BatchNorm1d(128),
             nn.LeakyReLU(inplace = True),
-            nn.Linear(128, num_classes)
         )
-
-    def forward(self, x):
+        
+        self.output_layer = nn.Linear(128, num_classes)
+    
+    def get_feature_vetor(self, x):
         x = self.conv_1(x)
         x = self.conv_2(x)
         x = self.conv_3(x)
         x = x.view(-1, 512)
-        x = self.linear(x)
-        return F.log_softmax(x)
+        return self.linear(x)
+
+    def forward(self, x):
+        return self.output_layer(self.get_feature_vetor(x))
+        
     
 class Custom_08(nn.Module):
     def __init__(self, num_input_channels, num_classes):
@@ -150,8 +153,7 @@ class Custom_08(nn.Module):
         x = self.conv_4(x)
         x = self.conv_5(x)
         x = x.view(-1, 512)
-        x = self.linear(x)
-        return F.log_softmax(x)
+        return self.linear(x)
     
 class Custom_10(nn.Module):
     def __init__(self, num_input_channels, num_classes):
@@ -209,8 +211,7 @@ class Custom_10(nn.Module):
         x = F.leaky_relu(self.conv_3(x) + self.downsample_8to4(x))
         x = F.leaky_relu(self.conv_4(x) + self.downsample_4to2(x))
         x = x.view(-1, 1024)
-        x = self.linear(x)
-        return F.log_softmax(x)
+        return self.linear(x)
 
 class hierarchical_model(nn.Module):
     def __init__(self, classes, models):
