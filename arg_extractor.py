@@ -51,6 +51,8 @@ def get_args():
                         help='Type of dataset used')                    
     parser.add_argument('--distribution_name', type=str, default='balanced',
                         help='Type of distribution used')
+    parser.add_argument('--cost_sensitive_mode', type=str2bool, default=False,
+                        help='use cost seneitive loss to train the network')
     args = parser.parse_args()
     print(args)
     return args

@@ -15,7 +15,7 @@ from sklearn.metrics import confusion_matrix
 class ExperimentBuilder(nn.Module):
     def __init__(self, network_model, experiment_name, num_epochs, train_data, val_data,
                  test_data, weight_decay_coefficient = 0, use_gpu = True, 
-                 continue_from_epoch=-1, cost_sensitive_mode=False):
+                 continue_from_epoch=-1, cost_sensitive_mode=False, targets=None):
         """
         Initializes an ExperimentBuilder object. Such an object takes care of running training and evaluation of a deep net
         on a given dataset. It also takes care of saving per epoch models and automatically inferring the best val model
@@ -36,10 +36,15 @@ class ExperimentBuilder(nn.Module):
         self.experiment_name = experiment_name
         self.model = network_model
         self.cost_sensitive_mode = cost_sensitive_mode
-        self.num_classes = len(np.unique(np.array(self.test_data.dataset.targets)))
         if (self.cost_sensitive_mode):
+            assert(targets is not None)
+            num_classes = len(np.unique(targets))
             self.cost_matrix = np.ones((num_classes, num_classes))
             self.cost_matrix_lr = 0.1
+            self.targets = torch.tensor(targets).long()
+            self.distribution = np.zeros(num_classes)
+            for i in targets:
+                self.distribution[i] += 1
 
         if torch.cuda.device_count() > 1 and use_gpu:
             self.device = torch.cuda.current_device()
@@ -140,7 +145,6 @@ class ExperimentBuilder(nn.Module):
             loss = util.CoSenLogSoftmaxLoss(out, y, self.cost_matrix)
         else:    
             loss = F.cross_entropy(input=out, target=y)  # compute loss
-
         self.optimizer.zero_grad()  # set all weight grads from previous training iters to 0
         loss.backward()  # backpropagate to compute gradients for current iter loss
 
@@ -173,11 +177,11 @@ class ExperimentBuilder(nn.Module):
         x, y = x.float().to(device=self.device), y.long().to(
             device=self.device)  # convert data to pytorch tensors and send to the computation device
         
-        temp = self.model(get_feature_vetor(x))
+        temp = self.model.get_feature_vetor(x)
         feature_vetor = temp.data.numpy()
         out = self.model.output_layer(temp) 
         
-        loss = util.CoSenLogSoftmaxLoss(out, y, self.cost_matrix)
+        loss = F.cross_entropy(input=out, target=y)
 
         _, predicted = torch.max(out.data, 1)  # get argmax of predictions
         accuracy = np.mean(list(predicted.eq(y.data).cpu()))  # compute accuracy
@@ -253,14 +257,14 @@ class ExperimentBuilder(nn.Module):
                     
             labels = np.sort(np.unique(np.array(self.test_data.dataset.targets)))
             confusion_matrix = np.zeros((labels.size,labels.size))
-            
+            feature_vetors = []
             with tqdm.tqdm(total=len(self.val_data)) as pbar_val:  # create a progress bar for validation
                 for x, y in self.val_data:  # get data batches
                     confusion_matrix_part, sensitivity = self.get_confusion_matrix(x=x, y=y, labels=labels)
                     confusion_matrix = confusion_matrix + confusion_matrix_part
-                    if cost_sensitive_mode:
-                        # TODO concat the feature_vetors, and targets
+                    if self.cost_sensitive_mode:
                         loss, accuracy, feature_vetor = self.run_cost_sensitive_evaluation_iter(x=x, y=y)
+                        feature_vetors.append(feature_vetor)
                     else:
                         loss, accuracy = self.run_evaluation_iter(x=x, y=y)  # run a validation iter
                     current_epoch_losses["val_loss"].append(loss)  # add current iter loss to val loss list.
@@ -272,12 +276,13 @@ class ExperimentBuilder(nn.Module):
             if val_mean_accuracy > self.best_val_model_acc:  # if current epoch's mean val acc is greater than the saved best val acc then
                 self.best_val_model_acc = val_mean_accuracy  # set the best val model acc to be current epoch's val accuracy
                 self.best_val_model_idx = epoch_idx  # set the experiment-wise best val idx to be the current epoch's idx
-            
-            if (cost_sensitive_mode):
-                if (len(current_epoch_losses["val_loss"]) > 1) and (current_epoch_losses["val_loss"][-1] > current_epoch_losses["val_loss"][-2]):
+            if (self.cost_sensitive_mode):
+                feature_vetors = np.concatenate(feature_vetors, axis=0)
+                if (len(total_losses["val_loss"]) > 1) and (total_losses["val_loss"][-1] > total_losses["val_loss"][-2]):
+                    print("tada!")
                     self.cost_matrix_lr = self.cost_matrix_lr * 0.1
-                # TODO produce ditribution based on target
-                gradinet = util.cost_matrix_gradient(self.cost_matrix, confusion_matrix, ??, ??, ??, self.cost_matrix_lr)
+                normalizated_cm = confusion_matrix/confusion_matrix.sum(axis=1).reshape((-1,1))
+                gradinet = util.cost_matrix_gradient(self.cost_matrix, normalizated_cm, feature_vetors, self.targets, self.distribution, self.cost_matrix_lr)
                 self.cost_matrix = self.cost_matrix - gradinet
             
             for key, value in current_epoch_losses.items():
@@ -313,7 +318,8 @@ class ExperimentBuilder(nn.Module):
                         # load best validation model
                         model_save_name="train_model")
         current_epoch_losses = {"test_acc": [], "test_loss": []}  # initialize a statistics dict
-        
+        if (self.cost_sensitive_mode):
+            print(self.cost_matrix)
         labels = np.sort(np.unique(np.array(self.test_data.dataset.targets))) # all classes
         confusion_matrix = np.zeros((labels.size,labels.size))
         with tqdm.tqdm(total=len(self.test_data)) as pbar_test:  # ini a progress bar
