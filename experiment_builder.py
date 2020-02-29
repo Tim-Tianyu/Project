@@ -14,8 +14,8 @@ from sklearn.metrics import confusion_matrix
 
 class ExperimentBuilder(nn.Module):
     def __init__(self, network_model, experiment_name, num_epochs, train_data, val_data,
-                 test_data, weight_decay_coefficient = 0, use_gpu = True, 
-                 continue_from_epoch=-1, cost_sensitive_mode=False, targets=None):
+                 test_data, weight_decay_coefficient = 0, use_gpu = True, continue_from_epoch=-1, 
+                 cost_sensitive_mode=False, targets=None, evaluation_interval=100):
         """
         Initializes an ExperimentBuilder object. Such an object takes care of running training and evaluation of a deep net
         on a given dataset. It also takes care of saving per epoch models and automatically inferring the best val model
@@ -35,12 +35,13 @@ class ExperimentBuilder(nn.Module):
 
         self.experiment_name = experiment_name
         self.model = network_model
+        self.evaluation_interval = evaluation_interval
         self.cost_sensitive_mode = cost_sensitive_mode
         if (self.cost_sensitive_mode):
             assert(targets is not None)
             num_classes = len(np.unique(targets))
             self.cost_matrix = np.ones((num_classes, num_classes))
-            self.cost_matrix_lr = 0.1
+            self.cost_matrix_lr = 0.05
             self.targets = torch.tensor(targets).long()
             self.distribution = np.zeros(num_classes)
             for i in targets:
@@ -95,7 +96,7 @@ class ExperimentBuilder(nn.Module):
 
         # Set best models to be at 0 since we are just starting
         self.best_val_model_idx = 0
-        self.best_val_model_acc = 0.
+        self.best_val_model_sensitivity = 0.
 
         if not os.path.exists(self.experiment_folder):  # If experiment directory does not exist
             os.mkdir(self.experiment_folder)  # create the experiment directory
@@ -106,14 +107,14 @@ class ExperimentBuilder(nn.Module):
         self.criterion = nn.CrossEntropyLoss().to(self.device)  # send the loss computation to the GPU
 
         if continue_from_epoch == -2:  # if continue from epoch is -2 then continue from latest saved model
-            self.state, self.best_val_model_idx, self.best_val_model_acc = self.load_model(
+            self.state, self.best_val_model_idx, self.best_val_model_sensitivity = self.load_model(
                 model_save_dir=self.experiment_saved_models, model_save_name="train_model",
                 model_idx='latest')  # reload existing model from epoch and return best val model index
             # and the best val acc of that model
             self.starting_epoch = int(self.state['model_epoch'])
 
         elif continue_from_epoch > -1:  # if continue from epoch is greater than -1 then
-            self.state, self.best_val_model_idx, self.best_val_model_acc = self.load_model(
+            self.state, self.best_val_model_idx, self.best_val_model_sensitivity = self.load_model(
                 model_save_dir=self.experiment_saved_models, model_save_name="train_model",
                 model_idx=continue_from_epoch)  # reload existing model from epoch and return best val model index
             # and the best val acc of that model
@@ -154,7 +155,7 @@ class ExperimentBuilder(nn.Module):
         accuracy = np.mean(list(predicted.eq(y.data).cpu()))  # compute accuracy
         return loss.cpu().data.numpy(), accuracy
 
-    def run_evaluation_iter(self, x, y):
+    def run_evaluation_iter(self, x, y, labels=None):
         """
         Receives the inputs and targets for the model and runs an evaluation iterations. Returns loss and accuracy metrics.
         :param x: The inputs to the model. A numpy array of shape batch_size, channels, height, width
@@ -169,10 +170,13 @@ class ExperimentBuilder(nn.Module):
         loss = F.cross_entropy(input=out, target=y)  # compute loss
 
         _, predicted = torch.max(out.data, 1)  # get argmax of predictions
+        cm = confusion_matrix(y.cpu().data.numpy(), predicted.cpu().data.numpy(), labels)
+        sensitivitys = np.sum(np.eye(len(labels))* cm,1) / np.sum(cm,1)
+        sensitivitys = sensitivitys[~np.isnan(sensitivitys)]
         accuracy = np.mean(list(predicted.eq(y.data).cpu()))  # compute accuracy
-        return loss.cpu().data.numpy(), accuracy
+        return loss.cpu().data.numpy(), accuracy, cm, np.average(sensitivitys)
     
-    def run_cost_sensitive_evaluation_iter(self, x, y):
+    def run_cost_sensitive_evaluation_iter(self, x, y, labels=None):
         self.eval()  # sets the system to validation mode
         x, y = x.float().to(device=self.device), y.long().to(
             device=self.device)  # convert data to pytorch tensors and send to the computation device
@@ -184,42 +188,27 @@ class ExperimentBuilder(nn.Module):
         loss = F.cross_entropy(input=out, target=y)
 
         _, predicted = torch.max(out.data, 1)  # get argmax of predictions
-        accuracy = np.mean(list(predicted.eq(y.data).cpu()))  # compute accuracy
-        return loss.cpu().data.numpy(), accuracy, feature_vetor
-    
-    def get_confusion_matrix(self, x, y, labels):
-        """
-        Receives the inputs and targets for the model and runs an evaluation iterations. Returns confusion matrix.
-        :param x: The inputs to the model. A numpy array of shape batch_size, channels, height, width
-        :param y: The targets for the model. A numpy array of shape batch_size, num_classes
-        :return: the confusion matrix for this batch
-        """
-        self.eval()  # sets the system to validation mode
-        x, y = x.float().to(device=self.device), y.long().to(
-            device=self.device)  # convert data to pytorch tensors and send to the computation device
-        
-        out = self.model.forward(x)  # forward the data in the model
-        _, predicted = torch.max(out.data, 1)  # get argmax of predictions
         cm = confusion_matrix(y.cpu().data.numpy(), predicted.cpu().data.numpy(), labels)
         sensitivitys = np.sum(np.eye(len(labels))* cm,1) / np.sum(cm,1)
         sensitivitys = sensitivitys[~np.isnan(sensitivitys)]
-        return cm, np.average(sensitivitys)
+        accuracy = np.mean(list(predicted.eq(y.data).cpu()))  # compute accuracy
+        return loss.cpu().data.numpy(), accuracy, cm, np.average(sensitivitys), feature_vetor
 
     def save_model(self, model_save_dir, model_save_name, model_idx, best_validation_model_idx,
-                   best_validation_model_acc):
+                   best_validation_model_sensitivity):
         """
         Save the network parameter state and current best val epoch idx and best val accuracy.
         :param model_save_name: Name to use to save model without the epoch index
         :param model_idx: The index to save the model with.
         :param best_validation_model_idx: The index of the best validation model to be stored for future use.
-        :param best_validation_model_acc: The best validation accuracy to be stored for use at test time.
+        :param best_validation_model_sensitivity: The best validation accuracy to be stored for use at test time.
         :param model_save_dir: The directory to store the state at.
         :param state: The dictionary containing the system state.
 
         """
         self.state['network'] = self.state_dict()  # save network parameter and other variables.
         self.state['best_val_model_idx'] = best_validation_model_idx  # save current best val idx
-        self.state['best_val_model_acc'] = best_validation_model_acc  # save current best val acc
+        self.state['best_val_model_sensitivity'] = best_validation_model_sensitivity  # save current best val acc
         torch.save(self.state, f=os.path.join(model_save_dir, "{}_{}".format(model_save_name, str(
             model_idx))))  # save state at prespecified filepath
 
@@ -231,9 +220,60 @@ class ExperimentBuilder(nn.Module):
         :param model_idx: The index to save the model with.
         :return: best val idx and best val model acc, also it loads the network state into the system state without returning it
         """
-        state = torch.load(f=os.path.join(model_save_dir, "{}_{}".format(model_save_name, str(model_idx))))
+        state = torch.load(f=os.path.join(model_save_dir, "{}_{}".format(model_save_name, "latest")))
         self.load_state_dict(state_dict=state['network'])
-        return state, state['best_val_model_idx'], state['best_val_model_acc']
+        return state, state['best_val_model_idx'], state['best_val_model_sensitivity']
+    
+    def evaluation(self, current_epoch_losses, total_losses, epoch_idx, i):
+        print("")
+        labels = np.sort(np.unique(np.array(self.test_data.dataset.targets)))
+        confusion_matrix = np.zeros((labels.size,labels.size))
+        feature_vetors = []
+        with tqdm.tqdm(total=len(self.val_data)) as pbar_val:  # create a progress bar for validation
+            for x, y in self.val_data:  # get data batches
+                if self.cost_sensitive_mode:
+                    loss, accuracy, confusion_matrix_part, sensitivity, feature_vetor = self.run_cost_sensitive_evaluation_iter(x=x, y=y, labels=labels)
+                    feature_vetors.append(feature_vetor)
+                else:
+                    loss, accuracy, confusion_matrix_part, sensitivity = self.run_evaluation_iter(x=x, y=y, labels=labels)  # run a validation iter
+                confusion_matrix = confusion_matrix + confusion_matrix_part
+                current_epoch_losses["val_loss"].append(loss)  # add current iter loss to val loss list.
+                current_epoch_losses["val_acc"].append(accuracy)  # add current iter acc to val acc lst
+                current_epoch_losses["val_sens"].append(sensitivity)
+                pbar_val.update(1)  # add 1 step to the progress bar
+                pbar_val.set_description("loss: {:.4f}, accuracy: {:.4f}, sensitivity: {:.4f}".format(loss, accuracy, sensitivity))
+        sensitivity = np.average(np.sum(np.eye(len(labels))* confusion_matrix,1) / np.sum(confusion_matrix,1))
+        val_mean_sensitivity = np.mean(sensitivity)
+        if val_mean_sensitivity > self.best_val_model_sensitivity:  # if current epoch's mean val acc is greater than the saved best val acc then
+            self.best_val_model_sensitivity = val_mean_sensitivity  # set the best val model acc to be current epoch's val accuracy
+            self.best_val_model_idx = epoch_idx  # set the experiment-wise best val idx to be the current epoch's idx
+        
+        # update cost sensitive matrix
+        if (self.cost_sensitive_mode):
+            feature_vetors = np.concatenate(feature_vetors, axis=0)
+            if (len(total_losses["val_loss"]) > 1) and (total_losses["val_loss"][-1] > total_losses["val_loss"][-2]):
+                print("tada!")
+                self.cost_matrix_lr = self.cost_matrix_lr * 0.1
+            normalizated_cm = confusion_matrix/confusion_matrix.sum(axis=1).reshape((-1,1))
+            gradinet = util.cost_matrix_gradient(self.cost_matrix, normalizated_cm, feature_vetors, self.targets, self.distribution, self.cost_matrix_lr)
+            self.cost_matrix = self.cost_matrix - gradinet
+            
+        for key, value in current_epoch_losses.items():
+            if (key == "val_sens"):
+                total_losses[key].append(val_mean_sensitivity)
+            else:
+                total_losses[key].append(np.mean(value))
+
+        save_statistics(experiment_log_dir=self.experiment_logs, filename='summary.csv',
+                        stats_dict=total_losses, current_epoch=i,
+                        continue_from_mode=True if (self.starting_epoch != 0 or i > 0) else False)  # save statistics to stats file.
+        self.state['model_epoch'] = epoch_idx
+        self.save_model(model_save_dir=self.experiment_saved_models,
+                        # save model and best val idx and best val acc, using the model dir, model name and model idx
+                        model_save_name="train_model", model_idx='latest',
+                        best_validation_model_idx=self.best_val_model_idx,
+                        best_validation_model_sensitivity=self.best_val_model_sensitivity)
+        print("")
 
     def run_experiment(self):
         """
@@ -241,11 +281,12 @@ class ExperimentBuilder(nn.Module):
         :return: The summary current_epoch_losses from starting epoch to total_epochs.
         """
         total_losses = {"train_acc": [], "train_loss": [], "val_acc": [],
-                        "val_loss": []}  # initialize a dict to keep the per-epoch metrics
-                        
+                        "val_loss": [], "val_sens" : []}  # initialize a dict to keep the per-epoch metrics
+        
+        it = 0
         for i, epoch_idx in enumerate(range(self.starting_epoch, self.num_epochs)):
             epoch_start_time = time.time()
-            current_epoch_losses = {"train_acc": [], "train_loss": [], "val_acc": [], "val_loss": []}
+            current_epoch_losses = {"train_acc": [], "train_loss": [], "val_acc": [], "val_loss": [], "val_sens" : []}
             self.current_epoch = epoch_idx
             with tqdm.tqdm(total=len(self.train_data)) as pbar_train:  # create a progress bar for training
                 for idx, (x, y) in enumerate(self.train_data):  # get data batches
@@ -253,46 +294,10 @@ class ExperimentBuilder(nn.Module):
                     current_epoch_losses["train_loss"].append(loss)  # add current iter loss to the train loss list
                     current_epoch_losses["train_acc"].append(accuracy)  # add current iter acc to the train acc list
                     pbar_train.update(1)
+                    it += 1
                     pbar_train.set_description("loss: {:.4f}, accuracy: {:.4f}".format(loss, accuracy))
-                    
-            labels = np.sort(np.unique(np.array(self.test_data.dataset.targets)))
-            confusion_matrix = np.zeros((labels.size,labels.size))
-            feature_vetors = []
-            with tqdm.tqdm(total=len(self.val_data)) as pbar_val:  # create a progress bar for validation
-                for x, y in self.val_data:  # get data batches
-                    confusion_matrix_part, sensitivity = self.get_confusion_matrix(x=x, y=y, labels=labels)
-                    confusion_matrix = confusion_matrix + confusion_matrix_part
-                    if self.cost_sensitive_mode:
-                        loss, accuracy, feature_vetor = self.run_cost_sensitive_evaluation_iter(x=x, y=y)
-                        feature_vetors.append(feature_vetor)
-                    else:
-                        loss, accuracy = self.run_evaluation_iter(x=x, y=y)  # run a validation iter
-                    current_epoch_losses["val_loss"].append(loss)  # add current iter loss to val loss list.
-                    current_epoch_losses["val_acc"].append(sensitivity)  # add current iter acc to val acc lst.
-                    pbar_val.update(1)  # add 1 step to the progress bar
-                    pbar_val.set_description("loss: {:.4f}, sensitivity: {:.4f}".format(loss, sensitivity))
-            sensitivity = np.average(np.sum(np.eye(len(labels))* confusion_matrix,1) / np.sum(confusion_matrix,1))
-            val_mean_accuracy = np.mean(sensitivity)
-            if val_mean_accuracy > self.best_val_model_acc:  # if current epoch's mean val acc is greater than the saved best val acc then
-                self.best_val_model_acc = val_mean_accuracy  # set the best val model acc to be current epoch's val accuracy
-                self.best_val_model_idx = epoch_idx  # set the experiment-wise best val idx to be the current epoch's idx
-            if (self.cost_sensitive_mode):
-                feature_vetors = np.concatenate(feature_vetors, axis=0)
-                if (len(total_losses["val_loss"]) > 1) and (total_losses["val_loss"][-1] > total_losses["val_loss"][-2]):
-                    print("tada!")
-                    self.cost_matrix_lr = self.cost_matrix_lr * 0.1
-                normalizated_cm = confusion_matrix/confusion_matrix.sum(axis=1).reshape((-1,1))
-                gradinet = util.cost_matrix_gradient(self.cost_matrix, normalizated_cm, feature_vetors, self.targets, self.distribution, self.cost_matrix_lr)
-                self.cost_matrix = self.cost_matrix - gradinet
-            
-            for key, value in current_epoch_losses.items():
-                total_losses[key].append(np.mean(
-                    value))  # get mean of all metrics of current epoch metrics dict, to get them ready for storage and output on the terminal.
-            
-            save_statistics(experiment_log_dir=self.experiment_logs, filename='summary.csv',
-                            stats_dict=total_losses, current_epoch=i,
-                            continue_from_mode=True if (self.starting_epoch != 0 or i > 0) else False)  # save statistics to stats file.
-            
+                    if ((it % self.evaluation_interval) == 0):
+                        self.evaluation(current_epoch_losses, total_losses, epoch_idx, int(it/self.evaluation_interval)-1)
             # load_statistics(experiment_log_dir=self.experiment_logs, filename='summary.csv') # How to load a csv file if you need to
             
             out_string = "_".join(
@@ -301,37 +306,32 @@ class ExperimentBuilder(nn.Module):
             epoch_elapsed_time = time.time() - epoch_start_time  # calculate time taken for epoch
             epoch_elapsed_time = "{:.4f}".format(epoch_elapsed_time)
             print("Epoch {}:".format(epoch_idx), out_string, "epoch time", epoch_elapsed_time, "seconds")
-            self.state['model_epoch'] = epoch_idx
-            self.save_model(model_save_dir=self.experiment_saved_models,
-                            # save model and best val idx and best val acc, using the model dir, model name and model idx
-                            model_save_name="train_model", model_idx=epoch_idx,
-                            best_validation_model_idx=self.best_val_model_idx,
-                            best_validation_model_acc=self.best_val_model_acc)
-            self.save_model(model_save_dir=self.experiment_saved_models,
-                            # save model and best val idx and best val acc, using the model dir, model name and model idx
-                            model_save_name="train_model", model_idx='latest',
-                            best_validation_model_idx=self.best_val_model_idx,
-                            best_validation_model_acc=self.best_val_model_acc)
+            # self.save_model(model_save_dir=self.experiment_saved_models,
+            #                 # save model and best val idx and best val acc, using the model dir, model name and model idx
+            #                 model_save_name="train_model", model_idx=epoch_idx,
+            #                 best_validation_model_idx=self.best_val_model_idx,
+            #                 best_validation_model_sensitivity=self.best_val_model_sensitivity)
+            
 
         print("Generating test set evaluation metrics")
         self.load_model(model_save_dir=self.experiment_saved_models, model_idx=self.best_val_model_idx,
                         # load best validation model
                         model_save_name="train_model")
-        current_epoch_losses = {"test_acc": [], "test_loss": []}  # initialize a statistics dict
+        current_epoch_losses = {"test_acc": [], "test_loss": [], "test_sens": []}  # initialize a statistics dict
         if (self.cost_sensitive_mode):
             print(self.cost_matrix)
         labels = np.sort(np.unique(np.array(self.test_data.dataset.targets))) # all classes
         confusion_matrix = np.zeros((labels.size,labels.size))
         with tqdm.tqdm(total=len(self.test_data)) as pbar_test:  # ini a progress bar
             for x, y in self.test_data:  # sample batch
-                confusion_matrix_part, sensitivity = self.get_confusion_matrix(x=x, y=y, labels=labels)
+                loss, accuracy, confusion_matrix_part, sensitivity = self.run_evaluation_iter(x=x, y=y, labels=labels)  # compute loss and accuracy by running an evaluation step
                 confusion_matrix = confusion_matrix + confusion_matrix_part
-                loss, accuracy = self.run_evaluation_iter(x=x, y=y)  # compute loss and accuracy by running an evaluation step
                 current_epoch_losses["test_loss"].append(loss)  # save test loss
-                current_epoch_losses["test_acc"].append(sensitivity)  # save test accuracy
+                current_epoch_losses["test_acc"].append(accuracy)  # save test accuracy
+                current_epoch_losses["test_sens"].append(sensitivity)  # save test accuracy
                 pbar_test.update(1)  # update progress bar status
                 pbar_test.set_description(
-                    "loss: {:.4f}, sensitivity: {:.4f}".format(loss, sensitivity))  # update progress bar string output
+                    "loss: {:.4f}, accuracy: {:.4f}, sensitivity: {:.4f}".format(loss, accuracy, sensitivity))  # update progress bar string output
         test_losses = {key: [np.mean(value)] for key, value in
                        current_epoch_losses.items()}  # save test set metrics in dict format
         save_statistics(experiment_log_dir=self.experiment_logs, filename='test_summary.csv',

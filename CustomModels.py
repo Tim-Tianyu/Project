@@ -80,9 +80,11 @@ class Custom_05(nn.Module):
         )
         # 2 * 2 * 128
         self.linear = nn.Sequential(
+            nn.Dropout(p=0.5, inplace=False),
             nn.Linear(512, 128),
             nn.BatchNorm1d(128),
             nn.LeakyReLU(inplace = True),
+            nn.Dropout(p=0.5, inplace=False),
         )
         
         self.output_layer = nn.Linear(128, num_classes)
