@@ -37,7 +37,7 @@ def get_args():
     # parser.add_argument('--num_filters', nargs="?", type=int, default=16,
     #                     help='Number of convolutional filters per convolutional layer in the network (excluding '
     #                          'dimensionality reduction layers)')
-    parser.add_argument('--num_epochs', nargs="?", type=int, default=100, help='The experiment\'s epoch budget')
+    parser.add_argument('--num_epochs', nargs="?", type=int, default=5, help='The experiment\'s epoch budget')
     parser.add_argument('--num_classes', nargs="?", type=int, default=10, help='The number of classes')
     parser.add_argument('--experiment_name', nargs="?", type=str, default="exp_1",
                         help='Experiment name - to be used for building the experiment folder')
@@ -49,10 +49,12 @@ def get_args():
                         help='Type of model used')
     parser.add_argument('--dataset_name', type=str, default='MNIST',
                         help='Type of dataset used')                    
-    parser.add_argument('--distribution_name', type=str, default='balanced',
-                        help='Type of distribution used')
     parser.add_argument('--cost_sensitive_mode', type=str2bool, default=False,
                         help='use cost seneitive loss to train the network')
+    parser.add_argument('--train_index_path', type=str, default='',
+                        help='path to the index of training set')
+    parser.add_argument('--eval_index_path', type=str, default='',
+                        help='path to the index of evaluation set')
     args = parser.parse_args()
     print(args)
     return args

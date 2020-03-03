@@ -18,3 +18,7 @@ permutations = [
 LINEAR = "linear"
 EXPONENTIAL = "exponential"
 STEP = "step"
+
+FLAT ="flat"
+ROS = "ros"
+HIERARCHICAL = "hierarchical"
