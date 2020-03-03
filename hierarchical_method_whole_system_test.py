@@ -38,9 +38,9 @@ def test(experiment_name, partitions, model_name, num_of_channels, num_classes, 
                                         test_data=test_loader)
     conv_experiment.save_model(model_save_dir=conv_experiment.experiment_saved_models,
                     # save model and best val idx and best val acc, using the model dir, model name and model idx
-                    model_save_name="train_model", model_idx=0,
+                    model_save_name="train_model", model_idx="best",
                     best_validation_model_idx=0,
-                    best_validation_model_acc=-1)
+                    best_validation_model_sensitivity=-1)
     experiment_metrics, test_metrics = conv_experiment.run_experiment()
         
 def test2(experiment_name, models, classes, test_loader):
@@ -55,7 +55,7 @@ def test2(experiment_name, models, classes, test_loader):
                                             test_data=test_loader)
         conv_experiment.save_model(model_save_dir=conv_experiment.experiment_saved_models,
                         # save model and best val idx and best val acc, using the model dir, model name and model idx
-                        model_save_name="train_model", model_idx=0,
+                        model_save_name="train_model", model_idx="best",
                         best_validation_model_idx=0,
-                        best_validation_model_acc=-1)
+                        best_validation_model_sensitivity=-1)
         experiment_metrics, test_metrics = conv_experiment.run_experiment()

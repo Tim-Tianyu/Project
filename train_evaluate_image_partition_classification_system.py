@@ -39,7 +39,7 @@ with open('./data/'+args.partition_name+'.txt', 'rb') as f:
 
 frontier = [partitions]
 count = 0
-total_size = len(partitions.idxs)
+total_size = 0
 
 experiment_folder = os.path.abspath(args.experiment_name)
 if not os.path.exists(experiment_folder):  # If experiment directory does not exist
@@ -59,13 +59,11 @@ while len(frontier) != 0:
     partition = frontier.pop(0)
     if (not partition.has_children):
         continue
-    #continue
+    continue
     frontier = frontier+partition.children[:]
     classes.append(partition.classes)
     experiment_name = args.experiment_name+"/partition_"+str(count)
     count = count + 1
-    current_size = len(partition.idxs)
-
 
     if args.dataset_name == 'CIFAR10':
         raise CustomDataset.DataSetNotFoundataset
@@ -73,6 +71,10 @@ while len(frontier) != 0:
         train_data, val_data, test_data = CustomDataset.load_partition_dataset(dataset_name="MNIST", distribution_name = args.distribution_name, classes=partition.classes, transform=transform_MNIST)
     else:
         raise CustomDataset.DataSetNotFound
+    
+    current_size = len(train_data.targets)
+    if (total_size < current_size): 
+        total_size = current_size
         
     train_data_loader = DataLoader(train_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
     val_data_loader = DataLoader(val_data, batch_size=args.batch_size, shuffle=True, num_workers=4)

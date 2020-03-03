@@ -97,6 +97,7 @@ class ExperimentBuilder(nn.Module):
         # Set best models to be at 0 since we are just starting
         self.best_val_model_idx = 0
         self.best_val_model_sensitivity = 0.
+        self.best_val_model_loss = -1
 
         if not os.path.exists(self.experiment_folder):  # If experiment directory does not exist
             os.mkdir(self.experiment_folder)  # create the experiment directory
@@ -220,7 +221,7 @@ class ExperimentBuilder(nn.Module):
         :param model_idx: The index to save the model with.
         :return: best val idx and best val model acc, also it loads the network state into the system state without returning it
         """
-        state = torch.load(f=os.path.join(model_save_dir, "{}_{}".format(model_save_name, "latest")))
+        state = torch.load(f=os.path.join(model_save_dir, "{}_{}".format(model_save_name, "best")))
         self.load_state_dict(state_dict=state['network'])
         return state, state['best_val_model_idx'], state['best_val_model_sensitivity']
     
@@ -244,9 +245,24 @@ class ExperimentBuilder(nn.Module):
                 pbar_val.set_description("loss: {:.4f}, accuracy: {:.4f}, sensitivity: {:.4f}".format(loss, accuracy, sensitivity))
         sensitivity = np.average(np.sum(np.eye(len(labels))* confusion_matrix,1) / np.sum(confusion_matrix,1))
         val_mean_sensitivity = np.mean(sensitivity)
+        val_mean_loss = np.mean(current_epoch_losses["val_acc"])
+        
         if val_mean_sensitivity > self.best_val_model_sensitivity:  # if current epoch's mean val acc is greater than the saved best val acc then
             self.best_val_model_sensitivity = val_mean_sensitivity  # set the best val model acc to be current epoch's val accuracy
             self.best_val_model_idx = epoch_idx  # set the experiment-wise best val idx to be the current epoch's idx
+            self.save_model(model_save_dir=self.experiment_saved_models,
+                            # save model and best val idx and best val acc, using the model dir, model name and model idx
+                            model_save_name="train_model", model_idx='best',
+                            best_validation_model_idx=self.best_val_model_idx,
+                            best_validation_model_sensitivity=self.best_val_model_sensitivity)
+        elif (val_mean_sensitivity == self.best_val_model_sensitivity) and ((val_mean_loss < self.best_val_model_loss) or (self.best_val_model_loss == -1)):
+            self.best_val_model_loss = val_mean_loss
+            self.best_val_model_idx = epoch_idx  # set the experiment-wise best val idx to be the current epoch's idx
+            self.save_model(model_save_dir=self.experiment_saved_models,
+                            # save model and best val idx and best val acc, using the model dir, model name and model idx
+                            model_save_name="train_model", model_idx='best',
+                            best_validation_model_idx=self.best_val_model_idx,
+                            best_validation_model_sensitivity=self.best_val_model_sensitivity)
         
         # update cost sensitive matrix
         if (self.cost_sensitive_mode):
