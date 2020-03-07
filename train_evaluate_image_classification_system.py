@@ -43,25 +43,43 @@ def run(args):
     
     current_size = len(train_data.targets)
     
-    ratio = int(np.ceil(orginal_size / current_size))
+    num_epochs = int(np.ceil(orginal_size * args.num_epochs / current_size))
     
     train_data_loader = DataLoader(train_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
     val_data_loader = DataLoader(val_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
     test_data_loader = DataLoader(test_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
 
     custom_conv_net = CustomModels.load_model(model_name=args.model_name, num_of_channels=args.image_num_channels, num_classes=args.num_classes)
-
-    conv_experiment = ExperimentBuilder(network_model=custom_conv_net,
-                                        experiment_name=args.experiment_name,
-                                        num_epochs=args.num_epochs * ratio,
-                                        weight_decay_coefficient=args.weight_decay_coefficient,
-                                        use_gpu=args.use_gpu,
-                                        continue_from_epoch=-1,
-                                        train_data=train_data_loader, val_data=val_data_loader,
-                                        test_data=test_data_loader,
-                                        cost_sensitive_mode=args.cost_sensitive_mode,
-                                        targets=val_data.targets)  # build an experiment object
-    experiment_metrics, test_metrics = conv_experiment.run_experiment()  # run experiment and return experiment metrics
+    
+    if (not args.cost_sensitive_mode):
+        conv_experiment = ExperimentBuilder(network_model=custom_conv_net,
+                                            experiment_name=args.experiment_name,
+                                            num_epochs=num_epochs,
+                                            weight_decay_coefficient=args.weight_decay_coefficient,
+                                            use_gpu=args.use_gpu,
+                                            continue_from_epoch=-1,
+                                            train_data=train_data_loader, val_data=val_data_loader,
+                                            test_data=test_data_loader,
+                                            cost_sensitive_mode=args.cost_sensitive_mode,
+                                            targets=val_data.targets)  # build an experiment object
+        experiment_metrics, test_metrics = conv_experiment.run_experiment() 
+        
+    else:
+        for lr in [0.5, 0.2, 0.1, 0.05, 0.02]: 
+            conv_experiment = ExperimentBuilder(network_model=custom_conv_net,
+                                                experiment_name=args.experiment_name + "/" +str(lr) ,
+                                                num_epochs=num_epochs,
+                                                weight_decay_coefficient=args.weight_decay_coefficient,
+                                                use_gpu=args.use_gpu,
+                                                continue_from_epoch=-1,
+                                                train_data=train_data_loader, val_data=val_data_loader,
+                                                test_data=test_data_loader,
+                                                cost_sensitive_mode=args.cost_sensitive_mode,
+                                                targets=val_data.targets,
+                                                cost_matrix_lr=lr)  # build an experiment object
+            experiment_metrics, test_metrics = conv_experiment.run_experiment()
+        
+     # run experiment and return experiment metrics
 
 if __name__ == "__main__":
     run(args) 

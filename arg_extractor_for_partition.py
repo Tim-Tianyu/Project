@@ -33,10 +33,12 @@ def get_args():
                         help='Type of model used')
     parser.add_argument('--dataset_name', type=str, default='MNIST',
                         help='Type of dataset used')                    
-    parser.add_argument('--partition_name', type=str, default='partition_object_test',
-                        help='Type of partition used')
-    parser.add_argument('--distribution_name', type=str, default='balanced',
-                        help='Type of distribution used')
+    parser.add_argument('--partition_path', type=str, default='partition_object_test',
+                        help='path to partition')
+    parser.add_argument('--train_index_path', type=str, default='',
+                        help='path to the index of training set')
+    parser.add_argument('--eval_index_path', type=str, default='',
+                        help='path to the index of evaluation set')
     args = parser.parse_args()
     print(args)
     return args

@@ -15,7 +15,7 @@ from sklearn.metrics import confusion_matrix
 class ExperimentBuilder(nn.Module):
     def __init__(self, network_model, experiment_name, num_epochs, train_data, val_data,
                  test_data, weight_decay_coefficient = 0, use_gpu = True, continue_from_epoch=-1, 
-                 cost_sensitive_mode=False, targets=None, evaluation_interval=100):
+                 cost_sensitive_mode=False, targets=None, evaluation_interval=100, cost_matrix_lr = 0.05):
         """
         Initializes an ExperimentBuilder object. Such an object takes care of running training and evaluation of a deep net
         on a given dataset. It also takes care of saving per epoch models and automatically inferring the best val model
@@ -41,7 +41,7 @@ class ExperimentBuilder(nn.Module):
             assert(targets is not None)
             num_classes = len(np.unique(targets))
             self.cost_matrix = np.ones((num_classes, num_classes))
-            self.cost_matrix_lr = 0.05
+            self.cost_matrix_lr = cost_matrix_lr
             self.targets = torch.tensor(targets).long()
             self.distribution = np.zeros(num_classes)
             for i in targets:

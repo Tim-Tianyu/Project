@@ -29,7 +29,7 @@ def test(experiment_name, partitions, model_name, num_of_channels, num_classes, 
         
     model = hierarchical_model(classes, models)
     conv_experiment = ExperimentBuilder(network_model=model,
-                                        experiment_name=experiment_name + "_whole_system_test",
+                                        experiment_name=experiment_name + "/whole_system_test",
                                         num_epochs=-1,
                                         weight_decay_coefficient=0,
                                         use_gpu=True,
@@ -46,7 +46,7 @@ def test(experiment_name, partitions, model_name, num_of_channels, num_classes, 
 def test2(experiment_name, models, classes, test_loader):
         model = hierarchical_model(classes, models)
         conv_experiment = ExperimentBuilder(network_model=model,
-                                            experiment_name=experiment_name + "_whole_system_test",
+                                            experiment_name=experiment_name + "/whole_system_test",
                                             num_epochs=-1,
                                             weight_decay_coefficient=0,
                                             use_gpu=True,
