@@ -1,3 +1,3 @@
 #!/bin/bash
 
-python run_hierarchical_method.py > hierarchical_result.txt
+python -W ignore run_hierarchical_method.py > hierarchical_result.txt
