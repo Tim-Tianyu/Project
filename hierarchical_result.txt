@@ -1,8 +1,12 @@
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
 use CPU
 cpu
 here
 System learnable parameters
-model.conv_1.0.weight torch.Size([32, 1, 5, 5])
+model.conv_1.0.weight torch.Size([32, 3, 5, 5])
 model.conv_1.0.bias torch.Size([32])
 model.conv_1.2.weight torch.Size([32])
 model.conv_1.2.bias torch.Size([32])
@@ -20,44 +24,303 @@ model.linear.2.weight torch.Size([128])
 model.linear.2.bias torch.Size([128])
 model.output_layer.weight torch.Size([2, 128])
 model.output_layer.bias torch.Size([2])
-Total number of parameters 159810
+Total number of parameters 161410
 Total number of conv layers 6
 Total number of linear layers 2
 
 
-
-Epoch 0: train_acc_0.9743_train_loss_0.0760_val_acc_0.9901_val_loss_0.0330_val_sens_0.9898 epoch time 41.5823 seconds
-
+Epoch 0: train_acc_0.6997_train_loss_0.5714_val_acc_0.7310_val_loss_0.5275_val_sens_0.7312 epoch time 19.6068 seconds
 
 
-Epoch 1: train_acc_0.9888_train_loss_0.0355_val_acc_0.9923_val_loss_0.0252_val_sens_0.9916 epoch time 39.3578 seconds
+Epoch 1: train_acc_0.7470_train_loss_0.5076_val_acc_0.7468_val_loss_0.5076_val_sens_0.7468 epoch time 18.2544 seconds
 
 
 
-Epoch 2: train_acc_0.9927_train_loss_0.0233_val_acc_0.9935_val_loss_0.0209_val_sens_0.9932 epoch time 39.3885 seconds
+Epoch 2: train_acc_0.7714_train_loss_0.4747_val_acc_0.7777_val_loss_0.4690_val_sens_0.7772 epoch time 20.3822 seconds
+
+
+Epoch 3: train_acc_0.7942_train_loss_0.4421_val_acc_0.7971_val_loss_0.4419_val_sens_0.7971 epoch time 17.5133 seconds
 
 
 
-Epoch 3: train_acc_0.9937_train_loss_0.0213_val_acc_0.9935_val_loss_0.0210_val_sens_0.9928 epoch time 43.6765 seconds
+Epoch 4: train_acc_0.8127_train_loss_0.4121_val_acc_0.8126_val_loss_0.4127_val_sens_0.8123 epoch time 19.8757 seconds
+
+
+Epoch 5: train_acc_0.8300_train_loss_0.3801_val_acc_0.8265_val_loss_0.3925_val_sens_0.8265 epoch time 17.1834 seconds
+
+
+Epoch 6: train_acc_0.8427_train_loss_0.3569_val_acc_0.8329_val_loss_0.3783_val_sens_0.8321 epoch time 16.0554 seconds
 
 
 
-
-Epoch 4: train_acc_0.9949_train_loss_0.0202_val_acc_0.9939_val_loss_0.0188_val_sens_0.9933 epoch time 41.9099 seconds
-
+Epoch 7: train_acc_0.8568_train_loss_0.3322_val_acc_0.8377_val_loss_0.3726_val_sens_0.8376 epoch time 17.8227 seconds
 
 
-Epoch 5: train_acc_0.9966_train_loss_0.0117_val_acc_0.9945_val_loss_0.0159_val_sens_0.9939 epoch time 39.0713 seconds
+Epoch 8: train_acc_0.8694_train_loss_0.3100_val_acc_0.8451_val_loss_0.3585_val_sens_0.8446 epoch time 16.6544 seconds
 
 
 
-Epoch 6: train_acc_0.9973_train_loss_0.0092_val_acc_0.9949_val_loss_0.0154_val_sens_0.9945 epoch time 39.7567 seconds
+Epoch 9: train_acc_0.8758_train_loss_0.2923_val_acc_0.8502_val_loss_0.3512_val_sens_0.8508 epoch time 17.7449 seconds
+
+
+Epoch 10: train_acc_0.8828_train_loss_0.2781_val_acc_0.8483_val_loss_0.3609_val_sens_0.8478 epoch time 16.0909 seconds
+
+
+Epoch 11: train_acc_0.8941_train_loss_0.2542_val_acc_0.8451_val_loss_0.3623_val_sens_0.8453 epoch time 16.4743 seconds
+
+
+
+Epoch 12: train_acc_0.9012_train_loss_0.2424_val_acc_0.8563_val_loss_0.3480_val_sens_0.8562 epoch time 18.0264 seconds
+
+
+Epoch 13: train_acc_0.9050_train_loss_0.2268_val_acc_0.8588_val_loss_0.3506_val_sens_0.8593 epoch time 16.2897 seconds
+
+
+
+Epoch 14: train_acc_0.9129_train_loss_0.2123_val_acc_0.8544_val_loss_0.3568_val_sens_0.8543 epoch time 17.6412 seconds
+
+
+Epoch 15: train_acc_0.9207_train_loss_0.1968_val_acc_0.8535_val_loss_0.3662_val_sens_0.8535 epoch time 17.0707 seconds
+
+
+Epoch 16: train_acc_0.9260_train_loss_0.1882_val_acc_0.8541_val_loss_0.3748_val_sens_0.8538 epoch time 16.5143 seconds
+
+
+
+Epoch 17: train_acc_0.9305_train_loss_0.1788_val_acc_0.8529_val_loss_0.3838_val_sens_0.8532 epoch time 18.2981 seconds
+
+
+Epoch 18: train_acc_0.9303_train_loss_0.1723_val_acc_0.8478_val_loss_0.4090_val_sens_0.8486 epoch time 17.7306 seconds
+
+
+
+Epoch 19: train_acc_0.9392_train_loss_0.1552_val_acc_0.8578_val_loss_0.3807_val_sens_0.8580 epoch time 18.4577 seconds
+
+
+Epoch 20: train_acc_0.9408_train_loss_0.1479_val_acc_0.8544_val_loss_0.4018_val_sens_0.8543 epoch time 17.1719 seconds
+
+
+Epoch 21: train_acc_0.9455_train_loss_0.1402_val_acc_0.8531_val_loss_0.4229_val_sens_0.8528 epoch time 16.3941 seconds
+
+
+
+Epoch 22: train_acc_0.9455_train_loss_0.1403_val_acc_0.8553_val_loss_0.4197_val_sens_0.8552 epoch time 18.0118 seconds
+
+
+Epoch 23: train_acc_0.9482_train_loss_0.1299_val_acc_0.8602_val_loss_0.3951_val_sens_0.8601 epoch time 16.4821 seconds
+
+
+
+Epoch 24: train_acc_0.9533_train_loss_0.1244_val_acc_0.8578_val_loss_0.4147_val_sens_0.8578 epoch time 17.7818 seconds
+
+
+Epoch 25: train_acc_0.9538_train_loss_0.1191_val_acc_0.8610_val_loss_0.4147_val_sens_0.8608 epoch time 16.9818 seconds
+
+
+Epoch 26: train_acc_0.9569_train_loss_0.1107_val_acc_0.8568_val_loss_0.4311_val_sens_0.8563 epoch time 17.0024 seconds
+
+
+
+Epoch 27: train_acc_0.9586_train_loss_0.1056_val_acc_0.8586_val_loss_0.4437_val_sens_0.8586 epoch time 18.5349 seconds
+
+
+Epoch 28: train_acc_0.9599_train_loss_0.1036_val_acc_0.8503_val_loss_0.4604_val_sens_0.8502 epoch time 16.0829 seconds
+
+
+
+Epoch 29: train_acc_0.9627_train_loss_0.0984_val_acc_0.8597_val_loss_0.4558_val_sens_0.8597 epoch time 18.9544 seconds
+
+
+Epoch 30: train_acc_0.9645_train_loss_0.0940_val_acc_0.8620_val_loss_0.4588_val_sens_0.8621 epoch time 17.0576 seconds
+
+
+Epoch 31: train_acc_0.9639_train_loss_0.0937_val_acc_0.8522_val_loss_0.4788_val_sens_0.8523 epoch time 16.0010 seconds
+
+
+
+Epoch 32: train_acc_0.9655_train_loss_0.0940_val_acc_0.8611_val_loss_0.4639_val_sens_0.8613 epoch time 18.9692 seconds
+
+
+Epoch 33: train_acc_0.9680_train_loss_0.0855_val_acc_0.8625_val_loss_0.4398_val_sens_0.8629 epoch time 16.5508 seconds
+
+
+
+Epoch 34: train_acc_0.9705_train_loss_0.0762_val_acc_0.8634_val_loss_0.4741_val_sens_0.8638 epoch time 18.2692 seconds
+
+
+Epoch 35: train_acc_0.9695_train_loss_0.0791_val_acc_0.8622_val_loss_0.4839_val_sens_0.8623 epoch time 16.5487 seconds
+
+
+Epoch 36: train_acc_0.9706_train_loss_0.0804_val_acc_0.8607_val_loss_0.4687_val_sens_0.8606 epoch time 16.0163 seconds
+
+
+
+Epoch 37: train_acc_0.9728_train_loss_0.0743_val_acc_0.8613_val_loss_0.4740_val_sens_0.8610 epoch time 19.4188 seconds
+
+
+Epoch 38: train_acc_0.9747_train_loss_0.0667_val_acc_0.8618_val_loss_0.4953_val_sens_0.8617 epoch time 16.0859 seconds
+
+
+
+Epoch 39: train_acc_0.9749_train_loss_0.0669_val_acc_0.8608_val_loss_0.5069_val_sens_0.8608 epoch time 17.6855 seconds
+
+
+Epoch 40: train_acc_0.9766_train_loss_0.0611_val_acc_0.8616_val_loss_0.5079_val_sens_0.8615 epoch time 16.2692 seconds
+
+
+Epoch 41: train_acc_0.9781_train_loss_0.0603_val_acc_0.8634_val_loss_0.5003_val_sens_0.8634 epoch time 16.2394 seconds
+
+
+
+Epoch 42: train_acc_0.9782_train_loss_0.0580_val_acc_0.8609_val_loss_0.5211_val_sens_0.8609 epoch time 17.5928 seconds
+
+
+Epoch 43: train_acc_0.9788_train_loss_0.0577_val_acc_0.8613_val_loss_0.5135_val_sens_0.8614 epoch time 16.2317 seconds
+
+
+
+Epoch 44: train_acc_0.9795_train_loss_0.0569_val_acc_0.8631_val_loss_0.5384_val_sens_0.8631 epoch time 17.7195 seconds
+
+
+Epoch 45: train_acc_0.9803_train_loss_0.0522_val_acc_0.8618_val_loss_0.5299_val_sens_0.8618 epoch time 17.2021 seconds
+
+
+Epoch 46: train_acc_0.9818_train_loss_0.0510_val_acc_0.8630_val_loss_0.5200_val_sens_0.8635 epoch time 16.6953 seconds
+
+
+
+Epoch 47: train_acc_0.9820_train_loss_0.0480_val_acc_0.8624_val_loss_0.5340_val_sens_0.8625 epoch time 18.8175 seconds
+
+
+Epoch 48: train_acc_0.9835_train_loss_0.0441_val_acc_0.8605_val_loss_0.5353_val_sens_0.8605 epoch time 16.7116 seconds
+
+
+
+Epoch 49: train_acc_0.9835_train_loss_0.0441_val_acc_0.8617_val_loss_0.5556_val_sens_0.8616 epoch time 18.0980 seconds
+
+
+Epoch 50: train_acc_0.9826_train_loss_0.0453_val_acc_0.8622_val_loss_0.5459_val_sens_0.8623 epoch time 16.7468 seconds
+
+
+Epoch 51: train_acc_0.9865_train_loss_0.0364_val_acc_0.8607_val_loss_0.5697_val_sens_0.8601 epoch time 15.9372 seconds
+
+
+
+Epoch 52: train_acc_0.9847_train_loss_0.0406_val_acc_0.8621_val_loss_0.5644_val_sens_0.8623 epoch time 18.2051 seconds
+
+
+Epoch 53: train_acc_0.9868_train_loss_0.0360_val_acc_0.8646_val_loss_0.5605_val_sens_0.8646 epoch time 16.5694 seconds
+
+
+
+Epoch 54: train_acc_0.9877_train_loss_0.0332_val_acc_0.8647_val_loss_0.5641_val_sens_0.8651 epoch time 17.4676 seconds
+
+
+Epoch 55: train_acc_0.9873_train_loss_0.0341_val_acc_0.8679_val_loss_0.5736_val_sens_0.8678 epoch time 17.1070 seconds
+
+
+Epoch 56: train_acc_0.9873_train_loss_0.0341_val_acc_0.8652_val_loss_0.5812_val_sens_0.8650 epoch time 17.0755 seconds
+
+
+
+Epoch 57: train_acc_0.9877_train_loss_0.0355_val_acc_0.8657_val_loss_0.5958_val_sens_0.8657 epoch time 17.7729 seconds
+
+
+Epoch 58: train_acc_0.9865_train_loss_0.0366_val_acc_0.8648_val_loss_0.5853_val_sens_0.8647 epoch time 16.2424 seconds
+
+
+
+Epoch 59: train_acc_0.9891_train_loss_0.0281_val_acc_0.8643_val_loss_0.5995_val_sens_0.8642 epoch time 17.7271 seconds
+
+
+Epoch 60: train_acc_0.9888_train_loss_0.0300_val_acc_0.8639_val_loss_0.5739_val_sens_0.8638 epoch time 16.8988 seconds
+
+
+Epoch 61: train_acc_0.9897_train_loss_0.0286_val_acc_0.8605_val_loss_0.6421_val_sens_0.8604 epoch time 15.8584 seconds
+
+
+
+Epoch 62: train_acc_0.9898_train_loss_0.0294_val_acc_0.8648_val_loss_0.5994_val_sens_0.8651 epoch time 17.7356 seconds
+
+
+Epoch 63: train_acc_0.9914_train_loss_0.0245_val_acc_0.8649_val_loss_0.5893_val_sens_0.8650 epoch time 16.0400 seconds
+
+
+
+Epoch 64: train_acc_0.9905_train_loss_0.0258_val_acc_0.8659_val_loss_0.6149_val_sens_0.8661 epoch time 18.1901 seconds
+
+
+Epoch 65: train_acc_0.9910_train_loss_0.0250_val_acc_0.8654_val_loss_0.6117_val_sens_0.8658 epoch time 15.9541 seconds
+
+
+Epoch 66: train_acc_0.9920_train_loss_0.0213_val_acc_0.8664_val_loss_0.6058_val_sens_0.8664 epoch time 16.1764 seconds
+
+
+
+Epoch 67: train_acc_0.9913_train_loss_0.0233_val_acc_0.8668_val_loss_0.6161_val_sens_0.8668 epoch time 17.6844 seconds
+
+
+Epoch 68: train_acc_0.9926_train_loss_0.0211_val_acc_0.8667_val_loss_0.6197_val_sens_0.8669 epoch time 16.3721 seconds
+
+
+
+Epoch 69: train_acc_0.9926_train_loss_0.0204_val_acc_0.8668_val_loss_0.6222_val_sens_0.8666 epoch time 18.4736 seconds
+
+
+Epoch 70: train_acc_0.9928_train_loss_0.0207_val_acc_0.8660_val_loss_0.6297_val_sens_0.8667 epoch time 16.2468 seconds
+
+
+Epoch 71: train_acc_0.9933_train_loss_0.0190_val_acc_0.8671_val_loss_0.6274_val_sens_0.8672 epoch time 16.1069 seconds
+
+
+
+Epoch 72: train_acc_0.9935_train_loss_0.0187_val_acc_0.8669_val_loss_0.6325_val_sens_0.8670 epoch time 17.9972 seconds
+
+
+Epoch 73: train_acc_0.9931_train_loss_0.0187_val_acc_0.8668_val_loss_0.6306_val_sens_0.8661 epoch time 16.3651 seconds
+
+
+
+Epoch 74: train_acc_0.9935_train_loss_0.0181_val_acc_0.8666_val_loss_0.6419_val_sens_0.8665 epoch time 17.4702 seconds
+
+
+Epoch 75: train_acc_0.9930_train_loss_0.0190_val_acc_0.8682_val_loss_0.6337_val_sens_0.8685 epoch time 16.1016 seconds
+
+
+Epoch 76: train_acc_0.9931_train_loss_0.0185_val_acc_0.8668_val_loss_0.6282_val_sens_0.8666 epoch time 16.6982 seconds
+
+
+
+Epoch 77: train_acc_0.9937_train_loss_0.0183_val_acc_0.8677_val_loss_0.6378_val_sens_0.8674 epoch time 18.4684 seconds
+
+
+Epoch 78: train_acc_0.9934_train_loss_0.0195_val_acc_0.8682_val_loss_0.6334_val_sens_0.8679 epoch time 16.9942 seconds
+
+
+
+Epoch 79: train_acc_0.9941_train_loss_0.0166_val_acc_0.8662_val_loss_0.6317_val_sens_0.8661 epoch time 17.4629 seconds
+
+
+Epoch 80: train_acc_0.9950_train_loss_0.0157_val_acc_0.8662_val_loss_0.6452_val_sens_0.8667 epoch time 16.0542 seconds
+
+
+Epoch 81: train_acc_0.9944_train_loss_0.0173_val_acc_0.8670_val_loss_0.6408_val_sens_0.8670 epoch time 16.5190 seconds
+
+
+
+Epoch 82: train_acc_0.9941_train_loss_0.0173_val_acc_0.8672_val_loss_0.6396_val_sens_0.8672 epoch time 17.7108 seconds
+
+
+Epoch 83: train_acc_0.9945_train_loss_0.0159_val_acc_0.8676_val_loss_0.6387_val_sens_0.8672 epoch time 16.1832 seconds
 Generating test set evaluation metrics
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
 use CPU
 cpu
 here
 System learnable parameters
-model.conv_1.0.weight torch.Size([32, 1, 5, 5])
+model.conv_1.0.weight torch.Size([32, 3, 5, 5])
 model.conv_1.0.bias torch.Size([32])
 model.conv_1.2.weight torch.Size([32])
 model.conv_1.2.bias torch.Size([32])
@@ -75,45 +338,385 @@ model.linear.2.weight torch.Size([128])
 model.linear.2.bias torch.Size([128])
 model.output_layer.weight torch.Size([2, 128])
 model.output_layer.bias torch.Size([2])
-Total number of parameters 159810
+Total number of parameters 161410
 Total number of conv layers 6
 Total number of linear layers 2
 
+Epoch 0: train_acc_0.7926_train_loss_0.4367_val_acc_0.8420_val_loss_0.3556_val_sens_0.8390 epoch time 7.1428 seconds
 
-Epoch 0: train_acc_0.9670_train_loss_0.0955_val_acc_0.9873_val_loss_0.0390_val_sens_0.9889 epoch time 28.9517 seconds
+Epoch 1: train_acc_0.8507_train_loss_0.3360_val_acc_0.8523_val_loss_0.3475_val_sens_0.7977 epoch time 7.1029 seconds
 
+Epoch 2: train_acc_0.8843_train_loss_0.2784_val_acc_0.8790_val_loss_0.2838_val_sens_0.8378 epoch time 8.0461 seconds
 
-Epoch 1: train_acc_0.9903_train_loss_0.0289_val_acc_0.9912_val_loss_0.0302_val_sens_0.9923 epoch time 20.9703 seconds
-
-
-Epoch 2: train_acc_0.9922_train_loss_0.0220_val_acc_0.9913_val_loss_0.0256_val_sens_0.9924 epoch time 21.3719 seconds
-
-
-Epoch 3: train_acc_0.9964_train_loss_0.0127_val_acc_0.9956_val_loss_0.0162_val_sens_0.9958 epoch time 20.4185 seconds
+Epoch 3: train_acc_0.8895_train_loss_0.2558_val_acc_0.8823_val_loss_0.2763_val_sens_0.8747 epoch time 7.2731 seconds
 
 
-Epoch 4: train_acc_0.9963_train_loss_0.0114_val_acc_0.9948_val_loss_0.0166_val_sens_0.9945 epoch time 19.2063 seconds
+Epoch 4: train_acc_0.9091_train_loss_0.2208_val_acc_0.8985_val_loss_0.2539_val_sens_0.8772 epoch time 8.1192 seconds
+
+Epoch 5: train_acc_0.9217_train_loss_0.1925_val_acc_0.9060_val_loss_0.2343_val_sens_0.8867 epoch time 7.1595 seconds
+
+Epoch 6: train_acc_0.9312_train_loss_0.1712_val_acc_0.9067_val_loss_0.2230_val_sens_0.9016 epoch time 7.2189 seconds
+
+Epoch 7: train_acc_0.9392_train_loss_0.1528_val_acc_0.9057_val_loss_0.2588_val_sens_0.8752 epoch time 7.1778 seconds
+
+Epoch 8: train_acc_0.9404_train_loss_0.1474_val_acc_0.9140_val_loss_0.2247_val_sens_0.9031 epoch time 7.2180 seconds
 
 
-Epoch 5: train_acc_0.9971_train_loss_0.0091_val_acc_0.9948_val_loss_0.0175_val_sens_0.9946 epoch time 19.2477 seconds
+Epoch 9: train_acc_0.9519_train_loss_0.1230_val_acc_0.9115_val_loss_0.2218_val_sens_0.9093 epoch time 8.1630 seconds
+
+Epoch 10: train_acc_0.9539_train_loss_0.1149_val_acc_0.9197_val_loss_0.2090_val_sens_0.9143 epoch time 7.3326 seconds
+
+Epoch 11: train_acc_0.9613_train_loss_0.1009_val_acc_0.9067_val_loss_0.2376_val_sens_0.9114 epoch time 7.2203 seconds
+
+Epoch 12: train_acc_0.9587_train_loss_0.1050_val_acc_0.9133_val_loss_0.2331_val_sens_0.9080 epoch time 7.1846 seconds
+
+Epoch 13: train_acc_0.9700_train_loss_0.0811_val_acc_0.9180_val_loss_0.2302_val_sens_0.9013 epoch time 7.2289 seconds
 
 
-Epoch 6: train_acc_0.9981_train_loss_0.0058_val_acc_0.9965_val_loss_0.0155_val_sens_0.9967 epoch time 20.4733 seconds
+Epoch 14: train_acc_0.9705_train_loss_0.0734_val_acc_0.9167_val_loss_0.2386_val_sens_0.9081 epoch time 8.4850 seconds
+
+Epoch 15: train_acc_0.9719_train_loss_0.0758_val_acc_0.9190_val_loss_0.2503_val_sens_0.9153 epoch time 7.3111 seconds
+
+Epoch 16: train_acc_0.9732_train_loss_0.0710_val_acc_0.9133_val_loss_0.3063_val_sens_0.8814 epoch time 7.2455 seconds
+
+Epoch 17: train_acc_0.9760_train_loss_0.0618_val_acc_0.9200_val_loss_0.2439_val_sens_0.9103 epoch time 7.1969 seconds
+
+Epoch 18: train_acc_0.9747_train_loss_0.0643_val_acc_0.9163_val_loss_0.2433_val_sens_0.9104 epoch time 7.3460 seconds
 
 
-Epoch 7: train_acc_0.9982_train_loss_0.0051_val_acc_0.9965_val_loss_0.0156_val_sens_0.9968 epoch time 19.6944 seconds
+Epoch 19: train_acc_0.9790_train_loss_0.0578_val_acc_0.9135_val_loss_0.2865_val_sens_0.9056 epoch time 8.2017 seconds
+
+Epoch 20: train_acc_0.9801_train_loss_0.0500_val_acc_0.9280_val_loss_0.2647_val_sens_0.9219 epoch time 7.2872 seconds
+
+Epoch 21: train_acc_0.9792_train_loss_0.0529_val_acc_0.9040_val_loss_0.3329_val_sens_0.9113 epoch time 7.2077 seconds
+
+Epoch 22: train_acc_0.9810_train_loss_0.0523_val_acc_0.9233_val_loss_0.2921_val_sens_0.9101 epoch time 7.2303 seconds
+
+Epoch 23: train_acc_0.9795_train_loss_0.0525_val_acc_0.9280_val_loss_0.2803_val_sens_0.9174 epoch time 7.1950 seconds
 
 
-Epoch 8: train_acc_0.9995_train_loss_0.0029_val_acc_0.9956_val_loss_0.0148_val_sens_0.9956 epoch time 19.4571 seconds
+Epoch 24: train_acc_0.9842_train_loss_0.0424_val_acc_0.9208_val_loss_0.2947_val_sens_0.9109 epoch time 8.0520 seconds
+
+Epoch 25: train_acc_0.9842_train_loss_0.0437_val_acc_0.9143_val_loss_0.3270_val_sens_0.8879 epoch time 7.2632 seconds
+
+Epoch 26: train_acc_0.9843_train_loss_0.0429_val_acc_0.9197_val_loss_0.2845_val_sens_0.9194 epoch time 7.3196 seconds
+
+Epoch 27: train_acc_0.9849_train_loss_0.0417_val_acc_0.9157_val_loss_0.3154_val_sens_0.8949 epoch time 7.3547 seconds
+
+Epoch 28: train_acc_0.9861_train_loss_0.0371_val_acc_0.9240_val_loss_0.2704_val_sens_0.9073 epoch time 7.2185 seconds
 
 
-Epoch 9: train_acc_0.9990_train_loss_0.0031_val_acc_0.9961_val_loss_0.0151_val_sens_0.9961 epoch time 22.1650 seconds
+Epoch 29: train_acc_0.9858_train_loss_0.0389_val_acc_0.9185_val_loss_0.3098_val_sens_0.9055 epoch time 8.1037 seconds
+
+Epoch 30: train_acc_0.9885_train_loss_0.0345_val_acc_0.9180_val_loss_0.3046_val_sens_0.9191 epoch time 7.3260 seconds
+
+Epoch 31: train_acc_0.9843_train_loss_0.0408_val_acc_0.9283_val_loss_0.3130_val_sens_0.9085 epoch time 7.4840 seconds
+
+Epoch 32: train_acc_0.9863_train_loss_0.0347_val_acc_0.9250_val_loss_0.2920_val_sens_0.9226 epoch time 7.3293 seconds
+
+Epoch 33: train_acc_0.9893_train_loss_0.0312_val_acc_0.9143_val_loss_0.3319_val_sens_0.9208 epoch time 7.2866 seconds
+
+
+Epoch 34: train_acc_0.9908_train_loss_0.0270_val_acc_0.9257_val_loss_0.3134_val_sens_0.9087 epoch time 8.4503 seconds
+
+Epoch 35: train_acc_0.9911_train_loss_0.0249_val_acc_0.9267_val_loss_0.3181_val_sens_0.9264 epoch time 7.6626 seconds
+
+Epoch 36: train_acc_0.9919_train_loss_0.0231_val_acc_0.9220_val_loss_0.3413_val_sens_0.9146 epoch time 7.7972 seconds
+
+Epoch 37: train_acc_0.9872_train_loss_0.0362_val_acc_0.9237_val_loss_0.3375_val_sens_0.9090 epoch time 7.4815 seconds
+
+Epoch 38: train_acc_0.9873_train_loss_0.0331_val_acc_0.9227_val_loss_0.3035_val_sens_0.9184 epoch time 7.2291 seconds
+
+
+Epoch 39: train_acc_0.9882_train_loss_0.0321_val_acc_0.9217_val_loss_0.3258_val_sens_0.9129 epoch time 8.0879 seconds
+
+Epoch 40: train_acc_0.9917_train_loss_0.0241_val_acc_0.9187_val_loss_0.3499_val_sens_0.9208 epoch time 7.2029 seconds
+
+Epoch 41: train_acc_0.9906_train_loss_0.0248_val_acc_0.9253_val_loss_0.3174_val_sens_0.9172 epoch time 7.2293 seconds
+
+Epoch 42: train_acc_0.9883_train_loss_0.0306_val_acc_0.9227_val_loss_0.3324_val_sens_0.9202 epoch time 7.2622 seconds
+
+Epoch 43: train_acc_0.9910_train_loss_0.0240_val_acc_0.9247_val_loss_0.3263_val_sens_0.9121 epoch time 7.2113 seconds
+
+
+Epoch 44: train_acc_0.9929_train_loss_0.0186_val_acc_0.9222_val_loss_0.3232_val_sens_0.9204 epoch time 8.1476 seconds
+
+Epoch 45: train_acc_0.9906_train_loss_0.0274_val_acc_0.9250_val_loss_0.3253_val_sens_0.9130 epoch time 7.6262 seconds
+
+Epoch 46: train_acc_0.9926_train_loss_0.0193_val_acc_0.9287_val_loss_0.3162_val_sens_0.9185 epoch time 7.6695 seconds
+
+Epoch 47: train_acc_0.9915_train_loss_0.0224_val_acc_0.9260_val_loss_0.3351_val_sens_0.9181 epoch time 7.3544 seconds
+
+Epoch 48: train_acc_0.9933_train_loss_0.0187_val_acc_0.9247_val_loss_0.3457_val_sens_0.9025 epoch time 7.4915 seconds
+
+
+Epoch 49: train_acc_0.9919_train_loss_0.0193_val_acc_0.9167_val_loss_0.3847_val_sens_0.9081 epoch time 8.0904 seconds
+
+Epoch 50: train_acc_0.9915_train_loss_0.0237_val_acc_0.9247_val_loss_0.3717_val_sens_0.9061 epoch time 7.7735 seconds
+
+Epoch 51: train_acc_0.9917_train_loss_0.0238_val_acc_0.9180_val_loss_0.3555_val_sens_0.9196 epoch time 7.2229 seconds
+
+Epoch 52: train_acc_0.9935_train_loss_0.0193_val_acc_0.9247_val_loss_0.3451_val_sens_0.9239 epoch time 7.2899 seconds
+
+Epoch 53: train_acc_0.9947_train_loss_0.0183_val_acc_0.9283_val_loss_0.3087_val_sens_0.9215 epoch time 7.2636 seconds
+
+
+Epoch 54: train_acc_0.9929_train_loss_0.0199_val_acc_0.9187_val_loss_0.3698_val_sens_0.9210 epoch time 8.5814 seconds
+
+Epoch 55: train_acc_0.9941_train_loss_0.0171_val_acc_0.9270_val_loss_0.3447_val_sens_0.9198 epoch time 7.2335 seconds
+
+Epoch 56: train_acc_0.9951_train_loss_0.0131_val_acc_0.9277_val_loss_0.3283_val_sens_0.9181 epoch time 7.2107 seconds
+
+Epoch 57: train_acc_0.9933_train_loss_0.0193_val_acc_0.9253_val_loss_0.3466_val_sens_0.9208 epoch time 7.2203 seconds
+
+Epoch 58: train_acc_0.9937_train_loss_0.0195_val_acc_0.9210_val_loss_0.3576_val_sens_0.9235 epoch time 7.3440 seconds
+
+
+Epoch 59: train_acc_0.9950_train_loss_0.0144_val_acc_0.9268_val_loss_0.3436_val_sens_0.9153 epoch time 8.0711 seconds
+
+Epoch 60: train_acc_0.9928_train_loss_0.0194_val_acc_0.9313_val_loss_0.3181_val_sens_0.9251 epoch time 8.1222 seconds
+
+Epoch 61: train_acc_0.9945_train_loss_0.0176_val_acc_0.9290_val_loss_0.3106_val_sens_0.9290 epoch time 7.2535 seconds
+
+Epoch 62: train_acc_0.9960_train_loss_0.0132_val_acc_0.9250_val_loss_0.3127_val_sens_0.9198 epoch time 7.4476 seconds
+
+Epoch 63: train_acc_0.9953_train_loss_0.0124_val_acc_0.9257_val_loss_0.3336_val_sens_0.9257 epoch time 7.2049 seconds
+
+
+Epoch 64: train_acc_0.9928_train_loss_0.0184_val_acc_0.9213_val_loss_0.3640_val_sens_0.9242 epoch time 8.5581 seconds
+
+Epoch 65: train_acc_0.9962_train_loss_0.0113_val_acc_0.9277_val_loss_0.3417_val_sens_0.9298 epoch time 7.6144 seconds
+
+Epoch 66: train_acc_0.9960_train_loss_0.0125_val_acc_0.9253_val_loss_0.3706_val_sens_0.9110 epoch time 7.3015 seconds
+
+Epoch 67: train_acc_0.9953_train_loss_0.0134_val_acc_0.9273_val_loss_0.3629_val_sens_0.9127 epoch time 7.1836 seconds
+
+Epoch 68: train_acc_0.9943_train_loss_0.0167_val_acc_0.9243_val_loss_0.3605_val_sens_0.9227 epoch time 7.1996 seconds
+
+
+Epoch 69: train_acc_0.9938_train_loss_0.0177_val_acc_0.9263_val_loss_0.3513_val_sens_0.9155 epoch time 8.2165 seconds
+
+Epoch 70: train_acc_0.9968_train_loss_0.0109_val_acc_0.9273_val_loss_0.3605_val_sens_0.9278 epoch time 7.9627 seconds
+
+Epoch 71: train_acc_0.9964_train_loss_0.0099_val_acc_0.9280_val_loss_0.3528_val_sens_0.9286 epoch time 7.2188 seconds
+
+Epoch 72: train_acc_0.9963_train_loss_0.0118_val_acc_0.9287_val_loss_0.3586_val_sens_0.9275 epoch time 7.2347 seconds
+
+Epoch 73: train_acc_0.9963_train_loss_0.0107_val_acc_0.9270_val_loss_0.3641_val_sens_0.9189 epoch time 7.4097 seconds
+
+
+Epoch 74: train_acc_0.9956_train_loss_0.0134_val_acc_0.9275_val_loss_0.3712_val_sens_0.9181 epoch time 8.9100 seconds
+
+Epoch 75: train_acc_0.9964_train_loss_0.0107_val_acc_0.9167_val_loss_0.4021_val_sens_0.9237 epoch time 7.3468 seconds
+
+Epoch 76: train_acc_0.9959_train_loss_0.0115_val_acc_0.9320_val_loss_0.4051_val_sens_0.9193 epoch time 7.2103 seconds
+
+Epoch 77: train_acc_0.9956_train_loss_0.0129_val_acc_0.9253_val_loss_0.3707_val_sens_0.9172 epoch time 7.2103 seconds
+
+Epoch 78: train_acc_0.9947_train_loss_0.0142_val_acc_0.9237_val_loss_0.4031_val_sens_0.9071 epoch time 7.2096 seconds
+
+
+Epoch 79: train_acc_0.9950_train_loss_0.0149_val_acc_0.9248_val_loss_0.3710_val_sens_0.9219 epoch time 8.0741 seconds
+
+Epoch 80: train_acc_0.9952_train_loss_0.0130_val_acc_0.9283_val_loss_0.3477_val_sens_0.9202 epoch time 7.2116 seconds
+
+Epoch 81: train_acc_0.9959_train_loss_0.0100_val_acc_0.9187_val_loss_0.4115_val_sens_0.9255 epoch time 7.7328 seconds
+
+Epoch 82: train_acc_0.9974_train_loss_0.0073_val_acc_0.9260_val_loss_0.3614_val_sens_0.9210 epoch time 7.2218 seconds
+
+Epoch 83: train_acc_0.9978_train_loss_0.0057_val_acc_0.9320_val_loss_0.3636_val_sens_0.9202 epoch time 7.9056 seconds
+
+
+Epoch 84: train_acc_0.9971_train_loss_0.0074_val_acc_0.9232_val_loss_0.4048_val_sens_0.9212 epoch time 8.0898 seconds
+
+Epoch 85: train_acc_0.9968_train_loss_0.0088_val_acc_0.9237_val_loss_0.3876_val_sens_0.9132 epoch time 7.3725 seconds
+
+Epoch 86: train_acc_0.9980_train_loss_0.0063_val_acc_0.9270_val_loss_0.3694_val_sens_0.9223 epoch time 7.2454 seconds
+
+Epoch 87: train_acc_0.9969_train_loss_0.0111_val_acc_0.9137_val_loss_0.4520_val_sens_0.9234 epoch time 7.2531 seconds
+
+Epoch 88: train_acc_0.9970_train_loss_0.0096_val_acc_0.9307_val_loss_0.3739_val_sens_0.9232 epoch time 7.2798 seconds
+
+
+Epoch 89: train_acc_0.9968_train_loss_0.0080_val_acc_0.9287_val_loss_0.3809_val_sens_0.9177 epoch time 8.2603 seconds
+
+Epoch 90: train_acc_0.9968_train_loss_0.0083_val_acc_0.9270_val_loss_0.3691_val_sens_0.9209 epoch time 7.6180 seconds
+
+Epoch 91: train_acc_0.9978_train_loss_0.0067_val_acc_0.9310_val_loss_0.3669_val_sens_0.9241 epoch time 7.4975 seconds
+
+Epoch 92: train_acc_0.9973_train_loss_0.0074_val_acc_0.9293_val_loss_0.3553_val_sens_0.9260 epoch time 7.1992 seconds
+
+Epoch 93: train_acc_0.9976_train_loss_0.0072_val_acc_0.9257_val_loss_0.3963_val_sens_0.9251 epoch time 7.2500 seconds
+
+
+Epoch 94: train_acc_0.9966_train_loss_0.0084_val_acc_0.9267_val_loss_0.3987_val_sens_0.9203 epoch time 8.1242 seconds
+
+Epoch 95: train_acc_0.9983_train_loss_0.0054_val_acc_0.9320_val_loss_0.3687_val_sens_0.9247 epoch time 7.2649 seconds
+
+Epoch 96: train_acc_0.9982_train_loss_0.0054_val_acc_0.9330_val_loss_0.3625_val_sens_0.9232 epoch time 7.2890 seconds
+
+Epoch 97: train_acc_0.9983_train_loss_0.0060_val_acc_0.9277_val_loss_0.4005_val_sens_0.9215 epoch time 7.2036 seconds
+
+Epoch 98: train_acc_0.9980_train_loss_0.0053_val_acc_0.9280_val_loss_0.3910_val_sens_0.9244 epoch time 7.2358 seconds
+
+
+Epoch 99: train_acc_0.9980_train_loss_0.0065_val_acc_0.9265_val_loss_0.4050_val_sens_0.9185 epoch time 8.5900 seconds
+
+Epoch 100: train_acc_0.9983_train_loss_0.0047_val_acc_0.9270_val_loss_0.4416_val_sens_0.9110 epoch time 8.1513 seconds
+
+Epoch 101: train_acc_0.9982_train_loss_0.0048_val_acc_0.9297_val_loss_0.4156_val_sens_0.9157 epoch time 7.3421 seconds
+
+Epoch 102: train_acc_0.9976_train_loss_0.0063_val_acc_0.9240_val_loss_0.4040_val_sens_0.9126 epoch time 7.3711 seconds
+
+Epoch 103: train_acc_0.9983_train_loss_0.0045_val_acc_0.9280_val_loss_0.4499_val_sens_0.9140 epoch time 7.5297 seconds
+
+
+Epoch 104: train_acc_0.9983_train_loss_0.0050_val_acc_0.9275_val_loss_0.4323_val_sens_0.9242 epoch time 8.0337 seconds
+
+Epoch 105: train_acc_0.9977_train_loss_0.0066_val_acc_0.9280_val_loss_0.4425_val_sens_0.9141 epoch time 7.7500 seconds
+
+Epoch 106: train_acc_0.9983_train_loss_0.0051_val_acc_0.9280_val_loss_0.4433_val_sens_0.9152 epoch time 7.3028 seconds
+
+Epoch 107: train_acc_0.9992_train_loss_0.0031_val_acc_0.9277_val_loss_0.4318_val_sens_0.9163 epoch time 7.4508 seconds
+
+Epoch 108: train_acc_0.9982_train_loss_0.0054_val_acc_0.9300_val_loss_0.4365_val_sens_0.9241 epoch time 7.3349 seconds
+
+
+Epoch 109: train_acc_0.9991_train_loss_0.0036_val_acc_0.9273_val_loss_0.4371_val_sens_0.9185 epoch time 8.8159 seconds
+
+Epoch 110: train_acc_0.9990_train_loss_0.0032_val_acc_0.9267_val_loss_0.4646_val_sens_0.9118 epoch time 7.2711 seconds
+
+Epoch 111: train_acc_0.9993_train_loss_0.0026_val_acc_0.9293_val_loss_0.4368_val_sens_0.9209 epoch time 7.2014 seconds
+
+Epoch 112: train_acc_0.9988_train_loss_0.0044_val_acc_0.9313_val_loss_0.4365_val_sens_0.9302 epoch time 7.2893 seconds
+
+Epoch 113: train_acc_0.9984_train_loss_0.0042_val_acc_0.9253_val_loss_0.4510_val_sens_0.9227 epoch time 7.3371 seconds
+
+
+Epoch 114: train_acc_0.9992_train_loss_0.0030_val_acc_0.9345_val_loss_0.4239_val_sens_0.9275 epoch time 8.1182 seconds
+
+Epoch 115: train_acc_0.9986_train_loss_0.0038_val_acc_0.9330_val_loss_0.4274_val_sens_0.9246 epoch time 7.2877 seconds
+
+Epoch 116: train_acc_0.9991_train_loss_0.0030_val_acc_0.9273_val_loss_0.4619_val_sens_0.9097 epoch time 7.3004 seconds
+
+Epoch 117: train_acc_0.9993_train_loss_0.0020_val_acc_0.9283_val_loss_0.4454_val_sens_0.9169 epoch time 7.2633 seconds
+
+Epoch 118: train_acc_0.9993_train_loss_0.0027_val_acc_0.9280_val_loss_0.4390_val_sens_0.9175 epoch time 7.2178 seconds
+
+
+Epoch 119: train_acc_0.9989_train_loss_0.0027_val_acc_0.9300_val_loss_0.4408_val_sens_0.9203 epoch time 8.0531 seconds
+
+Epoch 120: train_acc_0.9992_train_loss_0.0032_val_acc_0.9353_val_loss_0.4279_val_sens_0.9276 epoch time 7.2942 seconds
+
+Epoch 121: train_acc_0.9985_train_loss_0.0055_val_acc_0.9313_val_loss_0.4468_val_sens_0.9215 epoch time 7.2034 seconds
+
+Epoch 122: train_acc_0.9990_train_loss_0.0034_val_acc_0.9270_val_loss_0.4377_val_sens_0.9225 epoch time 7.7722 seconds
+
+Epoch 123: train_acc_0.9993_train_loss_0.0024_val_acc_0.9303_val_loss_0.4362_val_sens_0.9246 epoch time 7.2662 seconds
+
+
+Epoch 124: train_acc_0.9993_train_loss_0.0027_val_acc_0.9315_val_loss_0.4346_val_sens_0.9253 epoch time 8.1003 seconds
+
+Epoch 125: train_acc_0.9996_train_loss_0.0014_val_acc_0.9287_val_loss_0.4465_val_sens_0.9174 epoch time 7.2316 seconds
+
+Epoch 126: train_acc_0.9992_train_loss_0.0026_val_acc_0.9317_val_loss_0.4442_val_sens_0.9232 epoch time 7.2469 seconds
+
+Epoch 127: train_acc_0.9992_train_loss_0.0025_val_acc_0.9300_val_loss_0.4532_val_sens_0.9238 epoch time 8.2317 seconds
+
+Epoch 128: train_acc_0.9995_train_loss_0.0019_val_acc_0.9310_val_loss_0.4603_val_sens_0.9212 epoch time 7.3272 seconds
+
+
+Epoch 129: train_acc_0.9987_train_loss_0.0029_val_acc_0.9298_val_loss_0.4536_val_sens_0.9240 epoch time 8.2837 seconds
+
+Epoch 130: train_acc_0.9990_train_loss_0.0024_val_acc_0.9310_val_loss_0.4789_val_sens_0.9184 epoch time 7.2339 seconds
+
+Epoch 131: train_acc_0.9995_train_loss_0.0017_val_acc_0.9297_val_loss_0.4511_val_sens_0.9222 epoch time 7.2217 seconds
+
+Epoch 132: train_acc_0.9992_train_loss_0.0025_val_acc_0.9323_val_loss_0.4383_val_sens_0.9233 epoch time 7.2946 seconds
+
+Epoch 133: train_acc_0.9995_train_loss_0.0015_val_acc_0.9327_val_loss_0.4465_val_sens_0.9225 epoch time 7.8938 seconds
+
+
+Epoch 134: train_acc_0.9993_train_loss_0.0017_val_acc_0.9277_val_loss_0.4549_val_sens_0.9207 epoch time 8.4314 seconds
+
+Epoch 135: train_acc_0.9996_train_loss_0.0013_val_acc_0.9293_val_loss_0.4590_val_sens_0.9257 epoch time 7.6745 seconds
+
+Epoch 136: train_acc_0.9997_train_loss_0.0008_val_acc_0.9313_val_loss_0.4598_val_sens_0.9246 epoch time 7.8373 seconds
+
+Epoch 137: train_acc_0.9998_train_loss_0.0012_val_acc_0.9307_val_loss_0.4574_val_sens_0.9215 epoch time 7.4641 seconds
+
+Epoch 138: train_acc_0.9993_train_loss_0.0027_val_acc_0.9293_val_loss_0.4639_val_sens_0.9190 epoch time 7.5515 seconds
+
+
+Epoch 139: train_acc_0.9995_train_loss_0.0017_val_acc_0.9292_val_loss_0.4589_val_sens_0.9209 epoch time 9.0199 seconds
+
+Epoch 140: train_acc_0.9995_train_loss_0.0015_val_acc_0.9293_val_loss_0.4520_val_sens_0.9217 epoch time 7.2807 seconds
+
+Epoch 141: train_acc_0.9995_train_loss_0.0019_val_acc_0.9300_val_loss_0.4683_val_sens_0.9144 epoch time 7.6810 seconds
+
+Epoch 142: train_acc_0.9996_train_loss_0.0015_val_acc_0.9307_val_loss_0.4609_val_sens_0.9229 epoch time 7.2549 seconds
+
+Epoch 143: train_acc_0.9996_train_loss_0.0014_val_acc_0.9303_val_loss_0.4473_val_sens_0.9225 epoch time 7.4050 seconds
+
+
+Epoch 144: train_acc_0.9996_train_loss_0.0014_val_acc_0.9312_val_loss_0.4522_val_sens_0.9243 epoch time 8.5565 seconds
+
+Epoch 145: train_acc_0.9992_train_loss_0.0022_val_acc_0.9333_val_loss_0.4524_val_sens_0.9296 epoch time 7.3691 seconds
+
+Epoch 146: train_acc_0.9996_train_loss_0.0012_val_acc_0.9303_val_loss_0.4630_val_sens_0.9229 epoch time 7.4203 seconds
+
+Epoch 147: train_acc_0.9998_train_loss_0.0008_val_acc_0.9303_val_loss_0.4580_val_sens_0.9221 epoch time 7.3247 seconds
+
+Epoch 148: train_acc_0.9994_train_loss_0.0014_val_acc_0.9260_val_loss_0.4922_val_sens_0.9097 epoch time 7.2184 seconds
+
+
+Epoch 149: train_acc_0.9996_train_loss_0.0011_val_acc_0.9308_val_loss_0.4597_val_sens_0.9224 epoch time 8.4485 seconds
+
+Epoch 150: train_acc_0.9998_train_loss_0.0007_val_acc_0.9293_val_loss_0.4568_val_sens_0.9205 epoch time 8.5555 seconds
+
+Epoch 151: train_acc_0.9994_train_loss_0.0017_val_acc_0.9303_val_loss_0.4537_val_sens_0.9232 epoch time 7.2332 seconds
+
+Epoch 152: train_acc_0.9998_train_loss_0.0005_val_acc_0.9287_val_loss_0.4561_val_sens_0.9188 epoch time 7.2252 seconds
+
+Epoch 153: train_acc_0.9994_train_loss_0.0019_val_acc_0.9297_val_loss_0.4666_val_sens_0.9174 epoch time 7.1992 seconds
+
+
+Epoch 154: train_acc_0.9998_train_loss_0.0013_val_acc_0.9290_val_loss_0.4558_val_sens_0.9169 epoch time 8.1106 seconds
+
+Epoch 155: train_acc_0.9996_train_loss_0.0012_val_acc_0.9307_val_loss_0.4518_val_sens_0.9231 epoch time 7.2856 seconds
+
+Epoch 156: train_acc_0.9998_train_loss_0.0010_val_acc_0.9320_val_loss_0.4519_val_sens_0.9246 epoch time 7.7226 seconds
+
+Epoch 157: train_acc_0.9998_train_loss_0.0008_val_acc_0.9317_val_loss_0.4493_val_sens_0.9256 epoch time 7.5619 seconds
+
+Epoch 158: train_acc_0.9996_train_loss_0.0009_val_acc_0.9320_val_loss_0.4537_val_sens_0.9245 epoch time 7.1996 seconds
+
+
+Epoch 159: train_acc_0.9996_train_loss_0.0013_val_acc_0.9328_val_loss_0.4489_val_sens_0.9255 epoch time 8.0319 seconds
+
+Epoch 160: train_acc_0.9995_train_loss_0.0017_val_acc_0.9293_val_loss_0.4664_val_sens_0.9183 epoch time 7.6325 seconds
+
+Epoch 161: train_acc_0.9998_train_loss_0.0009_val_acc_0.9317_val_loss_0.4497_val_sens_0.9227 epoch time 7.2847 seconds
+
+Epoch 162: train_acc_0.9997_train_loss_0.0011_val_acc_0.9327_val_loss_0.4562_val_sens_0.9259 epoch time 7.2037 seconds
+
+Epoch 163: train_acc_0.9994_train_loss_0.0022_val_acc_0.9327_val_loss_0.4544_val_sens_0.9254 epoch time 7.3293 seconds
+
+
+Epoch 164: train_acc_0.9995_train_loss_0.0026_val_acc_0.9317_val_loss_0.4613_val_sens_0.9212 epoch time 8.0912 seconds
+
+Epoch 165: train_acc_0.9995_train_loss_0.0014_val_acc_0.9310_val_loss_0.4589_val_sens_0.9211 epoch time 7.3690 seconds
+
+Epoch 166: train_acc_0.9992_train_loss_0.0024_val_acc_0.9340_val_loss_0.4432_val_sens_0.9281 epoch time 8.1919 seconds
 Generating test set evaluation metrics
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
 use CPU
 cpu
 here
 System learnable parameters
-model.conv_1.0.weight torch.Size([32, 1, 5, 5])
+model.conv_1.0.weight torch.Size([32, 3, 5, 5])
 model.conv_1.0.bias torch.Size([32])
 model.conv_1.2.weight torch.Size([32])
 model.conv_1.2.bias torch.Size([32])
@@ -131,17 +734,403 @@ model.linear.2.weight torch.Size([128])
 model.linear.2.bias torch.Size([128])
 model.output_layer.weight torch.Size([2, 128])
 model.output_layer.bias torch.Size([2])
-Total number of parameters 159810
+Total number of parameters 161410
 Total number of conv layers 6
 Total number of linear layers 2
 
-Epoch 0: train_acc_0.9831_train_loss_0.0579_val_acc_0.9955_val_loss_0.0178_val_sens_0.9940 epoch time 12.2231 seconds
+Epoch 0: train_acc_0.6694_train_loss_0.6034_val_acc_0.7090_val_loss_0.5412_val_sens_0.7088 epoch time 7.3603 seconds
 
-Epoch 1: train_acc_0.9978_train_loss_0.0105_val_acc_0.9965_val_loss_0.0146_val_sens_0.9955 epoch time 11.2390 seconds
+Epoch 1: train_acc_0.7249_train_loss_0.5291_val_acc_0.7263_val_loss_0.5210_val_sens_0.7251 epoch time 7.4357 seconds
 
-Epoch 2: train_acc_0.9974_train_loss_0.0086_val_acc_0.9965_val_loss_0.0163_val_sens_0.9952 epoch time 10.4038 seconds
+Epoch 2: train_acc_0.7502_train_loss_0.4961_val_acc_0.7487_val_loss_0.4792_val_sens_0.7489 epoch time 7.3681 seconds
 
-Epoch 3: train_acc_0.9986_train_loss_0.0051_val_acc_0.9961_val_loss_0.0172_val_sens_0.9950 epoch time 11.1234 seconds
+Epoch 3: train_acc_0.7670_train_loss_0.4654_val_acc_0.7637_val_loss_0.4765_val_sens_0.7641 epoch time 7.3140 seconds
 
 
-Epoch 4: train_acc_0.9993_train_loss_0.0029_val_acc_0.9966_val_loss_0.0134_val_sens_0.9958 epoch time 11.5717 seconds
+Epoch 4: train_acc_0.7918_train_loss_0.4334_val_acc_0.7667_val_loss_0.4552_val_sens_0.7668 epoch time 8.3238 seconds
+
+Epoch 5: train_acc_0.8063_train_loss_0.4074_val_acc_0.7667_val_loss_0.4631_val_sens_0.7672 epoch time 7.7309 seconds
+
+Epoch 6: train_acc_0.8167_train_loss_0.3905_val_acc_0.7810_val_loss_0.4687_val_sens_0.7817 epoch time 7.3635 seconds
+
+Epoch 7: train_acc_0.8337_train_loss_0.3608_val_acc_0.7630_val_loss_0.5309_val_sens_0.7629 epoch time 8.0803 seconds
+
+Epoch 8: train_acc_0.8489_train_loss_0.3384_val_acc_0.7907_val_loss_0.4540_val_sens_0.7897 epoch time 7.3980 seconds
+
+
+Epoch 9: train_acc_0.8573_train_loss_0.3141_val_acc_0.7727_val_loss_0.5164_val_sens_0.7732 epoch time 8.4903 seconds
+
+Epoch 10: train_acc_0.8701_train_loss_0.2919_val_acc_0.7950_val_loss_0.4493_val_sens_0.7934 epoch time 7.4956 seconds
+
+Epoch 11: train_acc_0.8797_train_loss_0.2749_val_acc_0.7977_val_loss_0.4568_val_sens_0.7984 epoch time 7.5861 seconds
+
+Epoch 12: train_acc_0.8885_train_loss_0.2593_val_acc_0.8010_val_loss_0.4645_val_sens_0.7997 epoch time 7.5564 seconds
+
+Epoch 13: train_acc_0.8981_train_loss_0.2391_val_acc_0.7983_val_loss_0.4530_val_sens_0.7984 epoch time 7.4475 seconds
+
+
+Epoch 14: train_acc_0.9049_train_loss_0.2234_val_acc_0.7975_val_loss_0.4741_val_sens_0.7976 epoch time 8.2973 seconds
+
+Epoch 15: train_acc_0.9149_train_loss_0.2022_val_acc_0.7957_val_loss_0.5081_val_sens_0.7949 epoch time 7.6008 seconds
+
+Epoch 16: train_acc_0.9212_train_loss_0.1928_val_acc_0.7923_val_loss_0.5196_val_sens_0.7933 epoch time 7.2850 seconds
+
+Epoch 17: train_acc_0.9299_train_loss_0.1725_val_acc_0.8017_val_loss_0.5316_val_sens_0.8015 epoch time 7.3137 seconds
+
+Epoch 18: train_acc_0.9333_train_loss_0.1639_val_acc_0.8000_val_loss_0.5478_val_sens_0.7995 epoch time 7.2955 seconds
+
+
+Epoch 19: train_acc_0.9351_train_loss_0.1616_val_acc_0.8033_val_loss_0.5563_val_sens_0.8037 epoch time 8.2313 seconds
+
+Epoch 20: train_acc_0.9370_train_loss_0.1588_val_acc_0.8153_val_loss_0.5079_val_sens_0.8156 epoch time 7.4863 seconds
+
+Epoch 21: train_acc_0.9468_train_loss_0.1357_val_acc_0.8073_val_loss_0.5112_val_sens_0.8084 epoch time 7.3982 seconds
+
+Epoch 22: train_acc_0.9467_train_loss_0.1337_val_acc_0.8083_val_loss_0.5381_val_sens_0.8090 epoch time 7.3897 seconds
+
+Epoch 23: train_acc_0.9495_train_loss_0.1337_val_acc_0.7983_val_loss_0.5868_val_sens_0.7987 epoch time 7.5040 seconds
+
+
+Epoch 24: train_acc_0.9575_train_loss_0.1086_val_acc_0.7992_val_loss_0.5819_val_sens_0.8001 epoch time 8.1322 seconds
+
+Epoch 25: train_acc_0.9561_train_loss_0.1113_val_acc_0.8093_val_loss_0.5916_val_sens_0.8097 epoch time 7.5709 seconds
+
+Epoch 26: train_acc_0.9567_train_loss_0.1082_val_acc_0.7833_val_loss_0.7858_val_sens_0.7831 epoch time 7.3087 seconds
+
+Epoch 27: train_acc_0.9582_train_loss_0.1083_val_acc_0.8010_val_loss_0.5947_val_sens_0.8008 epoch time 7.4494 seconds
+
+Epoch 28: train_acc_0.9585_train_loss_0.1067_val_acc_0.7963_val_loss_0.6253_val_sens_0.7971 epoch time 7.2833 seconds
+
+
+Epoch 29: train_acc_0.9636_train_loss_0.0938_val_acc_0.8045_val_loss_0.6460_val_sens_0.8044 epoch time 8.1850 seconds
+
+Epoch 30: train_acc_0.9603_train_loss_0.1002_val_acc_0.8103_val_loss_0.6106_val_sens_0.8090 epoch time 7.6494 seconds
+
+Epoch 31: train_acc_0.9633_train_loss_0.0917_val_acc_0.8100_val_loss_0.6188_val_sens_0.8106 epoch time 7.8355 seconds
+
+Epoch 32: train_acc_0.9660_train_loss_0.0835_val_acc_0.8107_val_loss_0.6606_val_sens_0.8108 epoch time 8.0684 seconds
+
+Epoch 33: train_acc_0.9645_train_loss_0.0876_val_acc_0.8113_val_loss_0.6702_val_sens_0.8108 epoch time 7.7650 seconds
+
+
+Epoch 34: train_acc_0.9728_train_loss_0.0741_val_acc_0.8043_val_loss_0.6698_val_sens_0.8045 epoch time 9.2772 seconds
+
+Epoch 35: train_acc_0.9700_train_loss_0.0795_val_acc_0.8033_val_loss_0.6195_val_sens_0.8032 epoch time 7.4034 seconds
+
+Epoch 36: train_acc_0.9695_train_loss_0.0805_val_acc_0.8000_val_loss_0.6436_val_sens_0.8005 epoch time 7.3308 seconds
+
+Epoch 37: train_acc_0.9701_train_loss_0.0765_val_acc_0.8040_val_loss_0.7405_val_sens_0.8050 epoch time 7.3291 seconds
+
+Epoch 38: train_acc_0.9734_train_loss_0.0699_val_acc_0.8113_val_loss_0.6318_val_sens_0.8114 epoch time 7.3444 seconds
+
+
+Epoch 39: train_acc_0.9723_train_loss_0.0707_val_acc_0.8075_val_loss_0.6577_val_sens_0.8081 epoch time 8.8145 seconds
+
+Epoch 40: train_acc_0.9770_train_loss_0.0610_val_acc_0.8010_val_loss_0.7242_val_sens_0.7998 epoch time 8.3643 seconds
+
+Epoch 41: train_acc_0.9738_train_loss_0.0701_val_acc_0.8167_val_loss_0.6534_val_sens_0.8173 epoch time 7.3300 seconds
+
+Epoch 42: train_acc_0.9760_train_loss_0.0648_val_acc_0.8063_val_loss_0.6650_val_sens_0.8058 epoch time 7.2809 seconds
+
+Epoch 43: train_acc_0.9759_train_loss_0.0663_val_acc_0.8130_val_loss_0.6478_val_sens_0.8143 epoch time 7.3950 seconds
+
+
+Epoch 44: train_acc_0.9773_train_loss_0.0597_val_acc_0.8073_val_loss_0.7068_val_sens_0.8078 epoch time 8.2100 seconds
+
+Epoch 45: train_acc_0.9801_train_loss_0.0531_val_acc_0.8143_val_loss_0.7077_val_sens_0.8144 epoch time 7.6482 seconds
+
+Epoch 46: train_acc_0.9796_train_loss_0.0555_val_acc_0.8077_val_loss_0.7255_val_sens_0.8076 epoch time 7.3778 seconds
+
+Epoch 47: train_acc_0.9790_train_loss_0.0567_val_acc_0.8100_val_loss_0.7146_val_sens_0.8104 epoch time 7.3568 seconds
+
+Epoch 48: train_acc_0.9812_train_loss_0.0498_val_acc_0.8100_val_loss_0.7467_val_sens_0.8085 epoch time 7.9994 seconds
+
+
+Epoch 49: train_acc_0.9791_train_loss_0.0560_val_acc_0.8098_val_loss_0.7250_val_sens_0.8088 epoch time 8.1977 seconds
+
+Epoch 50: train_acc_0.9777_train_loss_0.0598_val_acc_0.8173_val_loss_0.7057_val_sens_0.8166 epoch time 7.7599 seconds
+
+Epoch 51: train_acc_0.9813_train_loss_0.0523_val_acc_0.8103_val_loss_0.7179_val_sens_0.8101 epoch time 7.3858 seconds
+
+Epoch 52: train_acc_0.9848_train_loss_0.0422_val_acc_0.8053_val_loss_0.7629_val_sens_0.8048 epoch time 7.7320 seconds
+
+Epoch 53: train_acc_0.9841_train_loss_0.0452_val_acc_0.8083_val_loss_0.7169_val_sens_0.8064 epoch time 7.4538 seconds
+
+
+Epoch 54: train_acc_0.9830_train_loss_0.0445_val_acc_0.8128_val_loss_0.7184_val_sens_0.8129 epoch time 8.5258 seconds
+
+Epoch 55: train_acc_0.9811_train_loss_0.0504_val_acc_0.8057_val_loss_0.7200_val_sens_0.8069 epoch time 7.7965 seconds
+
+Epoch 56: train_acc_0.9848_train_loss_0.0395_val_acc_0.8120_val_loss_0.7411_val_sens_0.8121 epoch time 7.3009 seconds
+
+Epoch 57: train_acc_0.9819_train_loss_0.0467_val_acc_0.8077_val_loss_0.8548_val_sens_0.8081 epoch time 7.6090 seconds
+
+Epoch 58: train_acc_0.9813_train_loss_0.0471_val_acc_0.8113_val_loss_0.7549_val_sens_0.8113 epoch time 7.3907 seconds
+
+
+Epoch 59: train_acc_0.9836_train_loss_0.0437_val_acc_0.8130_val_loss_0.7547_val_sens_0.8123 epoch time 8.1484 seconds
+
+Epoch 60: train_acc_0.9863_train_loss_0.0400_val_acc_0.8177_val_loss_0.7471_val_sens_0.8176 epoch time 7.3591 seconds
+
+Epoch 61: train_acc_0.9831_train_loss_0.0474_val_acc_0.8190_val_loss_0.7203_val_sens_0.8193 epoch time 7.3132 seconds
+
+Epoch 62: train_acc_0.9878_train_loss_0.0345_val_acc_0.8143_val_loss_0.7050_val_sens_0.8144 epoch time 7.3350 seconds
+
+Epoch 63: train_acc_0.9868_train_loss_0.0403_val_acc_0.8087_val_loss_0.7812_val_sens_0.8084 epoch time 7.2967 seconds
+
+
+Epoch 64: train_acc_0.9861_train_loss_0.0383_val_acc_0.8093_val_loss_0.8057_val_sens_0.8093 epoch time 8.1418 seconds
+
+Epoch 65: train_acc_0.9861_train_loss_0.0367_val_acc_0.8203_val_loss_0.7286_val_sens_0.8205 epoch time 8.0063 seconds
+
+Epoch 66: train_acc_0.9873_train_loss_0.0325_val_acc_0.8127_val_loss_0.7456_val_sens_0.8120 epoch time 7.2902 seconds
+
+Epoch 67: train_acc_0.9849_train_loss_0.0413_val_acc_0.8170_val_loss_0.7644_val_sens_0.8171 epoch time 7.4542 seconds
+
+Epoch 68: train_acc_0.9879_train_loss_0.0365_val_acc_0.8173_val_loss_0.7420_val_sens_0.8163 epoch time 8.0712 seconds
+
+
+Epoch 69: train_acc_0.9878_train_loss_0.0323_val_acc_0.8208_val_loss_0.7502_val_sens_0.8208 epoch time 8.6947 seconds
+
+Epoch 70: train_acc_0.9879_train_loss_0.0337_val_acc_0.8150_val_loss_0.7759_val_sens_0.8147 epoch time 7.4025 seconds
+
+Epoch 71: train_acc_0.9888_train_loss_0.0338_val_acc_0.8143_val_loss_0.7969_val_sens_0.8148 epoch time 7.3152 seconds
+
+Epoch 72: train_acc_0.9877_train_loss_0.0332_val_acc_0.8173_val_loss_0.7450_val_sens_0.8181 epoch time 7.9372 seconds
+
+Epoch 73: train_acc_0.9887_train_loss_0.0313_val_acc_0.8093_val_loss_0.8108_val_sens_0.8085 epoch time 7.3009 seconds
+
+
+Epoch 74: train_acc_0.9898_train_loss_0.0266_val_acc_0.8153_val_loss_0.8030_val_sens_0.8155 epoch time 8.6635 seconds
+
+Epoch 75: train_acc_0.9910_train_loss_0.0272_val_acc_0.8123_val_loss_0.9022_val_sens_0.8112 epoch time 7.3405 seconds
+
+Epoch 76: train_acc_0.9883_train_loss_0.0321_val_acc_0.8230_val_loss_0.7822_val_sens_0.8234 epoch time 7.5877 seconds
+
+Epoch 77: train_acc_0.9891_train_loss_0.0324_val_acc_0.8220_val_loss_0.7996_val_sens_0.8218 epoch time 7.8132 seconds
+
+Epoch 78: train_acc_0.9893_train_loss_0.0291_val_acc_0.8200_val_loss_0.8234_val_sens_0.8202 epoch time 7.3684 seconds
+
+
+Epoch 79: train_acc_0.9880_train_loss_0.0311_val_acc_0.8112_val_loss_0.8390_val_sens_0.8106 epoch time 8.1391 seconds
+
+Epoch 80: train_acc_0.9894_train_loss_0.0297_val_acc_0.8093_val_loss_0.8721_val_sens_0.8089 epoch time 7.5387 seconds
+
+Epoch 81: train_acc_0.9928_train_loss_0.0215_val_acc_0.8210_val_loss_0.8255_val_sens_0.8208 epoch time 7.3713 seconds
+
+Epoch 82: train_acc_0.9930_train_loss_0.0203_val_acc_0.8183_val_loss_0.8841_val_sens_0.8170 epoch time 7.6131 seconds
+
+Epoch 83: train_acc_0.9926_train_loss_0.0220_val_acc_0.8157_val_loss_0.8470_val_sens_0.8166 epoch time 7.3268 seconds
+
+
+Epoch 84: train_acc_0.9923_train_loss_0.0230_val_acc_0.8153_val_loss_0.8740_val_sens_0.8147 epoch time 8.2390 seconds
+
+Epoch 85: train_acc_0.9912_train_loss_0.0211_val_acc_0.8127_val_loss_0.9344_val_sens_0.8133 epoch time 7.5383 seconds
+
+Epoch 86: train_acc_0.9899_train_loss_0.0292_val_acc_0.8147_val_loss_0.8528_val_sens_0.8152 epoch time 8.5252 seconds
+
+Epoch 87: train_acc_0.9912_train_loss_0.0240_val_acc_0.8113_val_loss_0.8545_val_sens_0.8113 epoch time 7.8708 seconds
+
+Epoch 88: train_acc_0.9918_train_loss_0.0227_val_acc_0.8200_val_loss_0.8766_val_sens_0.8188 epoch time 7.3181 seconds
+
+
+Epoch 89: train_acc_0.9923_train_loss_0.0212_val_acc_0.8175_val_loss_0.8888_val_sens_0.8174 epoch time 8.2309 seconds
+
+Epoch 90: train_acc_0.9926_train_loss_0.0200_val_acc_0.8177_val_loss_0.9473_val_sens_0.8181 epoch time 7.3247 seconds
+
+Epoch 91: train_acc_0.9931_train_loss_0.0190_val_acc_0.8150_val_loss_0.9194_val_sens_0.8139 epoch time 7.5763 seconds
+
+Epoch 92: train_acc_0.9923_train_loss_0.0218_val_acc_0.8230_val_loss_0.8592_val_sens_0.8230 epoch time 7.3697 seconds
+
+Epoch 93: train_acc_0.9931_train_loss_0.0213_val_acc_0.8120_val_loss_0.9878_val_sens_0.8110 epoch time 7.3031 seconds
+
+
+Epoch 94: train_acc_0.9933_train_loss_0.0193_val_acc_0.8160_val_loss_0.9170_val_sens_0.8166 epoch time 8.1910 seconds
+
+Epoch 95: train_acc_0.9938_train_loss_0.0173_val_acc_0.8140_val_loss_0.9226_val_sens_0.8145 epoch time 7.3339 seconds
+
+Epoch 96: train_acc_0.9937_train_loss_0.0158_val_acc_0.8133_val_loss_0.8932_val_sens_0.8138 epoch time 7.3039 seconds
+
+Epoch 97: train_acc_0.9954_train_loss_0.0140_val_acc_0.8173_val_loss_0.8802_val_sens_0.8172 epoch time 7.4952 seconds
+
+Epoch 98: train_acc_0.9944_train_loss_0.0165_val_acc_0.8190_val_loss_0.9166_val_sens_0.8191 epoch time 7.3786 seconds
+
+
+Epoch 99: train_acc_0.9947_train_loss_0.0156_val_acc_0.8163_val_loss_0.9317_val_sens_0.8159 epoch time 8.5615 seconds
+
+Epoch 100: train_acc_0.9948_train_loss_0.0146_val_acc_0.8217_val_loss_0.9163_val_sens_0.8219 epoch time 7.3478 seconds
+
+Epoch 101: train_acc_0.9940_train_loss_0.0178_val_acc_0.8190_val_loss_0.8923_val_sens_0.8193 epoch time 7.2813 seconds
+
+Epoch 102: train_acc_0.9944_train_loss_0.0162_val_acc_0.8193_val_loss_0.9149_val_sens_0.8197 epoch time 7.3513 seconds
+
+Epoch 103: train_acc_0.9953_train_loss_0.0146_val_acc_0.8147_val_loss_0.9137_val_sens_0.8143 epoch time 7.8673 seconds
+
+
+Epoch 104: train_acc_0.9939_train_loss_0.0152_val_acc_0.8152_val_loss_0.9421_val_sens_0.8150 epoch time 8.2316 seconds
+
+Epoch 105: train_acc_0.9953_train_loss_0.0129_val_acc_0.8150_val_loss_0.9291_val_sens_0.8153 epoch time 7.5495 seconds
+
+Epoch 106: train_acc_0.9946_train_loss_0.0154_val_acc_0.8187_val_loss_0.9281_val_sens_0.8198 epoch time 7.2644 seconds
+
+Epoch 107: train_acc_0.9942_train_loss_0.0183_val_acc_0.8143_val_loss_0.9946_val_sens_0.8146 epoch time 7.3661 seconds
+
+Epoch 108: train_acc_0.9965_train_loss_0.0120_val_acc_0.8187_val_loss_0.9567_val_sens_0.8186 epoch time 8.1738 seconds
+
+
+Epoch 109: train_acc_0.9953_train_loss_0.0133_val_acc_0.8142_val_loss_0.9569_val_sens_0.8150 epoch time 8.1187 seconds
+
+Epoch 110: train_acc_0.9956_train_loss_0.0120_val_acc_0.8127_val_loss_0.9386_val_sens_0.8119 epoch time 7.4583 seconds
+
+Epoch 111: train_acc_0.9963_train_loss_0.0100_val_acc_0.8173_val_loss_0.9627_val_sens_0.8180 epoch time 7.2835 seconds
+
+Epoch 112: train_acc_0.9960_train_loss_0.0114_val_acc_0.8147_val_loss_0.9479_val_sens_0.8155 epoch time 7.3045 seconds
+
+Epoch 113: train_acc_0.9952_train_loss_0.0140_val_acc_0.8187_val_loss_0.9491_val_sens_0.8199 epoch time 7.6368 seconds
+
+
+Epoch 114: train_acc_0.9962_train_loss_0.0099_val_acc_0.8165_val_loss_0.9711_val_sens_0.8155 epoch time 8.4830 seconds
+
+Epoch 115: train_acc_0.9958_train_loss_0.0117_val_acc_0.8187_val_loss_0.9733_val_sens_0.8199 epoch time 7.3701 seconds
+
+Epoch 116: train_acc_0.9970_train_loss_0.0094_val_acc_0.8160_val_loss_0.9488_val_sens_0.8156 epoch time 7.5642 seconds
+
+Epoch 117: train_acc_0.9968_train_loss_0.0104_val_acc_0.8173_val_loss_0.9769_val_sens_0.8170 epoch time 7.6408 seconds
+
+Epoch 118: train_acc_0.9960_train_loss_0.0136_val_acc_0.8160_val_loss_0.9848_val_sens_0.8167 epoch time 7.4020 seconds
+
+
+Epoch 119: train_acc_0.9963_train_loss_0.0108_val_acc_0.8150_val_loss_0.9673_val_sens_0.8138 epoch time 8.1263 seconds
+
+Epoch 120: train_acc_0.9973_train_loss_0.0080_val_acc_0.8147_val_loss_0.9865_val_sens_0.8144 epoch time 7.8711 seconds
+
+Epoch 121: train_acc_0.9963_train_loss_0.0101_val_acc_0.8153_val_loss_0.9706_val_sens_0.8156 epoch time 7.2784 seconds
+
+Epoch 122: train_acc_0.9964_train_loss_0.0109_val_acc_0.8197_val_loss_0.9693_val_sens_0.8189 epoch time 8.1740 seconds
+
+Epoch 123: train_acc_0.9969_train_loss_0.0089_val_acc_0.8197_val_loss_0.9942_val_sens_0.8204 epoch time 7.3583 seconds
+
+
+Epoch 124: train_acc_0.9968_train_loss_0.0087_val_acc_0.8193_val_loss_0.9812_val_sens_0.8189 epoch time 8.1133 seconds
+
+Epoch 125: train_acc_0.9978_train_loss_0.0065_val_acc_0.8227_val_loss_0.9858_val_sens_0.8230 epoch time 7.7282 seconds
+
+Epoch 126: train_acc_0.9969_train_loss_0.0080_val_acc_0.8147_val_loss_1.0176_val_sens_0.8143 epoch time 7.4528 seconds
+
+Epoch 127: train_acc_0.9972_train_loss_0.0082_val_acc_0.8153_val_loss_1.0210_val_sens_0.8152 epoch time 7.8504 seconds
+
+Epoch 128: train_acc_0.9983_train_loss_0.0057_val_acc_0.8167_val_loss_0.9949_val_sens_0.8172 epoch time 7.2751 seconds
+
+
+Epoch 129: train_acc_0.9974_train_loss_0.0082_val_acc_0.8193_val_loss_1.0031_val_sens_0.8193 epoch time 8.3088 seconds
+
+Epoch 130: train_acc_0.9977_train_loss_0.0057_val_acc_0.8197_val_loss_1.0145_val_sens_0.8191 epoch time 7.4621 seconds
+
+Epoch 131: train_acc_0.9975_train_loss_0.0054_val_acc_0.8187_val_loss_0.9871_val_sens_0.8182 epoch time 7.5318 seconds
+
+Epoch 132: train_acc_0.9973_train_loss_0.0092_val_acc_0.8207_val_loss_1.0303_val_sens_0.8205 epoch time 7.5499 seconds
+
+Epoch 133: train_acc_0.9972_train_loss_0.0092_val_acc_0.8217_val_loss_1.0221_val_sens_0.8219 epoch time 7.3186 seconds
+
+
+Epoch 134: train_acc_0.9979_train_loss_0.0072_val_acc_0.8193_val_loss_1.0230_val_sens_0.8192 epoch time 9.0448 seconds
+
+Epoch 135: train_acc_0.9973_train_loss_0.0065_val_acc_0.8210_val_loss_1.0037_val_sens_0.8188 epoch time 7.9716 seconds
+
+Epoch 136: train_acc_0.9972_train_loss_0.0091_val_acc_0.8220_val_loss_1.0087_val_sens_0.8236 epoch time 7.2801 seconds
+
+Epoch 137: train_acc_0.9982_train_loss_0.0061_val_acc_0.8217_val_loss_1.0057_val_sens_0.8218 epoch time 7.2926 seconds
+
+Epoch 138: train_acc_0.9982_train_loss_0.0051_val_acc_0.8197_val_loss_1.0047_val_sens_0.8191 epoch time 7.2960 seconds
+
+
+Epoch 139: train_acc_0.9977_train_loss_0.0065_val_acc_0.8177_val_loss_1.0291_val_sens_0.8174 epoch time 8.1591 seconds
+
+Epoch 140: train_acc_0.9981_train_loss_0.0051_val_acc_0.8223_val_loss_1.0281_val_sens_0.8216 epoch time 7.5252 seconds
+
+Epoch 141: train_acc_0.9980_train_loss_0.0048_val_acc_0.8197_val_loss_1.0282_val_sens_0.8198 epoch time 7.2881 seconds
+
+Epoch 142: train_acc_0.9982_train_loss_0.0058_val_acc_0.8230_val_loss_1.0229_val_sens_0.8226 epoch time 7.3555 seconds
+
+Epoch 143: train_acc_0.9988_train_loss_0.0052_val_acc_0.8173_val_loss_1.0243_val_sens_0.8178 epoch time 7.2783 seconds
+
+
+Epoch 144: train_acc_0.9983_train_loss_0.0054_val_acc_0.8213_val_loss_1.0265_val_sens_0.8217 epoch time 8.1382 seconds
+
+Epoch 145: train_acc_0.9976_train_loss_0.0070_val_acc_0.8227_val_loss_1.0261_val_sens_0.8238 epoch time 7.3267 seconds
+
+Epoch 146: train_acc_0.9979_train_loss_0.0054_val_acc_0.8250_val_loss_1.0131_val_sens_0.8248 epoch time 7.3336 seconds
+
+Epoch 147: train_acc_0.9980_train_loss_0.0064_val_acc_0.8260_val_loss_0.9923_val_sens_0.8261 epoch time 7.4044 seconds
+
+Epoch 148: train_acc_0.9987_train_loss_0.0049_val_acc_0.8220_val_loss_1.0387_val_sens_0.8217 epoch time 7.2715 seconds
+
+
+Epoch 149: train_acc_0.9978_train_loss_0.0062_val_acc_0.8210_val_loss_1.0288_val_sens_0.8203 epoch time 8.1334 seconds
+
+Epoch 150: train_acc_0.9978_train_loss_0.0063_val_acc_0.8237_val_loss_1.0322_val_sens_0.8232 epoch time 7.5081 seconds
+
+Epoch 151: train_acc_0.9985_train_loss_0.0043_val_acc_0.8257_val_loss_1.0168_val_sens_0.8256 epoch time 7.3956 seconds
+
+Epoch 152: train_acc_0.9984_train_loss_0.0045_val_acc_0.8223_val_loss_1.0172_val_sens_0.8221 epoch time 7.4590 seconds
+
+Epoch 153: train_acc_0.9985_train_loss_0.0048_val_acc_0.8233_val_loss_1.0290_val_sens_0.8237 epoch time 7.2912 seconds
+
+
+Epoch 154: train_acc_0.9988_train_loss_0.0041_val_acc_0.8253_val_loss_1.0136_val_sens_0.8260 epoch time 8.5653 seconds
+
+Epoch 155: train_acc_0.9980_train_loss_0.0048_val_acc_0.8223_val_loss_1.0110_val_sens_0.8219 epoch time 7.5117 seconds
+
+Epoch 156: train_acc_0.9982_train_loss_0.0053_val_acc_0.8223_val_loss_1.0215_val_sens_0.8229 epoch time 7.2948 seconds
+
+Epoch 157: train_acc_0.9986_train_loss_0.0038_val_acc_0.8237_val_loss_1.0345_val_sens_0.8233 epoch time 7.9680 seconds
+
+Epoch 158: train_acc_0.9985_train_loss_0.0045_val_acc_0.8217_val_loss_1.0384_val_sens_0.8212 epoch time 7.2798 seconds
+
+
+Epoch 159: train_acc_0.9980_train_loss_0.0056_val_acc_0.8240_val_loss_1.0355_val_sens_0.8247 epoch time 8.1796 seconds
+
+Epoch 160: train_acc_0.9988_train_loss_0.0036_val_acc_0.8227_val_loss_1.0327_val_sens_0.8225 epoch time 7.5778 seconds
+
+Epoch 161: train_acc_0.9985_train_loss_0.0044_val_acc_0.8217_val_loss_1.0620_val_sens_0.8216 epoch time 7.3716 seconds
+
+Epoch 162: train_acc_0.9981_train_loss_0.0057_val_acc_0.8210_val_loss_1.0124_val_sens_0.8207 epoch time 8.2147 seconds
+
+Epoch 163: train_acc_0.9989_train_loss_0.0039_val_acc_0.8213_val_loss_1.0306_val_sens_0.8228 epoch time 7.5506 seconds
+
+
+Epoch 164: train_acc_0.9987_train_loss_0.0051_val_acc_0.8205_val_loss_1.0319_val_sens_0.8203 epoch time 8.1739 seconds
+
+Epoch 165: train_acc_0.9980_train_loss_0.0056_val_acc_0.8220_val_loss_1.0554_val_sens_0.8224 epoch time 7.5753 seconds
+
+Epoch 166: train_acc_0.9988_train_loss_0.0034_val_acc_0.8237_val_loss_1.0228_val_sens_0.8241 epoch time 7.5594 seconds
+Generating test set evaluation metrics
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+use CPU
+cpu
+here
+System learnable parameters
+model.conv_1.0.weight torch.Size([32, 3, 5, 5])
+model.conv_1.0.bias torch.Size([32])
+model.conv_1.2.weight torch.Size([32])
+model.conv_1.2.bias torch.Size([32])
+model.conv_2.0.weight torch.Size([64, 32, 3, 3])
+model.conv_2.0.bias torch.Size([64])
+model.conv_2.2.weight torch.Size([64])
+model.conv_2.2.bias torch.Size([64])
+model.conv_3.0.weight torch.Size([128, 64, 3, 3])
+model.conv_3.0.bias torch.Size([128])
+model.conv_3.2.weight torch.Size([128])
+model.conv_3.2.bias torch.Size([128])
+model.linear.1.weight torch.Size([128, 512])
+model.linear.1.bias torch.Size([128])
+model.linear.2.weight torch.Size([128])
+model.linear.2.bias torch.Size([128])
+model.output_layer.weight torch.Size([2, 128])
+model.output_layer.bias torch.Size([2])
+Total number of parameters 161410
+Total number of conv layers 6
+Total number of linear layers 2
+Epoch 0: train_acc_0.8538_train_loss_0.3379_val_acc_nan_val_loss_nan_val_sens_nan epoch time 4.1942 seconds
