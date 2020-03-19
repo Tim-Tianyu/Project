@@ -23,35 +23,52 @@ args.model_name = "Custom_05"
 args.dataset_name = "MNIST"
 args.image_num_channels = 1 
 
-for p in p_MNIST:
-    for i in range(len(permutations)):
-        for mu in mu_MNIST:
-            experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), COSEN, str(i+1)) 
-            train_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1) +".npy") 
-            eval_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_eval.npy") 
-            set_args(experiment_path, train_index_path, eval_index_path, args)
-            run(args)
-        
-        experiment_path = os.path.join(experiment_dir, "p_" + str(p), EXPONENTIAL, COSEN, str(i+1)) 
-        train_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1) +".npy") 
-        eval_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1)+"_eval.npy") 
-        set_args(experiment_path, train_index_path, eval_index_path, args)
-        run(args)
-        
-        experiment_path = os.path.join(experiment_dir, "p_" + str(p), LINEAR, COSEN, str(i+1)) 
-        train_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1) +".npy") 
-        eval_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_eval.npy") 
-        set_args(experiment_path, train_index_path, eval_index_path, args)
-        run(args)
+# p = 4000
+# i = 4
+# mu = 0.8
+# experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), COSEN, str(i+1)) 
+# train_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1) +".npy") 
+# eval_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_eval.npy") 
+# set_args(experiment_path, train_index_path, eval_index_path, args)
+# run(args)
 
+# for p in  [1000, 2000, 4000]:
+#     for i in range(len(permutations)):
+#         for mu in mu_MNIST:
+#             experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), COSEN, str(i+1)) 
+#             train_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1) +".npy") 
+#             eval_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_eval.npy") 
+#             set_args(experiment_path, train_index_path, eval_index_path, args)
+#             run(args)
+#         
+#         experiment_path = os.path.join(experiment_dir, "p_" + str(p), EXPONENTIAL, COSEN, str(i+1)) 
+#         train_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1) +".npy") 
+#         eval_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1)+"_eval.npy") 
+#         set_args(experiment_path, train_index_path, eval_index_path, args)
+#         run(args)
+#         
+#         experiment_path = os.path.join(experiment_dir, "p_" + str(p), LINEAR, COSEN, str(i+1)) 
+#         train_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1) +".npy") 
+#         eval_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_eval.npy") 
+#         set_args(experiment_path, train_index_path, eval_index_path, args)
+#         run(args)
+# 
 index_dir = "Indexs/CIFAR10"
 experiment_dir = "experiments/CIFAR10"
 args.num_epochs = 50
 args.model_name = "Custom_05"
 args.dataset_name = "CIFAR10"
 args.image_num_channels = 3
+
+# p = 2
+# i = 0
+# experiment_path = os.path.join(experiment_dir, "p_" + str(p), LINEAR, COSEN, str(i+1)) 
+# train_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1) +".npy") 
+# eval_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_eval.npy") 
+# set_args(experiment_path, train_index_path, eval_index_path, args)
+# run(args)
         
-for p in p_CIFAR10:
+for p in [40]:
     for i in range(len(permutations)):
         for mu in mu_MNIST:
             experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), COSEN, str(i+1)) 

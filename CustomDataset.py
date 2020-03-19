@@ -69,6 +69,24 @@ class CustomCIFAR10_partition(datasets.CIFAR10):
         samples_used = (self.targets != -1)
         self.data = self.data[samples_used, :, :]
         self.targets = self.targets[samples_used]
+        
+class CustomCIFAR10_test_partition(datasets.CIFAR10):
+    def __init__(self, root, classes, transform=CIFAR10_transform, target_transform=None, download=False):
+        super().__init__(root, False, transform, target_transform, download)
+        self.targets = classes[self.targets]
+        # filter out unused classes (samples that belongs to -1 class)
+        samples_used = (self.targets != -1)
+        self.data = self.data[samples_used, :, :]
+        self.targets = self.targets[samples_used]
+        
+class CustomMNIST_test_partition(datasets.MNIST):
+    def __init__(self, root, classes, transform=CIFAR10_transform, target_transform=None, download=False):
+        super().__init__(root, False, transform, target_transform, download)
+        self.targets = classes[self.targets]
+        # filter out unused classes (samples that belongs to -1 class)
+        samples_used = (self.targets != -1)
+        self.data = self.data[samples_used, :, :]
+        self.targets = self.targets[samples_used]
             
 class dataset_partition():
     def __init__(self, **kwargs):
@@ -151,6 +169,15 @@ def load_partition_dataset(dataset_name, index_path, classes, transform, data_fo
         train_set = CustomMNIST_partition(data_folder, index_path=index_path, classes=classes, train=True, transform=transform, download=True)
     elif (dataset_name == "CIFAR10"):
         train_set = CustomCIFAR10_partition(data_folder, index_path=index_path, classes=classes, train=True, transform=transform, download=True)
+    else:
+        raise DataSetNotFound
+    return train_set
+
+def load_partition_testset(dataset_name, classes, transform, data_folder="./data"):
+    if (dataset_name == "MNIST"):
+        train_set = CustomMNIST_test_partition(data_folder, classes=classes, transform=transform, download=True)
+    elif (dataset_name == "CIFAR10"):
+        train_set = CustomCIFAR10_test_partition(data_folder, classes=classes, transform=transform, download=True)
     else:
         raise DataSetNotFound
     return train_set

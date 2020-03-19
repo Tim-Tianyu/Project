@@ -40,5 +40,4 @@ def get_args():
     parser.add_argument('--eval_index_path', type=str, default='',
                         help='path to the index of evaluation set')
     args = parser.parse_args()
-    print(args)
     return args

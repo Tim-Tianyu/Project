@@ -1,0 +1,147 @@
+use CPU
+cpu
+here
+System learnable parameters
+model.conv_1.0.weight torch.Size([32, 1, 5, 5])
+model.conv_1.0.bias torch.Size([32])
+model.conv_1.2.weight torch.Size([32])
+model.conv_1.2.bias torch.Size([32])
+model.conv_2.0.weight torch.Size([64, 32, 3, 3])
+model.conv_2.0.bias torch.Size([64])
+model.conv_2.2.weight torch.Size([64])
+model.conv_2.2.bias torch.Size([64])
+model.conv_3.0.weight torch.Size([128, 64, 3, 3])
+model.conv_3.0.bias torch.Size([128])
+model.conv_3.2.weight torch.Size([128])
+model.conv_3.2.bias torch.Size([128])
+model.linear.1.weight torch.Size([128, 512])
+model.linear.1.bias torch.Size([128])
+model.linear.2.weight torch.Size([128])
+model.linear.2.bias torch.Size([128])
+model.output_layer.weight torch.Size([2, 128])
+model.output_layer.bias torch.Size([2])
+Total number of parameters 159810
+Total number of conv layers 6
+Total number of linear layers 2
+
+
+
+Epoch 0: train_acc_0.9743_train_loss_0.0760_val_acc_0.9901_val_loss_0.0330_val_sens_0.9898 epoch time 41.5823 seconds
+
+
+
+Epoch 1: train_acc_0.9888_train_loss_0.0355_val_acc_0.9923_val_loss_0.0252_val_sens_0.9916 epoch time 39.3578 seconds
+
+
+
+Epoch 2: train_acc_0.9927_train_loss_0.0233_val_acc_0.9935_val_loss_0.0209_val_sens_0.9932 epoch time 39.3885 seconds
+
+
+
+Epoch 3: train_acc_0.9937_train_loss_0.0213_val_acc_0.9935_val_loss_0.0210_val_sens_0.9928 epoch time 43.6765 seconds
+
+
+
+
+Epoch 4: train_acc_0.9949_train_loss_0.0202_val_acc_0.9939_val_loss_0.0188_val_sens_0.9933 epoch time 41.9099 seconds
+
+
+
+Epoch 5: train_acc_0.9966_train_loss_0.0117_val_acc_0.9945_val_loss_0.0159_val_sens_0.9939 epoch time 39.0713 seconds
+
+
+
+Epoch 6: train_acc_0.9973_train_loss_0.0092_val_acc_0.9949_val_loss_0.0154_val_sens_0.9945 epoch time 39.7567 seconds
+Generating test set evaluation metrics
+use CPU
+cpu
+here
+System learnable parameters
+model.conv_1.0.weight torch.Size([32, 1, 5, 5])
+model.conv_1.0.bias torch.Size([32])
+model.conv_1.2.weight torch.Size([32])
+model.conv_1.2.bias torch.Size([32])
+model.conv_2.0.weight torch.Size([64, 32, 3, 3])
+model.conv_2.0.bias torch.Size([64])
+model.conv_2.2.weight torch.Size([64])
+model.conv_2.2.bias torch.Size([64])
+model.conv_3.0.weight torch.Size([128, 64, 3, 3])
+model.conv_3.0.bias torch.Size([128])
+model.conv_3.2.weight torch.Size([128])
+model.conv_3.2.bias torch.Size([128])
+model.linear.1.weight torch.Size([128, 512])
+model.linear.1.bias torch.Size([128])
+model.linear.2.weight torch.Size([128])
+model.linear.2.bias torch.Size([128])
+model.output_layer.weight torch.Size([2, 128])
+model.output_layer.bias torch.Size([2])
+Total number of parameters 159810
+Total number of conv layers 6
+Total number of linear layers 2
+
+
+Epoch 0: train_acc_0.9670_train_loss_0.0955_val_acc_0.9873_val_loss_0.0390_val_sens_0.9889 epoch time 28.9517 seconds
+
+
+Epoch 1: train_acc_0.9903_train_loss_0.0289_val_acc_0.9912_val_loss_0.0302_val_sens_0.9923 epoch time 20.9703 seconds
+
+
+Epoch 2: train_acc_0.9922_train_loss_0.0220_val_acc_0.9913_val_loss_0.0256_val_sens_0.9924 epoch time 21.3719 seconds
+
+
+Epoch 3: train_acc_0.9964_train_loss_0.0127_val_acc_0.9956_val_loss_0.0162_val_sens_0.9958 epoch time 20.4185 seconds
+
+
+Epoch 4: train_acc_0.9963_train_loss_0.0114_val_acc_0.9948_val_loss_0.0166_val_sens_0.9945 epoch time 19.2063 seconds
+
+
+Epoch 5: train_acc_0.9971_train_loss_0.0091_val_acc_0.9948_val_loss_0.0175_val_sens_0.9946 epoch time 19.2477 seconds
+
+
+Epoch 6: train_acc_0.9981_train_loss_0.0058_val_acc_0.9965_val_loss_0.0155_val_sens_0.9967 epoch time 20.4733 seconds
+
+
+Epoch 7: train_acc_0.9982_train_loss_0.0051_val_acc_0.9965_val_loss_0.0156_val_sens_0.9968 epoch time 19.6944 seconds
+
+
+Epoch 8: train_acc_0.9995_train_loss_0.0029_val_acc_0.9956_val_loss_0.0148_val_sens_0.9956 epoch time 19.4571 seconds
+
+
+Epoch 9: train_acc_0.9990_train_loss_0.0031_val_acc_0.9961_val_loss_0.0151_val_sens_0.9961 epoch time 22.1650 seconds
+Generating test set evaluation metrics
+use CPU
+cpu
+here
+System learnable parameters
+model.conv_1.0.weight torch.Size([32, 1, 5, 5])
+model.conv_1.0.bias torch.Size([32])
+model.conv_1.2.weight torch.Size([32])
+model.conv_1.2.bias torch.Size([32])
+model.conv_2.0.weight torch.Size([64, 32, 3, 3])
+model.conv_2.0.bias torch.Size([64])
+model.conv_2.2.weight torch.Size([64])
+model.conv_2.2.bias torch.Size([64])
+model.conv_3.0.weight torch.Size([128, 64, 3, 3])
+model.conv_3.0.bias torch.Size([128])
+model.conv_3.2.weight torch.Size([128])
+model.conv_3.2.bias torch.Size([128])
+model.linear.1.weight torch.Size([128, 512])
+model.linear.1.bias torch.Size([128])
+model.linear.2.weight torch.Size([128])
+model.linear.2.bias torch.Size([128])
+model.output_layer.weight torch.Size([2, 128])
+model.output_layer.bias torch.Size([2])
+Total number of parameters 159810
+Total number of conv layers 6
+Total number of linear layers 2
+
+Epoch 0: train_acc_0.9831_train_loss_0.0579_val_acc_0.9955_val_loss_0.0178_val_sens_0.9940 epoch time 12.2231 seconds
+
+Epoch 1: train_acc_0.9978_train_loss_0.0105_val_acc_0.9965_val_loss_0.0146_val_sens_0.9955 epoch time 11.2390 seconds
+
+Epoch 2: train_acc_0.9974_train_loss_0.0086_val_acc_0.9965_val_loss_0.0163_val_sens_0.9952 epoch time 10.4038 seconds
+
+Epoch 3: train_acc_0.9986_train_loss_0.0051_val_acc_0.9961_val_loss_0.0172_val_sens_0.9950 epoch time 11.1234 seconds
+
+
+Epoch 4: train_acc_0.9993_train_loss_0.0029_val_acc_0.9966_val_loss_0.0134_val_sens_0.9958 epoch time 11.5717 seconds

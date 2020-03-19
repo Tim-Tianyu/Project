@@ -27,12 +27,12 @@ eval_index_path = os.path.join("Indexs", "MNIST_eval.npy")
 set_args(experiment_path, train_index_path, eval_index_path, args)
 run(args)
 
-# for p in p_MNIST:
-#     experiment_path = os.path.join(experiment_dir, "p_" + str(p), BALANCE) 
-#     train_index_path = os.path.join(index_dir, "p_" + str(p), BALANCE +"_train.npy") 
-#     eval_index_path = os.path.join(index_dir, "p_" + str(p), BALANCE +"_eval.npy") 
-#     set_args(experiment_path, train_index_path, eval_index_path, args)
-#     run(args)
+for p in p_MNIST:
+    experiment_path = os.path.join(experiment_dir, "p_" + str(p), BALANCE) 
+    train_index_path = os.path.join(index_dir, "p_" + str(p), BALANCE +"_train.npy") 
+    eval_index_path = os.path.join(index_dir, "p_" + str(p), BALANCE +"_eval.npy") 
+    set_args(experiment_path, train_index_path, eval_index_path, args)
+    run(args)
         
 index_dir = "Indexs/CIFAR10"
 experiment_dir = "experiments/CIFAR10"

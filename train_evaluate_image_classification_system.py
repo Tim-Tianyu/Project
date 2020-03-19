@@ -45,8 +45,16 @@ def run(args):
     
     num_epochs = int(np.ceil(orginal_size * args.num_epochs / current_size))
     
-    train_data_loader = DataLoader(train_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
-    val_data_loader = DataLoader(val_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
+    drop_last = False
+    if (len(train_data.targets) % args.batch_size == 1):
+        drop_last = True
+    train_data_loader = DataLoader(train_data, batch_size=args.batch_size, shuffle=True, num_workers=4, drop_last=drop_last)
+    
+    drop_last = False
+    if (len(val_data.targets) % args.batch_size == 1):
+        drop_last = True
+    val_data_loader = DataLoader(val_data, batch_size=args.batch_size, shuffle=True, num_workers=4, drop_last=drop_last)
+    
     test_data_loader = DataLoader(test_data, batch_size=args.batch_size, shuffle=True, num_workers=4)
 
     custom_conv_net = CustomModels.load_model(model_name=args.model_name, num_of_channels=args.image_num_channels, num_classes=args.num_classes)

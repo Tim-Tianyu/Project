@@ -1,3 +1,0 @@
-#python train_evaluate_image_classification_system.py --num_epochs 2 --num_classes 10 --experiment_name MNIST_2560to5_rescaled --model_name Custom_05 --image_num_channels 1 --dataset_name MNIST --distribution_name 2560to5_rescaled
-#python train_evaluate_image_classification_system.py --num_epochs 2 --num_classes 10 --experiment_name MNIST_balanced_2560 --model_name Custom_05 --image_num_channels 1 --dataset_name MNIST --distribution_name balanced_2560
-python train_evaluate_image_classification_system.py --num_epochs 20 --num_classes 10 --experiment_name MNIST_2560to5_rescaled_more_epochs --model_name Custom_05 --image_num_channels 1 --dataset_name MNIST --distribution_name 2560to5_rescaled

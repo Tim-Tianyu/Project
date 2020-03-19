@@ -1,5 +1,0 @@
-python train_evaluate_image_classification_system.py --num_epochs 60 --num_classes 10 --experiment_name CIFAR10_Custom10_balan1600 --model_name Custom_10 --image_num_channels 3 --dataset_name CIFAR10 --distribution_name balanced_1600
-python train_evaluate_image_classification_system.py --num_epochs 120 --num_classes 10 --experiment_name CIFAR10_Custom10_balan800 --model_name Custom_10 --image_num_channels 3 --dataset_name CIFAR10 --distribution_name balanced_800
-python train_evaluate_image_classification_system.py --num_epochs 240 --num_classes 10 --experiment_name CIFAR10_Custom10_balan400 --model_name Custom_10 --image_num_channels 3 --dataset_name CIFAR10 --distribution_name balanced_400
-python train_evaluate_image_classification_system.py --num_epochs 500 --num_classes 10 --experiment_name CIFAR10_Custom10_balan200 --model_name Custom_10 --image_num_channels 3 --dataset_name CIFAR10 --distribution_name balanced_200
-python train_evaluate_image_classification_system.py --num_epochs 1000 --num_classes 10 --experiment_name CIFAR10_Custom10_balan100 --model_name Custom_10 --image_num_channels 3 --dataset_name CIFAR10 --distribution_name balanced_100

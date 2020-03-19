@@ -1,1 +1,0 @@
-python train_evaluate_image_classification_system.py --num_epochs 20 --num_classes 10 --experiment_name MNIST_cosen_expo_unbalance_2560to5 --model_name Custom_05 --image_num_channels 1 --dataset_name MNIST --distribution_name expo_unbalance_2560to5 --cost_sensitive_mode 1

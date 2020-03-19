@@ -11,9 +11,16 @@ def CoSenLogSoftmaxLoss(out, y, cost_matrix):
     assert(not y.requires_grad)
     assert(out.requires_grad)
     costs_used = cost_matrix[y,:]
+    if (check_value(out.data.numpy(), 1) or check_value(cost_matrix.data.numpy(), 2) or check_value(y.data.numpy(), 3) or check_value(costs_used.data.numpy(), 4)):
+        raise Exception("fefewfwe")
+    
+    
     weighted_exp_output = costs_used * torch.exp(out)
+    check_value(weighted_exp_output.data.numpy(), 15)
     weighted_softmax = weighted_exp_output / torch.sum(weighted_exp_output, axis=1).view(-1,1)
+    check_value(weighted_softmax.data.numpy(), 17)
     loss = F.nll_loss(torch.log(weighted_softmax), y)
+    check_value(loss.data.numpy(), 19)
     return loss
 
 def class_separability(p, q, intra_p):
@@ -21,6 +28,7 @@ def class_separability(p, q, intra_p):
     # q: N_2 * k
     # intra_p: N_1 * 1
     inter_p_q = min_inter_class_dist(p, q)
+    check_value(inter_p_q, 27)
     return np.mean(intra_p / inter_p_q)
 
 def class_separability_matrix(data, targets):
@@ -31,11 +39,13 @@ def class_separability_matrix(data, targets):
     intra_dists = []
     samples = []
     matrix = np.zeros((len(classes), len(classes)))
-    
+    check_value(targets, 38)
+    check_value(data, 39)
     for i in classes:
         samples.append(data[targets == i])
         intra_dists.append(min_intra_class_dist(samples[-1]))
-    
+        check_value(intra_dists[-1], 43)
+        check_value(samples[-1], 44)
     for i in range(0,len(classes)):
         for j in range(0,len(classes)):
             if (i == j):
@@ -48,6 +58,7 @@ def min_intra_class_dist(p):
     # p: N * k
     # return: N * 1
     intra_dist = distance.cdist(p, p)
+    check_value(intra_dist, 57)
     return np.amin(intra_dist+np.eye(p.shape[0])*np.amax(intra_dist), axis=1)
 
 def min_inter_class_dist(p, q):
@@ -58,6 +69,7 @@ def min_inter_class_dist(p, q):
 
 def matrix_H(distribution):
     vector = histogram_vector(distribution)
+    check_value(vector, 68)
     matrix = np.zeros((len(vector), len(vector)))
     for i in range(0, len(vector)):
         for j in range(0,len(vector)):
@@ -77,8 +89,23 @@ def sudo_normalize(M):
     return (M - np.mean(M)) ** 2 / (2 * np.std(M) ** 2)
 
 def cost_matrix_gradient(cost_matrix, confusion_matrix, data, targets, distribution, lr=0.1):
+    check_value(cost_matrix, 88)
+    check_value(confusion_matrix, 89)
+    check_value(distribution, 90)
     S = class_separability_matrix(data,targets)
+    check_value(S, 92)
     H = matrix_H(distribution)
+    check_value(H, 94)
     T = matrix_T(H, S, confusion_matrix)
+    check_value(T, 96)
     return lr * (cost_matrix - T)
+
+def check_value(m, line_id):
+    s = np.sum(np.array(m))
+    if (np.isnan(s) or np.isinf(s)):
+        print(line_id)
+        print(m)
+        print()
+        return True
+    return False
     
