@@ -1,0 +1,208 @@
+Namespace(batch_size=100, cost_sensitive_mode=False, dataset_name='MNIST', eval_index_path='', experiment_name='exp_1', image_num_channels=3, model_name='Custom_07', num_classes=10, num_epochs=5, seed=7112018, train_index_path='', use_gpu=True, weight_decay_coefficient=0)
+Namespace(batch_size=100, cost_sensitive_mode=False, dataset_name='MNIST', eval_index_path='', experiment_name='exp_1', image_num_channels=3, model_name='Custom_07', num_classes=10, num_epochs=5, seed=7112018, train_index_path='', use_gpu=True, weight_decay_coefficient=0)
+Files already downloaded and verified
+Files already downloaded and verified
+Files already downloaded and verified
+use CPU
+cpu
+here
+System learnable parameters
+model.conv_1.0.weight torch.Size([32, 3, 5, 5])
+model.conv_1.0.bias torch.Size([32])
+model.conv_1.2.weight torch.Size([32])
+model.conv_1.2.bias torch.Size([32])
+model.conv_2.0.weight torch.Size([64, 32, 3, 3])
+model.conv_2.0.bias torch.Size([64])
+model.conv_2.2.weight torch.Size([64])
+model.conv_2.2.bias torch.Size([64])
+model.conv_3.0.weight torch.Size([128, 64, 3, 3])
+model.conv_3.0.bias torch.Size([128])
+model.conv_3.2.weight torch.Size([128])
+model.conv_3.2.bias torch.Size([128])
+model.linear.1.weight torch.Size([128, 512])
+model.linear.1.bias torch.Size([128])
+model.linear.2.weight torch.Size([128])
+model.linear.2.bias torch.Size([128])
+model.output_layer.weight torch.Size([10, 128])
+model.output_layer.bias torch.Size([10])
+Total number of parameters 162442
+Total number of conv layers 6
+Total number of linear layers 2
+
+
+
+Epoch 0: train_acc_0.4722_train_loss_1.5268_val_acc_0.5367_val_loss_1.2885_val_sens_0.5107 epoch time 34.9659 seconds
+
+
+
+Epoch 1: train_acc_0.5750_train_loss_1.6641_val_acc_0.6092_val_loss_1.0823_val_sens_0.5780 epoch time 34.3580 seconds
+
+
+
+Epoch 2: train_acc_0.6130_train_loss_2.1916_val_acc_0.6437_val_loss_1.0365_val_sens_0.6094 epoch time 34.7944 seconds
+
+tada!
+
+tada!
+
+tada!
+Epoch 3: train_acc_0.6446_train_loss_2.3172_val_acc_0.6531_val_loss_1.0955_val_sens_0.6199 epoch time 34.3391 seconds
+
+
+
+
+Epoch 4: train_acc_0.6726_train_loss_2.1320_val_acc_0.6820_val_loss_1.0228_val_sens_0.6458 epoch time 49.4530 seconds
+
+tada!
+
+
+Epoch 5: train_acc_0.6923_train_loss_1.9895_val_acc_0.7021_val_loss_0.9796_val_sens_0.6661 epoch time 70.1560 seconds
+
+
+
+Epoch 6: train_acc_0.7095_train_loss_1.8791_val_acc_0.7154_val_loss_0.9340_val_sens_0.6804 epoch time 70.5075 seconds
+
+
+tada!
+
+tada!
+Epoch 7: train_acc_0.7226_train_loss_1.7875_val_acc_0.7163_val_loss_0.9496_val_sens_0.6791 epoch time 70.8881 seconds
+
+
+
+Epoch 8: train_acc_0.7313_train_loss_1.7306_val_acc_0.7367_val_loss_0.8698_val_sens_0.6989 epoch time 72.0818 seconds
+
+tada!
+
+tada!
+
+tada!
+
+Epoch 9: train_acc_0.7448_train_loss_1.6505_val_acc_0.7334_val_loss_0.9057_val_sens_0.6964 epoch time 79.3863 seconds
+
+
+
+Epoch 10: train_acc_0.7486_train_loss_1.6024_val_acc_0.7312_val_loss_0.9296_val_sens_0.6945 epoch time 71.1509 seconds
+
+tada!
+
+tada!
+
+tada!
+Epoch 11: train_acc_0.7616_train_loss_1.5283_val_acc_0.7356_val_loss_0.9465_val_sens_0.6974 epoch time 70.7239 seconds
+
+
+
+tada!
+Epoch 12: train_acc_0.7657_train_loss_1.4893_val_acc_0.7432_val_loss_0.9050_val_sens_0.7079 epoch time 68.2685 seconds
+
+
+
+tada!
+
+tada!
+Epoch 13: train_acc_0.7734_train_loss_1.4391_val_acc_0.7488_val_loss_0.8874_val_sens_0.7110 epoch time 84.3621 seconds
+
+tada!
+1
+[[nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]
+ [nan nan nan nan nan nan nan nan nan nan]]
+
