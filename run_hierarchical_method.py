@@ -53,76 +53,52 @@ args.model_name = "Custom_05"
 args.dataset_name = "CIFAR10"
 args.image_num_channels = 3
 
-p = 2
-i = 2
-mu = 0.8
-experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), HIERARCHICAL, str(i+1)) 
-train_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1) +".npy") 
-eval_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_eval.npy") 
-partition_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_h.txt") 
-set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
-run(args)
-        
+p = 10
+i=3
+for mu in [0.5, 0.8]:
+    experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), HIERARCHICAL, str(i+1)) 
+    train_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1) +".npy") 
+    eval_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_eval.npy") 
+    partition_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_h.txt") 
+    set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
+    run(args)
+    
 experiment_path = os.path.join(experiment_dir, "p_" + str(p), EXPONENTIAL, HIERARCHICAL, str(i+1)) 
 train_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1) +".npy") 
 eval_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1)+"_eval.npy") 
 partition_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1)+"_h.txt") 
 set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
 run(args)
-
+    
 experiment_path = os.path.join(experiment_dir, "p_" + str(p), LINEAR, HIERARCHICAL, str(i+1)) 
 train_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1) +".npy") 
 eval_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_eval.npy") 
 partition_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_h.txt") 
 set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
+run(args)    
+
+i = 4
+for mu in mu_CIFAR10:
+    experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), HIERARCHICAL, str(i+1)) 
+    train_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1) +".npy") 
+    eval_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_eval.npy") 
+    partition_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_h.txt") 
+    set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
+    run(args)
+    
+experiment_path = os.path.join(experiment_dir, "p_" + str(p), EXPONENTIAL, HIERARCHICAL, str(i+1)) 
+train_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1) +".npy") 
+eval_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1)+"_eval.npy") 
+partition_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1)+"_h.txt") 
+set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
 run(args)
-
-for i in [3,4]:
-    for mu in mu_CIFAR10:
-        experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), HIERARCHICAL, str(i+1)) 
-        train_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1) +".npy") 
-        eval_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_eval.npy") 
-        partition_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_h.txt") 
-        set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
-        run(args)
     
-    experiment_path = os.path.join(experiment_dir, "p_" + str(p), EXPONENTIAL, HIERARCHICAL, str(i+1)) 
-    train_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1) +".npy") 
-    eval_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1)+"_eval.npy") 
-    partition_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1)+"_h.txt") 
-    set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
-    run(args)
-    
-    experiment_path = os.path.join(experiment_dir, "p_" + str(p), LINEAR, HIERARCHICAL, str(i+1)) 
-    train_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1) +".npy") 
-    eval_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_eval.npy") 
-    partition_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_h.txt") 
-    set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
-    run(args)
-
-p = 10
-for i in [1,2,3,4]:
-    for mu in mu_CIFAR10:
-        experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), HIERARCHICAL, str(i+1)) 
-        train_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1) +".npy") 
-        eval_index_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_eval.npy") 
-        partition_path = os.path.join(index_dir, "p_" + str(p), "mu_" + str(mu), str(i+1)+"_h.txt") 
-        set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
-        run(args)
-    
-    experiment_path = os.path.join(experiment_dir, "p_" + str(p), EXPONENTIAL, HIERARCHICAL, str(i+1)) 
-    train_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1) +".npy") 
-    eval_index_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1)+"_eval.npy") 
-    partition_path = os.path.join(index_dir, "p_" + str(p), EXPONENTIAL, str(i+1)+"_h.txt") 
-    set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
-    run(args)
-    
-    experiment_path = os.path.join(experiment_dir, "p_" + str(p), LINEAR, HIERARCHICAL, str(i+1)) 
-    train_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1) +".npy") 
-    eval_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_eval.npy") 
-    partition_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_h.txt") 
-    set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
-    run(args)
+experiment_path = os.path.join(experiment_dir, "p_" + str(p), LINEAR, HIERARCHICAL, str(i+1)) 
+train_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1) +".npy") 
+eval_index_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_eval.npy") 
+partition_path = os.path.join(index_dir, "p_" + str(p), LINEAR, str(i+1)+"_h.txt") 
+set_args(experiment_path, train_index_path, eval_index_path, partition_path, args)
+run(args)    
 
 for p in [20,40]:
     for i in [0,1,2,3,4]:
