@@ -11,7 +11,11 @@ def CoSenLogSoftmaxLoss(out, y, cost_matrix):
     assert(not y.requires_grad)
     assert(out.requires_grad)
     costs_used = cost_matrix[y,:]
-    if (check_value(out.data.numpy(), 1) or check_value(cost_matrix.data.numpy(), 2) or check_value(y.data.numpy(), 3) or check_value(costs_used.data.numpy(), 4)):
+    check_value(cost_matrix.data.numpy(), 2)
+    check_value(y.data.numpy(), 3)
+    check_value(costs_used.data.numpy(), 4)
+    if (check_value(out.data.numpy(), 1)):
+        print(out)
         raise Exception("fefewfwe")
     
     
@@ -98,6 +102,8 @@ def cost_matrix_gradient(cost_matrix, confusion_matrix, data, targets, distribut
     check_value(H, 94)
     T = matrix_T(H, S, confusion_matrix)
     check_value(T, 96)
+    if (lr < 1e-10):
+        lr = 0
     return lr * (cost_matrix - T)
 
 def check_value(m, line_id):

@@ -148,6 +148,8 @@ class ExperimentBuilder(nn.Module):
         out = self.model.forward(x)  # forward the data in the model
         
         if (self.cost_sensitive_mode):
+            if (util.check_value(out.data.numpy(), 151)):
+                print(self.cost_matrix)
             loss = util.CoSenLogSoftmaxLoss(out, y, self.cost_matrix)
         else:    
             loss = F.cross_entropy(input=out, target=y)  # compute loss
