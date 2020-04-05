@@ -146,7 +146,7 @@ class ExperimentBuilder(nn.Module):
         x, y = x.float().to(device=self.device), y.long().to(
             device=self.device)  # send data to device as torch tensors
         out = self.model.forward(x)  # forward the data in the model
-        
+        # TODO: check model parameter
         if (self.cost_sensitive_mode):
             if (util.check_value(out.data.numpy(), 151)):
                 print(self.cost_matrix)
