@@ -7,11 +7,9 @@ from scipy.spatial import distance
 def CoSenLogSoftmaxLoss(out, y, cost_matrix):
     # tensor object
     cost_matrix = cost_matrix
-    assert(not cost_matrix.requires_grad)
     assert(not y.requires_grad)
     assert(out.requires_grad)
     costs_used = torch.tensor(cost_matrix[y,:]).float()
-    check_value(cost_matrix.data.numpy(), 2)
     check_value(y.data.numpy(), 3)
     check_value(costs_used.data.numpy(), 4)
     if (check_value(out.data.numpy(), 1)):
