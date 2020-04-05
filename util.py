@@ -9,21 +9,23 @@ def CoSenLogSoftmaxLoss(out, y, cost_matrix):
     cost_matrix = cost_matrix
     assert(not y.requires_grad)
     assert(out.requires_grad)
-    costs_used = torch.tensor(cost_matrix[y,:]).float()
+    costs_used = torch.tensor(np.log(100 * cost_matrix[y,:])).float()
     check_value(y.data.numpy(), 3)
     check_value(costs_used.data.numpy(), 4)
     if (check_value(out.data.numpy(), 1)):
-        print(out)
+        print(costs_used)
         raise Exception("fefewfwe")
     
-    weighted_exp_output = costs_used * torch.exp(out)
-    check_value(weighted_exp_output.data.numpy(), 15)
-    weighted_softmax = weighted_exp_output / torch.sum(weighted_exp_output, axis=1).view(-1,1)
-    check_value(weighted_softmax.data.numpy(), 17)
-    loss = F.nll_loss(torch.log(weighted_softmax), y)
-    check_value(loss.data.numpy(), 19)
-    print(loss)
-    return loss
+    return F.cross_entropy(out+costs_used)
+
+    # weighted_exp_output = costs_used * torch.exp(out)
+    # check_value(weighted_exp_output.data.numpy(), 15)
+    # weighted_softmax = weighted_exp_output / torch.sum(weighted_exp_output, axis=1).view(-1,1)
+    # check_value(weighted_softmax.data.numpy(), 17)
+    # loss = F.nll_loss(torch.log(weighted_softmax), y)
+    # check_value(loss.data.numpy(), 19)
+    # print(loss)
+    # return loss
 
 def class_separability(p, q, intra_p):
     # p: N_1 * k
