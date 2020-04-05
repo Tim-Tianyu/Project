@@ -16,7 +16,7 @@ def CoSenLogSoftmaxLoss(out, y, cost_matrix):
         print(costs_used)
         raise Exception("fefewfwe")
     
-    return F.cross_entropy(out+costs_used)
+    return F.cross_entropy(out+costs_used, y)
 
     # weighted_exp_output = costs_used * torch.exp(out)
     # check_value(weighted_exp_output.data.numpy(), 15)

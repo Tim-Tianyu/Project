@@ -53,6 +53,7 @@ args.model_name = "Custom_05"
 args.dataset_name = "CIFAR10"
 args.image_num_channels = 3
 
+p = 10
 i = 4
 mu = 0.8
 experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), HIERARCHICAL, str(i+1)) 
