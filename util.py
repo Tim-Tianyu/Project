@@ -6,11 +6,11 @@ from scipy.spatial import distance
 
 def CoSenLogSoftmaxLoss(out, y, cost_matrix):
     # tensor object
-    cost_matrix = torch.tensor(cost_matrix).float()
+    cost_matrix = cost_matrix
     assert(not cost_matrix.requires_grad)
     assert(not y.requires_grad)
     assert(out.requires_grad)
-    costs_used = cost_matrix[y,:]
+    costs_used = torch.tensor(cost_matrix[y,:]).float()
     check_value(cost_matrix.data.numpy(), 2)
     check_value(y.data.numpy(), 3)
     check_value(costs_used.data.numpy(), 4)
@@ -18,13 +18,13 @@ def CoSenLogSoftmaxLoss(out, y, cost_matrix):
         print(out)
         raise Exception("fefewfwe")
     
-    
     weighted_exp_output = costs_used * torch.exp(out)
     check_value(weighted_exp_output.data.numpy(), 15)
     weighted_softmax = weighted_exp_output / torch.sum(weighted_exp_output, axis=1).view(-1,1)
     check_value(weighted_softmax.data.numpy(), 17)
     loss = F.nll_loss(torch.log(weighted_softmax), y)
     check_value(loss.data.numpy(), 19)
+    print(loss)
     return loss
 
 def class_separability(p, q, intra_p):
