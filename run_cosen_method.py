@@ -68,7 +68,7 @@ args.image_num_channels = 3
 # set_args(experiment_path, train_index_path, eval_index_path, args)
 # run(args)
         
-for p in [40]:
+for p in [20, 10, 2]:
     for i in range(len(permutations)):
         for mu in mu_MNIST:
             experiment_path = os.path.join(experiment_dir, "p_" + str(p), "mu_" + str(mu), COSEN, str(i+1)) 
