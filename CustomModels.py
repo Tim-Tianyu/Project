@@ -5,54 +5,54 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torchvision.models as models
 
-class Custom_07(nn.Module):
-    def __init__(self, num_input_channels, num_classes):
-        super(Custom_07, self).__init__()
-        # 32 * 32
-        self.conv_1 = nn.Sequential(
-            nn.Conv2d(num_input_channels, 32, kernel_size=3, padding=1),
-            nn.MaxPool2d(2),
-            nn.BatchNorm2d(32),
-            nn.LeakyReLU(inplace = True)
-        )
-        # 16 * 16
-        self.conv_2 = nn.Sequential(
-            nn.Conv2d(32, 64, kernel_size=3, padding=1),
-            nn.MaxPool2d(2),
-            nn.BatchNorm2d(64),
-            nn.LeakyReLU(inplace = True)
-        )
-        # 8 * 8
-        self.conv_3 = nn.Sequential(
-            nn.Conv2d(64, 128, kernel_size=3, padding=1),
-            nn.MaxPool2d(2),
-            nn.BatchNorm2d(128),
-            nn.LeakyReLU(inplace = True)
-        )
-        # 4 * 4
-        self.conv_4 = nn.Sequential(
-            nn.Conv2d(128, 256, kernel_size=3),
-            nn.BatchNorm2d(256),
-            nn.LeakyReLU(inplace = True)
-        )
-        # 2 * 2
-        self.linear = nn.Sequential(
-            nn.Linear(1024, 512),
-            nn.BatchNorm1d(512),
-            nn.LeakyReLU(inplace = True),
-            nn.Linear(512, 128),
-            nn.BatchNorm1d(128),
-            nn.LeakyReLU(inplace = True),
-            nn.Linear(128, num_classes)
-        )
+# class Custom_07(nn.Module):
+#     def __init__(self, num_input_channels, num_classes):
+#         super(Custom_07, self).__init__()
+#         # 32 * 32
+#         self.conv_1 = nn.Sequential(
+#             nn.Conv2d(num_input_channels, 32, kernel_size=3, padding=1),
+#             nn.MaxPool2d(2),
+#             nn.BatchNorm2d(32),
+#             nn.LeakyReLU(inplace = True)
+#         )
+#         # 16 * 16
+#         self.conv_2 = nn.Sequential(
+#             nn.Conv2d(32, 64, kernel_size=3, padding=1),
+#             nn.MaxPool2d(2),
+#             nn.BatchNorm2d(64),
+#             nn.LeakyReLU(inplace = True)
+#         )
+#         # 8 * 8
+#         self.conv_3 = nn.Sequential(
+#             nn.Conv2d(64, 128, kernel_size=3, padding=1),
+#             nn.MaxPool2d(2),
+#             nn.BatchNorm2d(128),
+#             nn.LeakyReLU(inplace = True)
+#         )
+#         # 4 * 4
+#         self.conv_4 = nn.Sequential(
+#             nn.Conv2d(128, 256, kernel_size=3),
+#             nn.BatchNorm2d(256),
+#             nn.LeakyReLU(inplace = True)
+#         )
+#         # 2 * 2
+#         self.linear = nn.Sequential(
+#             nn.Linear(1024, 512),
+#             nn.BatchNorm1d(512),
+#             nn.LeakyReLU(inplace = True),
+#             nn.Linear(512, 128),
+#             nn.BatchNorm1d(128),
+#             nn.LeakyReLU(inplace = True),
+#             nn.Linear(128, num_classes)
+#         )
 
-    def forward(self, x):
-        x = self.conv_1(x)
-        x = self.conv_2(x)
-        x = self.conv_3(x)
-        x = self.conv_4(x)
-        x = x.view(-1, 1024)
-        return self.linear(x)
+#     def forward(self, x):
+#         x = self.conv_1(x)
+#         x = self.conv_2(x)
+#         x = self.conv_3(x)
+#         x = self.conv_4(x)
+#         x = x.view(-1, 1024)
+#         return self.linear(x)
     
 class Custom_05(nn.Module):
     def __init__(self, num_input_channels, num_classes):
@@ -100,120 +100,120 @@ class Custom_05(nn.Module):
         return self.output_layer(self.get_feature_vetor(x))
         
     
-class Custom_08(nn.Module):
-    def __init__(self, num_input_channels, num_classes):
-        super(Custom_08, self).__init__()
-        # 32 * 32
-        self.conv_1 = nn.Sequential(
-            nn.Conv2d(num_input_channels, 32, kernel_size=3, padding=1),
-            nn.MaxPool2d(2),
-            nn.BatchNorm2d(32),
-            nn.LeakyReLU(inplace = True)
-        )
-        # 16 * 16
-        self.conv_2 = nn.Sequential(
-            nn.Conv2d(32, 64, kernel_size=3, padding=1),
-            nn.MaxPool2d(2),
-            nn.BatchNorm2d(64),
-            nn.LeakyReLU(inplace = True)
-        )
-        # 8 * 8
-        self.conv_3 = nn.Sequential(
-            nn.Conv2d(64, 128, kernel_size=3, padding=1),
-            nn.MaxPool2d(2),
-            nn.BatchNorm2d(128),
-            nn.LeakyReLU(inplace = True)
-        )
-        # 4 * 4
-        self.conv_4 = nn.Sequential(
-            nn.Conv2d(128, 256, kernel_size=3, padding=1),
-            nn.MaxPool2d(2),
-            nn.BatchNorm2d(256),
-            nn.LeakyReLU(inplace = True)
-        )
-        # 2 * 2
-        self.conv_5 = nn.Sequential(
-            nn.Conv2d(256, 512, kernel_size=2),
-            nn.BatchNorm2d(512),
-            nn.LeakyReLU(inplace = True)
-        )
-        # 1 * 1
-        self.linear = nn.Sequential(
-            nn.Linear(512, 256),
-            nn.BatchNorm1d(256),
-            nn.LeakyReLU(inplace = True),
-            nn.Linear(256, 128),
-            nn.BatchNorm1d(128),
-            nn.LeakyReLU(inplace = True),
-            nn.Linear(128, num_classes)
-        )
+# class Custom_08(nn.Module):
+#     def __init__(self, num_input_channels, num_classes):
+#         super(Custom_08, self).__init__()
+#         # 32 * 32
+#         self.conv_1 = nn.Sequential(
+#             nn.Conv2d(num_input_channels, 32, kernel_size=3, padding=1),
+#             nn.MaxPool2d(2),
+#             nn.BatchNorm2d(32),
+#             nn.LeakyReLU(inplace = True)
+#         )
+#         # 16 * 16
+#         self.conv_2 = nn.Sequential(
+#             nn.Conv2d(32, 64, kernel_size=3, padding=1),
+#             nn.MaxPool2d(2),
+#             nn.BatchNorm2d(64),
+#             nn.LeakyReLU(inplace = True)
+#         )
+#         # 8 * 8
+#         self.conv_3 = nn.Sequential(
+#             nn.Conv2d(64, 128, kernel_size=3, padding=1),
+#             nn.MaxPool2d(2),
+#             nn.BatchNorm2d(128),
+#             nn.LeakyReLU(inplace = True)
+#         )
+#         # 4 * 4
+#         self.conv_4 = nn.Sequential(
+#             nn.Conv2d(128, 256, kernel_size=3, padding=1),
+#             nn.MaxPool2d(2),
+#             nn.BatchNorm2d(256),
+#             nn.LeakyReLU(inplace = True)
+#         )
+#         # 2 * 2
+#         self.conv_5 = nn.Sequential(
+#             nn.Conv2d(256, 512, kernel_size=2),
+#             nn.BatchNorm2d(512),
+#             nn.LeakyReLU(inplace = True)
+#         )
+#         # 1 * 1
+#         self.linear = nn.Sequential(
+#             nn.Linear(512, 256),
+#             nn.BatchNorm1d(256),
+#             nn.LeakyReLU(inplace = True),
+#             nn.Linear(256, 128),
+#             nn.BatchNorm1d(128),
+#             nn.LeakyReLU(inplace = True),
+#             nn.Linear(128, num_classes)
+#         )
 
-    def forward(self, x):
-        x = self.conv_1(x)
-        x = self.conv_2(x)
-        x = self.conv_3(x)
-        x = self.conv_4(x)
-        x = self.conv_5(x)
-        x = x.view(-1, 512)
-        return self.linear(x)
+#     def forward(self, x):
+#         x = self.conv_1(x)
+#         x = self.conv_2(x)
+#         x = self.conv_3(x)
+#         x = self.conv_4(x)
+#         x = self.conv_5(x)
+#         x = x.view(-1, 512)
+#         return self.linear(x)
     
-class Custom_10(nn.Module):
-    def __init__(self, num_input_channels, num_classes):
-        super(Custom_10, self).__init__()
-        # 32 * 32
-        self.conv_1 = nn.Sequential(
-            nn.Conv2d(num_input_channels, 32, kernel_size=3, padding=1),
-            nn.MaxPool2d(2),
-            nn.BatchNorm2d(32),
-            nn.LeakyReLU(inplace = True)
-        )
-        # 16 * 16
-        self.conv_2 = nn.Sequential(
-            nn.Conv2d(32, 64, kernel_size=3, padding=1),
-            nn.MaxPool2d(2),
-            nn.BatchNorm2d(64),
-            nn.LeakyReLU(inplace = True),
-            nn.Conv2d(64, 64, kernel_size=3, padding=1),
-            nn.BatchNorm2d(64)
-        )
-        self.downsample_16to8 = nn.Conv2d(32, 64, kernel_size=1, stride=2)
-        # 8 * 8
-        self.conv_3 = nn.Sequential(
-            nn.Conv2d(64, 128, kernel_size=3, padding=1),
-            nn.MaxPool2d(2),
-            nn.BatchNorm2d(128),
-            nn.LeakyReLU(inplace = True),
-            nn.Conv2d(128, 128, kernel_size=3, padding=1),
-            nn.BatchNorm2d(128)
-        )
-        self.downsample_8to4 = nn.Conv2d(64, 128, kernel_size=1, stride=2)
-        # 4 * 4
-        self.conv_4 = nn.Sequential(
-            nn.Conv2d(128, 256, kernel_size=3),
-            nn.BatchNorm2d(256),
-            nn.LeakyReLU(inplace = True),
-            nn.Conv2d(256, 256, kernel_size=1),
-            nn.BatchNorm2d(256)
-        )
-        self.downsample_4to2 = nn.Conv2d(128, 256, kernel_size=1, stride=2)
-        # 2 * 2
-        self.linear = nn.Sequential(
-            nn.Linear(1024, 512),
-            nn.BatchNorm1d(512),
-            nn.LeakyReLU(inplace = True),
-            nn.Linear(512, 128),
-            nn.BatchNorm1d(128),
-            nn.LeakyReLU(inplace = True),
-            nn.Linear(128, num_classes)
-        )
+# class Custom_10(nn.Module):
+#     def __init__(self, num_input_channels, num_classes):
+#         super(Custom_10, self).__init__()
+#         # 32 * 32
+#         self.conv_1 = nn.Sequential(
+#             nn.Conv2d(num_input_channels, 32, kernel_size=3, padding=1),
+#             nn.MaxPool2d(2),
+#             nn.BatchNorm2d(32),
+#             nn.LeakyReLU(inplace = True)
+#         )
+#         # 16 * 16
+#         self.conv_2 = nn.Sequential(
+#             nn.Conv2d(32, 64, kernel_size=3, padding=1),
+#             nn.MaxPool2d(2),
+#             nn.BatchNorm2d(64),
+#             nn.LeakyReLU(inplace = True),
+#             nn.Conv2d(64, 64, kernel_size=3, padding=1),
+#             nn.BatchNorm2d(64)
+#         )
+#         self.downsample_16to8 = nn.Conv2d(32, 64, kernel_size=1, stride=2)
+#         # 8 * 8
+#         self.conv_3 = nn.Sequential(
+#             nn.Conv2d(64, 128, kernel_size=3, padding=1),
+#             nn.MaxPool2d(2),
+#             nn.BatchNorm2d(128),
+#             nn.LeakyReLU(inplace = True),
+#             nn.Conv2d(128, 128, kernel_size=3, padding=1),
+#             nn.BatchNorm2d(128)
+#         )
+#         self.downsample_8to4 = nn.Conv2d(64, 128, kernel_size=1, stride=2)
+#         # 4 * 4
+#         self.conv_4 = nn.Sequential(
+#             nn.Conv2d(128, 256, kernel_size=3),
+#             nn.BatchNorm2d(256),
+#             nn.LeakyReLU(inplace = True),
+#             nn.Conv2d(256, 256, kernel_size=1),
+#             nn.BatchNorm2d(256)
+#         )
+#         self.downsample_4to2 = nn.Conv2d(128, 256, kernel_size=1, stride=2)
+#         # 2 * 2
+#         self.linear = nn.Sequential(
+#             nn.Linear(1024, 512),
+#             nn.BatchNorm1d(512),
+#             nn.LeakyReLU(inplace = True),
+#             nn.Linear(512, 128),
+#             nn.BatchNorm1d(128),
+#             nn.LeakyReLU(inplace = True),
+#             nn.Linear(128, num_classes)
+#         )
 
-    def forward(self, x):
-        x = self.conv_1(x)
-        x = F.leaky_relu(self.conv_2(x) + self.downsample_16to8(x))
-        x = F.leaky_relu(self.conv_3(x) + self.downsample_8to4(x))
-        x = F.leaky_relu(self.conv_4(x) + self.downsample_4to2(x))
-        x = x.view(-1, 1024)
-        return self.linear(x)
+#     def forward(self, x):
+#         x = self.conv_1(x)
+#         x = F.leaky_relu(self.conv_2(x) + self.downsample_16to8(x))
+#         x = F.leaky_relu(self.conv_3(x) + self.downsample_8to4(x))
+#         x = F.leaky_relu(self.conv_4(x) + self.downsample_4to2(x))
+#         x = x.view(-1, 1024)
+#         return self.linear(x)
 
 class hierarchical_model(nn.Module):
     def __init__(self, classes, models):
